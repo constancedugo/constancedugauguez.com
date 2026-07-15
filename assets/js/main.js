@@ -16,6 +16,7 @@
   function init() {
     setupNav();
     setupFooterYear();
+    setupCarousel();
     fitHeadlines();
 
     var resizeTimer;
@@ -35,7 +36,7 @@
       // Reduced motion: snap everything to its final visible state, no animation.
       gsap.set(".line > span", { yPercent: 0 });
       gsap.set(".reveal-img", { clipPath: "inset(0% 0 0 0)" });
-      gsap.set(".reveal-img img", { scale: 1 });
+      gsap.set(".reveal-img img", { scale: 1, clearProps: "scale" });
       gsap.set(".hero__eyebrow, .hero__subtitle, .hero .pill-btn", { opacity: 1, y: 0 });
     }
 
@@ -131,6 +132,90 @@
   function setupFooterYear() {
     var el = document.querySelector("[data-year]");
     if (el) el.textContent = new Date().getFullYear();
+  }
+
+  /* -----------------------------------------------------------------------
+     Projects carousel: drag/swipe to scroll, arrow buttons, click-vs-drag guard
+     -------------------------------------------------------------------- */
+
+  function setupCarousel() {
+    var carousel = document.getElementById("projects-carousel");
+    if (!carousel) return;
+
+    var track = carousel.querySelector(".carousel__track");
+    var prevBtn = document.querySelector('.carousel__arrow[data-dir="prev"]');
+    var nextBtn = document.querySelector('.carousel__arrow[data-dir="next"]');
+
+    var isDown = false;
+    var dragged = false;
+    var startX = 0;
+    var startScrollLeft = 0;
+
+    carousel.addEventListener("pointerdown", function (e) {
+      if (e.pointerType === "mouse" && e.button !== 0) return;
+      isDown = true;
+      dragged = false;
+      startX = e.clientX;
+      startScrollLeft = carousel.scrollLeft;
+      carousel.classList.add("is-dragging");
+      carousel.setPointerCapture(e.pointerId);
+    });
+
+    carousel.addEventListener("pointermove", function (e) {
+      if (!isDown) return;
+      var dx = e.clientX - startX;
+      if (Math.abs(dx) > 4) dragged = true;
+      carousel.scrollLeft = startScrollLeft - dx;
+    });
+
+    function endDrag() {
+      isDown = false;
+      carousel.classList.remove("is-dragging");
+    }
+    carousel.addEventListener("pointerup", endDrag);
+    carousel.addEventListener("pointercancel", endDrag);
+    carousel.addEventListener("pointerleave", endDrag);
+
+    // A drag that moved the track shouldn't also fire the slide's link navigation.
+    carousel.addEventListener(
+      "click",
+      function (e) {
+        if (dragged) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      },
+      true
+    );
+
+    function slideStep() {
+      var item = carousel.querySelector(".carousel__item");
+      if (!item) return 300;
+      var gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || 0);
+      return item.getBoundingClientRect().width + gap;
+    }
+
+    function updateArrows() {
+      if (!prevBtn || !nextBtn) return;
+      var max = carousel.scrollWidth - carousel.clientWidth - 2;
+      prevBtn.disabled = carousel.scrollLeft <= 2;
+      nextBtn.disabled = carousel.scrollLeft >= max;
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener("click", function () {
+        carousel.scrollBy({ left: -slideStep(), behavior: reducedMotion ? "auto" : "smooth" });
+      });
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener("click", function () {
+        carousel.scrollBy({ left: slideStep(), behavior: reducedMotion ? "auto" : "smooth" });
+      });
+    }
+
+    carousel.addEventListener("scroll", updateArrows, { passive: true });
+    window.addEventListener("resize", updateArrows);
+    updateArrows();
   }
 
   /* -----------------------------------------------------------------------
@@ -280,7 +365,9 @@
         start: "top 85%",
         onEnter: function () {
           gsap.to(frame, { clipPath: "inset(0% 0 0 0)", duration: 1.2, ease: "power4.out" });
-          if (img) gsap.to(img, { scale: 1, duration: 1.4, ease: "power3.out" });
+          // clearProps hands the scale back to CSS once revealed, so :hover zoom
+          // (an inline transform from GSAP would otherwise always win over it).
+          if (img) gsap.to(img, { scale: 1, duration: 1.4, ease: "power3.out", clearProps: "scale" });
         },
       });
     });

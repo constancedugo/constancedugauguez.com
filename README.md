@@ -36,6 +36,8 @@ Chaque projet a son dossier dans `assets/img/<nom-du-projet>/` avec des `.svg` d
 
 La photo de la section « à propos » sur la page d'accueil utilise `assets/img/kinnect/tall-a.svg` — remplace-la par ton propre portrait au format 4:5.
 
+Le portrait du hero (colonne de droite sur l'accueil) utilise `assets/img/hero/portrait.svg` (ratio 4:5) — remplace-le par ta propre photo éditoriale.
+
 ## Modifier les textes
 
 - **Accueil** (`index.html`) : titre du hero, sous-titre, texte du marquee, texte « à propos », liens réseaux sociaux (LinkedIn / Instagram / Behance — mets tes vraies URLs).
@@ -48,21 +50,23 @@ La photo de la section « à propos » sur la page d'accueil utilise `assets/img
 Tout se règle en haut de `assets/css/style.css`, dans `:root` :
 
 ```css
---cloud: #F0EEE9;
---custard: #FAE38E;
---blueberry: #D2E8FF;
---cherry: #861519;
---font-display: "Climate Crisis", sans-serif;
---font-body: "Archivo", sans-serif;
+--cream: #F0EEE9;   /* fond principal du site */
+--butter: #FAE38E;  /* fond du hero, marquee, accents chauds */
+--sky: #D2E8FF;      /* fond des cartes/sections, jamais pour du texte */
+--indigo: #2B3A67;   /* tout le texte, logo, footer, boutons */
+
+--font-display: "Instrument Sans", sans-serif;  /* titres, logo */
+--font-body: "Archivo", sans-serif;              /* texte courant, nav, labels */
+--font-accent: "Instrument Serif", serif;        /* mots en italique, avec la classe .accent */
 ```
 
-Les polices sont chargées depuis Google Fonts dans le `<head>` de chaque page HTML.
+Les polices sont chargées depuis Google Fonts dans le `<head>` de chaque page HTML. Pour ajouter un mot en italique serif (comme « osent » dans le hero ou « ensemble » dans le footer), entoure-le de `<em class="accent">…</em>` — à utiliser avec parcimonie, pour un ou deux mots par page maximum.
 
 ## Ajouter ou retirer un projet
 
 1. Duplique une page projet existante dans `projets/` et adapte son contenu.
-2. Crée son dossier d'images dans `assets/img/<nom-du-projet>/`.
-3. Ajoute une carte vers cette page dans la grille `#projets` de `index.html`.
+2. Crée son dossier d'images dans `assets/img/<nom-du-projet>/` (au minimum un `card.svg` au format 4:5 pour la vignette du carrousel).
+3. Ajoute un `<li class="carousel__item">` dans le carrousel `#projects-carousel` de `index.html` (copie un slide existant).
 4. Mets à jour les liens « projet suivant » (`.next-project`) des pages concernées pour garder la boucle circulaire entre tous les projets.
 
 ## Déployer sur Netlify

@@ -15,7 +15,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Climate+Crisis&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="assets/css/style.css">
   <noscript><style>body{opacity:1 !important;}</style></noscript>
@@ -95,68 +95,81 @@
       </div>
     </div>
 
-    <section class="section" id="projets">
-      <div class="container">
+    <section class="section section--carousel" id="projets">
+      <div class="container section-heading-row">
         <h2 class="section-title">
           <span class="line"><span>projets</span></span>
         </h2>
+        <div class="carousel__controls">
+          <button class="carousel__arrow" type="button" data-dir="prev" aria-label="Projet précédent">←</button>
+          <button class="carousel__arrow" type="button" data-dir="next" aria-label="Projet suivant">→</button>
+        </div>
+      </div>
 
-        <div class="projects">
+      <div class="carousel" id="projects-carousel" role="region" aria-roledescription="carrousel" aria-label="Projets" tabindex="0">
+        <ul class="carousel__track">
 
-          <a class="project-card project-card--feature" href="projets/kinnect.html">
-            <div class="project-card__frame reveal-img">
-              <img src="assets/img/kinnect/cover.svg" alt="Aperçu du projet Kinnect : identité de marque, application et cartes" loading="lazy" width="2100" height="900">
-            </div>
-            <div class="project-card__caption">
-              <span class="project-card__name">Kinnect</span>
-              <span class="eyebrow card__category">Identité · app · cartes</span>
-            </div>
-          </a>
+          <li class="carousel__item">
+            <a class="carousel__slide project-card" href="projets/kinnect.html">
+              <div class="carousel__frame reveal-img">
+                <img src="assets/img/kinnect/card.svg" alt="Aperçu du projet Kinnect : identité de marque, application et cartes" loading="lazy" width="1600" height="2000" draggable="false">
+              </div>
+              <div class="project-card__caption">
+                <span class="project-card__name">Kinnect</span>
+                <span class="eyebrow card__category">Identité · app · cartes</span>
+              </div>
+            </a>
+          </li>
 
-          <div class="projects__grid">
-
-            <a class="project-card" href="projets/annual-report.html">
-              <div class="project-card__frame reveal-img">
-                <img src="assets/img/annual-report/card.svg" alt="Aperçu du rapport annuel, projet éditorial freelance" loading="lazy" width="1600" height="2000">
+          <li class="carousel__item">
+            <a class="carousel__slide project-card" href="projets/annual-report.html">
+              <div class="carousel__frame reveal-img">
+                <img src="assets/img/annual-report/card.svg" alt="Aperçu du rapport annuel, projet éditorial freelance" loading="lazy" width="1600" height="2000" draggable="false">
               </div>
               <div class="project-card__caption">
                 <span class="project-card__name">Annual Report</span>
                 <span class="eyebrow card__category">Éditorial</span>
               </div>
             </a>
+          </li>
 
-            <a class="project-card" href="projets/heritage-trees.html">
-              <div class="project-card__frame reveal-img">
-                <img src="assets/img/heritage-trees/card.svg" alt="Aperçu du projet Heritage Trees, exploration conceptuelle et abstraite" loading="lazy" width="1600" height="2000">
+          <li class="carousel__item">
+            <a class="carousel__slide project-card" href="projets/heritage-trees.html">
+              <div class="carousel__frame reveal-img">
+                <img src="assets/img/heritage-trees/card.svg" alt="Aperçu du projet Heritage Trees, exploration conceptuelle et abstraite" loading="lazy" width="1600" height="2000" draggable="false">
               </div>
               <div class="project-card__caption">
                 <span class="project-card__name">Heritage Trees</span>
                 <span class="eyebrow card__category">Concept · abstrait</span>
               </div>
             </a>
+          </li>
 
-            <a class="project-card" href="projets/creativity-through.html">
-              <div class="project-card__frame reveal-img">
-                <img src="assets/img/creativity-through/card.svg" alt="Aperçu du projet Creativity Through, outil éducatif" loading="lazy" width="1600" height="2000">
+          <li class="carousel__item">
+            <a class="carousel__slide project-card" href="projets/creativity-through.html">
+              <div class="carousel__frame reveal-img">
+                <img src="assets/img/creativity-through/card.svg" alt="Aperçu du projet Creativity Through, outil éducatif" loading="lazy" width="1600" height="2000" draggable="false">
               </div>
               <div class="project-card__caption">
                 <span class="project-card__name">Creativity Through</span>
                 <span class="eyebrow card__category">Éducatif</span>
               </div>
             </a>
+          </li>
 
-            <a class="project-card" href="projets/experimentation.html">
-              <div class="project-card__frame reveal-img">
-                <img src="assets/img/experimentation/card.svg" alt="Aperçu du projet Expérimentation, exploration technologie et mouvement" loading="lazy" width="1600" height="2000">
+          <li class="carousel__item">
+            <a class="carousel__slide project-card" href="projets/experimentation.html">
+              <div class="carousel__frame reveal-img">
+                <img src="assets/img/experimentation/card.svg" alt="Aperçu du projet Expérimentation, exploration technologie et mouvement" loading="lazy" width="1600" height="2000" draggable="false">
               </div>
               <div class="project-card__caption">
                 <span class="project-card__name">Expérimentation</span>
                 <span class="eyebrow card__category">Technologie · mouvement</span>
               </div>
             </a>
+          </li>
 
-          </div>
-        </div>
+        </ul>
       </div>
     </section>
 
@@ -166,7 +179,7 @@
           <img src="assets/img/kinnect/tall-a.svg" alt="Portrait de Constance" loading="lazy" width="960" height="1200">
         </div>
         <div class="about__text">
-          <p data-reveal>Étudiante en communication design, je m'intéresse au branding, au print et à la direction artistique. J'aime construire des identités qui ont du caractère, sans jamais perdre en clarté.</p>
+          <p data-reveal>Étudiante en communication design, je m'intéresse au branding, au print et à la direction artistique. J'aime construire des identités qui ont du <em class="accent">caractère</em>, sans jamais perdre en clarté.</p>
           <p data-reveal>Diplômée en mai 2027, je cherche des collaborations en studio comme en freelance.</p>
           <a class="pill-btn" href="#contact">
             faisons connaissance <span class="pill-btn__arrow" aria-hidden="true">→</span>
@@ -181,7 +194,7 @@
     <div class="container">
       <h2 class="footer-title">
         <span class="line"><span>travaillons</span></span>
-        <span class="line"><span>ensemble</span></span>
+        <span class="line"><span><em class="accent">ensemble</em></span></span>
       </h2>
       <a class="footer__email" href="mailto:constancedugauguez28@gmail.com">constancedugauguez28@gmail.com</a>
 
