@@ -11,6 +11,7 @@
 
   --font-display: "Instrument Sans", sans-serif;
   --font-body: "Archivo", sans-serif;
+  --font-headline: "Instrument Serif", serif;
   --font-accent: "Instrument Serif", serif;
 
   --container: 1360px;
@@ -83,18 +84,24 @@ h1, h2, h3, h4, p {
    Typography
    ---------------------------------------------------------------------- */
 
-.display,
-.hero-title,
-.section-title,
-.project-title,
-.footer-title,
-.next-project__name,
 .logo {
   font-family: var(--font-display);
   font-weight: 600;
   text-transform: lowercase;
-  line-height: 0.95;
   letter-spacing: -0.01em;
+}
+
+.display,
+.hero-title,
+.section-title,
+.project-hero__title,
+.footer-title,
+.next-project__name {
+  font-family: var(--font-headline);
+  font-weight: 400;
+  text-transform: lowercase;
+  line-height: 1.02;
+  letter-spacing: -0.005em;
 }
 
 .accent {
@@ -319,7 +326,7 @@ section {
    ---------------------------------------------------------------------- */
 
 .hero {
-  background: var(--butter);
+  background: var(--indigo);
   min-height: 100svh;
   display: flex;
   align-items: center;
@@ -341,14 +348,18 @@ section {
 }
 
 .hero__eyebrow {
-  color: var(--indigo);
-  opacity: 0.75;
+  color: var(--butter);
+  opacity: 0.85;
 }
 
 .hero-title {
-  font-size: clamp(2rem, 7vw, 6.5rem);
-  color: var(--indigo);
+  font-size: clamp(2.25rem, 7.5vw, 7rem);
+  color: var(--cream);
   margin-block: 0.15em 0.25em;
+}
+
+.hero-title .accent {
+  color: var(--butter);
 }
 
 .hero-title .line {
@@ -364,15 +375,30 @@ section {
 .hero__subtitle {
   max-width: 34ch;
   font-size: clamp(1.1rem, 1.6vw, 1.4rem);
-  color: var(--indigo);
+  color: var(--cream);
+  opacity: 0.85;
   margin-bottom: 1.75rem;
+}
+
+.hero__subtitle .accent {
+  color: var(--butter);
+  opacity: 1;
+}
+
+.hero .pill-btn {
+  background: var(--cream);
+  color: var(--indigo);
+}
+
+.hero .pill-btn:hover {
+  background: var(--butter);
 }
 
 .hero__media {
   overflow: hidden;
   border-radius: var(--radius-card);
   aspect-ratio: 4 / 5;
-  background: var(--cream);
+  background: var(--butter);
 }
 
 .hero__media img {
@@ -874,8 +900,8 @@ section {
 }
 
 .case-block__heading {
-  font-family: var(--font-display);
-  font-weight: 600;
+  font-family: var(--font-headline);
+  font-weight: 400;
   text-transform: lowercase;
   font-size: clamp(1.8rem, 4vw, 3rem);
   margin-bottom: 1rem;

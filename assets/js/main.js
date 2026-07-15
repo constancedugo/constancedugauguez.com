@@ -230,15 +230,41 @@
 
   function fitHeadlines() {
     var run = function () {
-      var selector =
-        ".hero-title .line > span, .section-title .line > span, " +
-        ".footer-title .line > span, .project-hero__title .line > span, " +
-        ".next-project__name";
+      // Multi-line headings: every line must shrink by the SAME factor, or a
+      // short line (e.g. "designer /") would stay full-size next to sibling
+      // lines that had to shrink, breaking the type scale within one heading.
+      var headingSelector = ".hero-title, .section-title, .footer-title, .project-hero__title";
 
-      document.querySelectorAll(selector).forEach(function (el) {
-        el.style.fontSize = ""; // reset to CSS clamp value before measuring
-        var container = el.parentElement;
-        var available = availableWidth(container);
+      document.querySelectorAll(headingSelector).forEach(function (heading) {
+        var spans = heading.querySelectorAll(".line > span");
+        if (!spans.length) return;
+
+        spans.forEach(function (span) {
+          span.style.fontSize = ""; // reset to CSS clamp value before measuring
+        });
+
+        var baseFontSize = parseFloat(getComputedStyle(spans[0]).fontSize);
+        var minRatio = 1;
+        spans.forEach(function (span) {
+          var available = availableWidth(span.parentElement);
+          var natural = span.scrollWidth;
+          if (available > 0 && natural > available) {
+            minRatio = Math.min(minRatio, available / natural);
+          }
+        });
+
+        if (minRatio < 1) {
+          var newSize = baseFontSize * minRatio * 0.97 + "px";
+          spans.forEach(function (span) {
+            span.style.fontSize = newSize;
+          });
+        }
+      });
+
+      // Single-line, independent case.
+      document.querySelectorAll(".next-project__name").forEach(function (el) {
+        el.style.fontSize = "";
+        var available = availableWidth(el.parentElement);
         var natural = el.scrollWidth;
         if (available > 0 && natural > available) {
           var current = parseFloat(getComputedStyle(el).fontSize);
