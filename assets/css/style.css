@@ -7,7 +7,7 @@
   --cream: #F0EEE9;
   --butter: #FAE38E;
   --sky: #D2E8FF;
-  --indigo: #2B3A67;
+  --indigo: #4956e1;
 
   --font-display: "Instrument Sans", sans-serif;
   --font-body: "Archivo", sans-serif;
@@ -327,7 +327,7 @@ section {
 
 .hero {
   background-color: var(--indigo);
-  background-image: linear-gradient(rgba(43, 58, 103, 0.6), rgba(43, 58, 103, 0.6)), url('../img/hero/hero-bg.png');
+  background-image: url('../img/hero/hero-bg.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -358,7 +358,7 @@ section {
 
 .hero-title {
   font-size: clamp(2.25rem, 7.5vw, 7rem);
-  color: var(--cream);
+  color: var(--indigo);
   margin-block: 0.15em 0.25em;
 }
 
