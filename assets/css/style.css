@@ -326,7 +326,7 @@ section {
    ---------------------------------------------------------------------- */
 
 .hero {
-  background: var(--indigo);
+  background-image: url('img/hero.png') ;
   min-height: 100svh;
   display: flex;
   align-items: center;
@@ -419,6 +419,7 @@ section {
    ---------------------------------------------------------------------- */
 
 .marquee {
+  font-family: serif;
   background: var(--butter);
   overflow: hidden;
   padding-block: 1.1rem;
