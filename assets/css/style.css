@@ -16,6 +16,9 @@
 
   --container: 1360px;
   --gutter: clamp(1.25rem, 4vw, 3rem);
+  /* Left edge of an edge-to-edge element's content, matching where .container's
+     own content starts once it hits max-width and centers on wide viewports. */
+  --edge: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter)));
 
   --ease: cubic-bezier(0.65, 0, 0.35, 1);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -317,7 +320,6 @@ section {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 12vw;
-  text-transform: lowercase;
   color: var(--indigo);
 }
 
@@ -363,7 +365,7 @@ section {
 }
 
 .hero-title .accent {
-  color: var(--butter);
+  color: var(--indigo);
 }
 
 .hero-title .line {
@@ -540,6 +542,10 @@ section {
   scrollbar-width: none;
   -ms-overflow-style: none;
   -webkit-overflow-scrolling: touch;
+  /* Without this, scroll-snap treats the track's own padding as slack and
+     auto-scrolls it away on load, snapping the first card flush to the
+     edge instead of leaving it aligned with .container's gutter. */
+  scroll-padding-inline: var(--edge);
 }
 
 .carousel::-webkit-scrollbar {
@@ -559,7 +565,7 @@ section {
   display: flex;
   gap: clamp(1.25rem, 2.5vw, 2rem);
   width: max-content;
-  padding-inline: var(--gutter);
+  padding-inline: var(--edge);
   padding-block: 0.5rem 1rem;
 }
 
