@@ -326,7 +326,11 @@ section {
    ---------------------------------------------------------------------- */
 
 .hero {
-  background-image: url('img/hero.png') ;
+  background-color: var(--indigo);
+  background-image: linear-gradient(rgba(43, 58, 103, 0.6), rgba(43, 58, 103, 0.6)), url('../img/hero/hero-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   min-height: 100svh;
   display: flex;
   align-items: center;
