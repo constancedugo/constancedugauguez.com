@@ -412,7 +412,7 @@
   }
 
   /* -----------------------------------------------------------------------
-     Custom cursor: "voir →" bubble that follows the pointer over project cards
+     Custom cursor: "view →" bubble that follows the pointer over project cards
      -------------------------------------------------------------------- */
 
   function setupCursor() {
@@ -423,7 +423,7 @@
     var cursor = document.createElement("div");
     cursor.className = "cursor";
     cursor.setAttribute("aria-hidden", "true");
-    cursor.innerHTML = '<span>voir <span aria-hidden="true">&rarr;</span></span>';
+    cursor.innerHTML = '<span>view <span aria-hidden="true">&rarr;</span></span>';
     document.body.appendChild(cursor);
 
     var mouseX = 0,
