@@ -1,0 +1,11 @@
+<svg viewBox="0 0 2100 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="kinnect placeholder">
+  <rect width="2100" height="900" fill="#D2E8FF"/>
+  <circle cx="1134" cy="81" r="558" fill="#861519" opacity="0.06"/>
+  <line x1="0" y1="900" x2="2100" y2="0" stroke="#861519" stroke-opacity="0.08" stroke-width="3.6"/>
+  <text x="1050" y="450" text-anchor="middle" dominant-baseline="middle"
+        font-family="'Arial Narrow', Arial, sans-serif" font-weight="700"
+        font-size="117" fill="#861519" letter-spacing="1">kinnect</text>
+  <text x="1050" y="549" text-anchor="middle"
+        font-family="Arial, sans-serif" font-weight="500"
+        font-size="28" fill="#861519" letter-spacing="3" opacity="0.7">VISUEL PLEIN CADRE · 21:9</text>
+</svg>
