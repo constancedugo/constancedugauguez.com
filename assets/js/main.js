@@ -36,7 +36,7 @@
       gsap.set(".line > span", { yPercent: 0 });
       gsap.set(".reveal-img", { clipPath: "inset(0% 0 0 0)" });
       gsap.set(".reveal-img img", { scale: 1 });
-      gsap.set(".hero__eyebrow, .hero__subtitle", { opacity: 1, y: 0 });
+      gsap.set(".hero__eyebrow, .hero__subtitle, .hero .pill-btn", { opacity: 1, y: 0 });
     }
 
     setupPageTransitions();

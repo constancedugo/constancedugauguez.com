@@ -1,11 +1,11 @@
 <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="annual report placeholder">
   <rect width="1200" height="800" fill="#FAE38E"/>
-  <circle cx="648" cy="72" r="496" fill="#861519" opacity="0.06"/>
-  <line x1="0" y1="800" x2="1200" y2="0" stroke="#861519" stroke-opacity="0.08" stroke-width="3.2"/>
+  <circle cx="648" cy="72" r="496" fill="#2B3A67" opacity="0.06"/>
+  <line x1="0" y1="800" x2="1200" y2="0" stroke="#2B3A67" stroke-opacity="0.08" stroke-width="3.2"/>
   <text x="600" y="400" text-anchor="middle" dominant-baseline="middle"
         font-family="'Arial Narrow', Arial, sans-serif" font-weight="700"
-        font-size="104" fill="#861519" letter-spacing="1">annual report</text>
+        font-size="104" fill="#2B3A67" letter-spacing="1">annual report</text>
   <text x="600" y="488" text-anchor="middle"
         font-family="Arial, sans-serif" font-weight="500"
-        font-size="25" fill="#861519" letter-spacing="3" opacity="0.7">VISUEL · 3:2</text>
+        font-size="25" fill="#2B3A67" letter-spacing="3" opacity="0.7">VISUEL · 3:2</text>
 </svg>

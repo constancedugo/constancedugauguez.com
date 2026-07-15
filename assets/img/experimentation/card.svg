@@ -1,11 +1,11 @@
 <svg viewBox="0 0 1600 2000" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="expérimentation placeholder">
   <rect width="1600" height="2000" fill="#FAE38E"/>
-  <circle cx="864" cy="180" r="992" fill="#861519" opacity="0.06"/>
-  <line x1="0" y1="2000" x2="1600" y2="0" stroke="#861519" stroke-opacity="0.08" stroke-width="8.0"/>
+  <circle cx="864" cy="180" r="992" fill="#2B3A67" opacity="0.06"/>
+  <line x1="0" y1="2000" x2="1600" y2="0" stroke="#2B3A67" stroke-opacity="0.08" stroke-width="8.0"/>
   <text x="800" y="1000" text-anchor="middle" dominant-baseline="middle"
         font-family="'Arial Narrow', Arial, sans-serif" font-weight="700"
-        font-size="208" fill="#861519" letter-spacing="1">expérimentation</text>
+        font-size="208" fill="#2B3A67" letter-spacing="1">expérimentation</text>
   <text x="800" y="1177" text-anchor="middle"
         font-family="Arial, sans-serif" font-weight="500"
-        font-size="51" fill="#861519" letter-spacing="3" opacity="0.7">CARD · 4:5</text>
+        font-size="51" fill="#2B3A67" letter-spacing="3" opacity="0.7">CARD · 4:5</text>
 </svg>
