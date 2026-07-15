@@ -103,7 +103,10 @@ h1, h2, h3, h4, p {
   font-family: var(--font-headline);
   font-weight: 400;
   text-transform: lowercase;
-  line-height: 1.02;
+  /* Instrument Serif's ascenders/descenders overshoot a tight line-height,
+     and .line's overflow:hidden reveal mask was clipping them (e.g. the "j"
+     in "project", the "g"/"p" in "graphic design"). 1.2 gives them room. */
+  line-height: 1.2;
   letter-spacing: -0.005em;
 }
 
