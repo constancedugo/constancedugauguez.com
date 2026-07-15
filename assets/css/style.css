@@ -468,7 +468,7 @@ section {
 }
 
 .section-title {
-  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-size: clamp(3rem, 8vw, 6rem);
   color: var(--indigo);
   margin-bottom: clamp(2rem, 5vw, 4rem);
   overflow: hidden;
