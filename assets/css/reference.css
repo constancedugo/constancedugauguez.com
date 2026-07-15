@@ -1,0 +1,238 @@
+/* ============================================================
+   REFERENCE / LEARNING FILE — styles for reference.html
+   Recreates the reference site's palette, type and animations.
+   ============================================================ */
+
+:root {
+  --cream: rgb(248, 249, 232);
+  --ink: rgb(0, 0, 0);
+  --sans: "Host Grotesk", sans-serif;
+  --script: "Petit Formal Script", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--sans);
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ---------- 1. Header ---------- */
+
+.ref-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 40px;
+  background: var(--cream);
+}
+
+.ref-logo { font-weight: 500; }
+
+.ref-emblem {
+  font-size: 20px;
+  opacity: .8;
+}
+
+.ref-nav {
+  display: flex;
+  gap: 32px;
+}
+
+/* Underline-on-hover: a ::after line that grows from 0 to full width */
+.ref-nav a {
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.ref-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform .3s ease;
+}
+
+.ref-nav a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.ref-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.ref-burger span {
+  width: 26px;
+  height: 2px;
+  background: var(--ink);
+}
+
+/* ---------- 2. Hero ---------- */
+
+.ref-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+  overflow: hidden;
+}
+
+/* Background image placeholder — swap this gradient for a real photo */
+.ref-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(120% 100% at 50% 0%, rgba(0,0,0,0) 0%, rgba(0,0,0,.25) 100%),
+    linear-gradient(160deg, #5b5a2e, #8a8f4a 45%, #3f4420);
+}
+
+.ref-hero-title {
+  font-size: clamp(40px, 6vw, 72px);
+  line-height: 1.05;
+  font-weight: 500;
+  color: var(--cream);
+  max-width: 640px;
+}
+
+.ref-hero-title em {
+  font-family: var(--script);
+  font-style: normal;
+  font-size: 1.15em;
+}
+
+/* ---------- Overlapping framed-photo effect ---------- */
+/* A rotated "back" card behind a straight "front" photo — this is the
+   layered look from the reference site's portrait shots. */
+
+.ref-photo-frame {
+  position: absolute;
+  right: 8%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 320px;
+  height: 400px;
+}
+
+.ref-photo-frame--small {
+  position: relative;
+  right: auto;
+  top: auto;
+  transform: none;
+  width: 220px;
+  height: 280px;
+  margin: 0 auto 32px;
+}
+
+.ref-photo-frame__back,
+.ref-photo-frame__front {
+  position: absolute;
+  inset: 0;
+  border-radius: 4px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.25);
+}
+
+.ref-photo-frame__back {
+  background: #fdfdf6;
+  transform: rotate(-6deg);
+}
+
+.ref-photo-frame__front {
+  background: linear-gradient(160deg, #cfd6e6, #8fa0bd);
+  transform: rotate(2deg) scale(.92);
+}
+
+/* ---------- 3. Featured works ---------- */
+
+.ref-work {
+  padding: 120px 40px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.ref-work-list {
+  list-style: none;
+  margin: 40px 0 0;
+  padding: 0;
+}
+
+.ref-work-list li {
+  padding: 28px 0;
+  border-top: 1px solid rgba(0,0,0,.15);
+  transition: opacity .3s ease, transform .3s ease;
+}
+
+.ref-work-list li:hover {
+  transform: translateX(8px);
+}
+
+.ref-work-list h3 { margin: 0 0 6px; }
+.ref-work-list p { margin: 0; opacity: .7; }
+
+/* ---------- 4. About ---------- */
+
+.ref-about {
+  padding: 100px 40px 140px;
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.ref-email {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+/* ---------- 5. Footer ---------- */
+
+.ref-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32px 40px;
+}
+
+/* ---------- Scroll-reveal animation ---------- */
+/* Elements start faded + shifted down; JS toggles .is-visible when they
+   enter the viewport (see assets/js/reference.js). This is the same
+   "fade up on scroll" pattern used throughout the reference site. */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .6s ease, transform .6s ease;
+  transition-delay: var(--delay, 0s);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 720px) {
+  .ref-nav { display: none; }
+  .ref-burger { display: flex; }
+  .ref-photo-frame { position: relative; right: auto; top: auto; transform: none; margin: 40px auto 0; }
+  .ref-hero { flex-direction: column; padding-top: 100px; }
+}

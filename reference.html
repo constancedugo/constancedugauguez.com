@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!--
+  REFERENCE / LEARNING FILE — not part of the live site.
+
+  This recreates the layout + animations of https://yasdesignstudio.framer.website
+  from scratch (that site is built with Framer, which ships a compiled/minified
+  React bundle — there's no readable source to copy). Text and images below are
+  placeholders: swap them for your own content, then move whichever section you
+  like into index.html / assets/css/style.css / assets/js/main.js.
+
+  Sections mirror what the reference site has:
+    1. Fixed header with center emblem + nav
+    2. Hero: big serif/script heading + framed photo
+    3. "Featured works" list that fades in as you scroll
+    4. About block with a rotated photo + bio
+    5. Footer repeating the nav
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reference demo — layout &amp; animations</title>
+
+  <!-- Same two Google Fonts the reference site uses: a grotesk sans + a script italic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600&family=Petit+Formal+Script&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/reference.css" />
+</head>
+<body>
+
+  <!-- ============ 1. HEADER ============ -->
+  <header class="ref-header">
+    <span class="ref-logo">Studio Name ©2026</span>
+
+    <span class="ref-emblem" aria-hidden="true">✦</span>
+
+    <nav class="ref-nav">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <button class="ref-burger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- ============ 2. HERO ============ -->
+  <section class="ref-hero">
+    <div class="ref-hero-bg"></div>
+
+    <h1 class="ref-hero-title reveal">
+      Brand identity<br />
+      <em>designer</em> /<br />
+      Graphic Designer
+    </h1>
+
+    <!-- Overlapping "framed photo" effect: a rotated back card + a straight front photo -->
+    <div class="ref-photo-frame reveal" style="--delay:.15s">
+      <div class="ref-photo-frame__back"></div>
+      <div class="ref-photo-frame__front"></div>
+    </div>
+  </section>
+
+  <!-- ============ 3. FEATURED WORKS (scroll reveal list) ============ -->
+  <section id="work" class="ref-work">
+    <h2 class="reveal">Featured Works</h2>
+
+    <ul class="ref-work-list">
+      <li class="reveal">
+        <h3>Project One</h3>
+        <p>One-line description of the project goes here.</p>
+      </li>
+      <li class="reveal">
+        <h3>Project Two</h3>
+        <p>One-line description of the project goes here.</p>
+      </li>
+      <li class="reveal">
+        <h3>Project Three</h3>
+        <p>One-line description of the project goes here.</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ============ 4. ABOUT ============ -->
+  <section id="about" class="ref-about">
+    <div class="ref-photo-frame ref-photo-frame--small reveal">
+      <div class="ref-photo-frame__back"></div>
+      <div class="ref-photo-frame__front"></div>
+    </div>
+
+    <p class="reveal">
+      Short bio paragraph goes here — who you are, your background,
+      and what you focus on.
+    </p>
+
+    <a id="contact" class="ref-email reveal" href="mailto:you@example.com">you@example.com</a>
+  </section>
+
+  <!-- ============ 5. FOOTER ============ -->
+  <footer class="ref-footer">
+    <span class="ref-emblem" aria-hidden="true">✦</span>
+    <nav class="ref-nav">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <span class="ref-logo">Studio Name ©2026</span>
+  </footer>
+
+  <script src="assets/js/reference.js"></script>
+</body>
+</html>

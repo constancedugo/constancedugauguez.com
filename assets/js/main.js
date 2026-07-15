@@ -50,7 +50,19 @@
   function revealPage() {
     if (!reducedMotion && window.gsap) {
       gsap.set(document.body, { y: 12 });
-      gsap.to(document.body, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" });
+      gsap.to(document.body, {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        ease: "power3.out",
+        // A leftover transform (even an identity matrix) on <body> creates a new
+        // containing block for every position:fixed descendant (nav, mobile menu,
+        // cursor), breaking them site-wide. Strip it once the entrance settles.
+        onComplete: function () {
+          document.body.style.transform = "";
+          document.body.style.translate = "";
+        },
+      });
     } else {
       document.body.style.opacity = 1;
     }
@@ -193,17 +205,38 @@
     var heroTitleSpans = document.querySelectorAll(".hero-title .line > span");
     var heroEyebrow = document.querySelector(".hero__eyebrow");
     var heroSubtitle = document.querySelector(".hero__subtitle");
+    var heroCta = document.querySelector(".hero .pill-btn");
+    var heroMedia = document.querySelector(".hero__media");
 
     if (heroTitleSpans.length) {
       gsap.set(heroTitleSpans, { yPercent: 100 });
       if (heroEyebrow) gsap.set(heroEyebrow, { opacity: 0, y: 16 });
       if (heroSubtitle) gsap.set(heroSubtitle, { opacity: 0, y: 16 });
+      if (heroCta) gsap.set(heroCta, { opacity: 0, y: 16 });
+      if (heroMedia) {
+        gsap.set(heroMedia, { clipPath: "inset(100% 0 0 0)" });
+        gsap.set(heroMedia.querySelector("img"), { scale: 1.15 });
+      }
 
       var heroTl = gsap.timeline({ delay: 0.3, defaults: { ease: "power4.out" } });
       heroTl
         .to(heroTitleSpans, { yPercent: 0, duration: 1.1, stagger: 0.08 })
         .to(heroEyebrow, { opacity: 1, y: 0, duration: 0.7 }, "-=0.7")
-        .to(heroSubtitle, { opacity: 1, y: 0, duration: 0.7 }, "-=0.5");
+        .to(heroSubtitle, { opacity: 1, y: 0, duration: 0.7 }, "-=0.5")
+        .to(heroCta, { opacity: 1, y: 0, duration: 0.6 }, "-=0.4");
+
+      if (heroMedia) {
+        heroTl.to(
+          heroMedia,
+          { clipPath: "inset(0% 0 0 0)", duration: 1.2 },
+          "-=1"
+        );
+        heroTl.to(
+          heroMedia.querySelector("img"),
+          { scale: 1, duration: 1.4, ease: "power3.out" },
+          "<"
+        );
+      }
     }
 
     // Every other headline: reveal on scroll
@@ -236,7 +269,8 @@
     });
 
     // Image reveals: clip-path wipe + scale settle
-    document.querySelectorAll(".reveal-img").forEach(function (frame, i) {
+    // (.hero__media is excluded — it's driven by the hero entrance timeline above)
+    document.querySelectorAll(".reveal-img:not(.hero__media)").forEach(function (frame, i) {
       var img = frame.querySelector("img");
       gsap.set(frame, { clipPath: "inset(100% 0 0 0)" });
       if (img) gsap.set(img, { scale: 1.15 });
