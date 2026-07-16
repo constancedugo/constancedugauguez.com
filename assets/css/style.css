@@ -11,7 +11,9 @@
 
   --font-display: "Instrument Sans", sans-serif;
   --font-body: "Archivo", sans-serif;
-  --font-headline: "Instrument Serif", serif;
+  /* Headlines are sans-serif (upright); Instrument Serif is reserved for
+     italic accent words only — never used upright/roman. */
+  --font-headline: "Instrument Sans", sans-serif;
   --font-accent: "Instrument Serif", serif;
 
   --container: 1360px;
@@ -101,13 +103,13 @@ h1, h2, h3, h4, p {
 .footer-title,
 .next-project__name {
   font-family: var(--font-headline);
-  font-weight: 400;
+  font-weight: 600;
   text-transform: lowercase;
-  /* Instrument Serif's ascenders/descenders overshoot a tight line-height,
-     and .line's overflow:hidden reveal mask was clipping them (e.g. the "j"
-     in "project", the "g"/"p" in "graphic design"). 1.2 gives them room. */
+  /* .line's overflow:hidden reveal mask clips descenders (the "j" in
+     "project", the "g"/"p" in "graphic design") if line-height is too
+     tight — 1.2 gives them room. */
   line-height: 1.2;
-  letter-spacing: -0.005em;
+  letter-spacing: -0.01em;
 }
 
 .accent {
@@ -915,7 +917,7 @@ section {
 
 .case-block__heading {
   font-family: var(--font-headline);
-  font-weight: 400;
+  font-weight: 600;
   text-transform: lowercase;
   font-size: clamp(1.8rem, 4vw, 3rem);
   margin-bottom: 1rem;
