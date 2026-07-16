@@ -9,11 +9,12 @@
   --sky: #D2E8FF;
   --indigo: #4956e1;
 
-  --font-display: "Instrument Sans", sans-serif;
-  --font-body: "Archivo", sans-serif;
-  /* Headlines are sans-serif (upright); Instrument Serif is reserved for
-     italic accent words only — never used upright/roman. */
-  --font-headline: "Instrument Sans", sans-serif;
+  --font-display: "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+  /* Headlines are sans-serif (upright). Instrument Serif is used regular
+     (upright) for the nav logo only, and italic for .accent words —
+     it's never used upright anywhere else. */
+  --font-headline: "Inter", sans-serif;
   --font-accent: "Instrument Serif", serif;
 
   --container: 1360px;
@@ -90,10 +91,11 @@ h1, h2, h3, h4, p {
    ---------------------------------------------------------------------- */
 
 .logo {
-  font-family: var(--font-display);
-  font-weight: 600;
+  font-family: var(--font-accent);
+  font-style: normal;
+  font-weight: 400;
   text-transform: lowercase;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
 }
 
 .display,
@@ -238,7 +240,7 @@ section {
 }
 
 .logo {
-  font-size: clamp(1.4rem, 2vw, 1.75rem);
+  font-size: clamp(2rem, 4vw, 3.25rem);
   color: var(--indigo);
 }
 
@@ -322,8 +324,9 @@ section {
 }
 
 .nav__mobile a {
-  font-family: var(--font-display);
-  font-weight: 600;
+  font-family: var(--font-accent);
+  font-style: normal;
+  font-weight: 400;
   font-size: 12vw;
   color: var(--indigo);
 }
