@@ -172,6 +172,10 @@ a {
 }
 
 .hero__eyebrow {
+  /* pousse le bloc (nom + paragraphes) vers le bas de l’écran —
+     valeur fixe plutôt qu’auto, car le nom occupe déjà presque
+     tout l’espace vertical disponible sur la plupart des écrans */
+  margin-top: clamp(2rem, 7vh, 5rem);
   margin-bottom: var(--space-3);
 }
 
