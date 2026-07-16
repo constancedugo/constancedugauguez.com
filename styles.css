@@ -1,0 +1,368 @@
+/* ═══════════════════════════════════════════════════════════════
+   Constance Dugauguez — Portfolio
+   Composé en Fraunces. Trois couleurs, rien d’autre.
+
+   01 · Tokens
+   02 · Reset & base
+   03 · Typographie
+   04 · Liens & focus
+   05 · En-tête
+   06 · Hero
+   07 · Révélations (motion)
+   08 · Impression
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── 01 · Tokens ────────────────────────────────────────────── */
+
+:root {
+  --ink:        #2E3618;
+  --paper:      #A8A857;
+  --paper-soft: #B3B368;
+
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur:  800ms;
+
+  --space-1: 0.5rem;   /*   8px */
+  --space-2: 1rem;     /*  16px */
+  --space-3: 1.5rem;   /*  24px */
+  --space-4: 2rem;     /*  32px */
+  --space-6: 3rem;     /*  48px */
+  --space-8: 4rem;     /*  64px */
+  --section-pad: clamp(6rem, 12vw, 12rem);
+
+  --measure: 34ch;
+}
+
+/* ── 02 · Reset & base ──────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  hanging-punctuation: first last;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Fraunces", Georgia, serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 1.0625rem;               /* 17px */
+  line-height: 1.5;
+  font-feature-settings: "ss01", "liga", "onum";
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;                   /* le nom déborde volontairement */
+  min-height: 100svh;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  filter: grayscale(1) contrast(1.05);
+  mix-blend-mode: multiply;           /* imprimé sur le papier, pas collé dessus */
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* ── 03 · Typographie ───────────────────────────────────────── */
+
+h1, h2, h3 {
+  font-weight: 380;
+  font-variation-settings: "opsz" 144;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  text-wrap: balance;
+}
+
+.small-caps {
+  font-size: 0.6875rem;               /* 11px */
+  font-weight: 500;
+  font-variation-settings: "opsz" 9;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-feature-settings: "ss01", "liga", "lnum";
+}
+
+/* ── 04 · Liens & focus ─────────────────────────────────────── */
+
+a {
+  color: inherit;
+}
+
+.link {
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: left calc(100% - 0.05em);
+  background-size: 0% 1px;
+  transition: background-size 600ms var(--ease);
+  padding-bottom: 0.25em;
+}
+
+.link:hover {
+  background-size: 100% 1px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+  border-radius: 1px;
+}
+
+.skip-link {
+  position: absolute;
+  top: var(--space-2);
+  left: var(--space-2);
+  z-index: 10;
+  padding: var(--space-1) var(--space-2);
+  background: var(--ink);
+  color: var(--paper);
+  text-decoration: none;
+  font-size: 0.8125rem;
+  transform: translateY(-300%);
+  transition: transform 300ms var(--ease);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* ── 05 · En-tête ───────────────────────────────────────────── */
+
+.site-head {
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: var(--space-3) var(--space-4);
+}
+
+.site-head__links {
+  display: flex;
+  gap: var(--space-4);
+  list-style: none;
+  padding: 0;
+}
+
+/* ── 06 · Hero ──────────────────────────────────────────────── */
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  /* minmax(0, …) : le nom démesuré ne doit pas élargir la colonne */
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: 1fr auto auto 1fr auto;
+  justify-items: center;
+  padding: var(--space-6) var(--space-4) var(--space-3);
+}
+
+.hero__eyebrow {
+  align-self: end;
+  margin-bottom: var(--space-3);
+}
+
+.hero__name-wrap {
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+}
+
+.hero__name-wrap > h1 {
+  width: 100%;
+  min-width: 0;
+}
+
+.hero__name {
+  font-size: clamp(4rem, 18vw, 16rem);
+  text-transform: uppercase;
+  white-space: nowrap;                /* autorisé à saigner hors cadre */
+  line-height: 0.86;
+  display: grid;
+  justify-items: center;              /* les lignes débordent symétriquement */
+}
+
+.hero__name .line {
+  width: max-content;
+}
+
+/* décalage éditorial, à la Regina Musi : première ligne à gauche… */
+.hero__name .line:not(.line--shift) {
+  margin-right: 0.5em;
+}
+
+/* …seconde ligne un rien à droite */
+.hero__name .line--shift {
+  margin-left: 0.15em;
+}
+
+.hero__portrait {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  right: clamp(10%, 18vw, 22%);
+  width: clamp(7rem, 15vw, 14rem);
+  transform: translateY(-58%) rotate(0.5deg);
+}
+
+.hero__portrait img {
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.hero__portrait figcaption {
+  margin-top: var(--space-1);
+  font-size: 0.5625rem;               /* 9px */
+}
+
+.hero__intro {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-3);
+  margin-top: clamp(2rem, 6vh, 4rem);
+  font-size: 0.9375rem;               /* 15px */
+}
+
+.hero__intro p {
+  max-width: 26ch;
+  text-align: justify;
+  hyphens: auto;
+  text-wrap: pretty;
+}
+
+.hero__intro p:first-child {
+  grid-column: 1 / 5;
+}
+
+.hero__intro p:last-child {
+  grid-column: 9 / 13;
+  justify-self: end;
+}
+
+.scroll-cue {
+  align-self: end;
+  margin-top: var(--space-4);
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  font-size: 1.125rem;
+  transition: background-color 600ms var(--ease);
+}
+
+.scroll-cue span {
+  transition: transform 600ms var(--ease);
+}
+
+.scroll-cue:hover {
+  background-color: var(--paper-soft);
+}
+
+.scroll-cue:hover span {
+  transform: translateY(0.25rem);
+}
+
+.marginalia {
+  position: absolute;
+  top: 50%;
+  right: var(--space-2);
+  writing-mode: vertical-rl;
+  transform: translateY(-50%);
+  font-size: 0.5625rem;
+}
+
+@media (max-width: 44rem) {
+  .hero__intro p:first-child { grid-column: 1 / 8; }
+  .hero__intro p:last-child  { grid-column: 5 / 13; }
+
+  /* sur petit écran : pas de décalage, débord symétrique et discret */
+  .hero__name .line:not(.line--shift) { margin-right: 0; }
+  .hero__name .line--shift { margin-left: 0; }
+
+  .hero__portrait {
+    top: 62%;
+    right: 4%;
+    width: 6.5rem;
+  }
+
+  .site-head { padding: var(--space-2) var(--space-2); }
+}
+
+/* ── 07 · Révélations (motion) ──────────────────────────────── */
+
+.line {
+  display: block;
+  overflow: hidden;
+}
+
+.line-inner {
+  display: block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html.js .line-inner {
+    transform: translateY(110%);
+    transition: transform 900ms var(--ease);
+    transition-delay: calc(var(--i, 0) * 80ms);
+  }
+
+  html.js.is-loaded .line-inner {
+    transform: translateY(0);
+  }
+
+  html.js .hero__portrait,
+  html.js .hero__intro,
+  html.js .scroll-cue {
+    opacity: 0;
+    transition: opacity 900ms var(--ease) 400ms;
+  }
+
+  html.js.is-loaded .hero__portrait,
+  html.js.is-loaded .hero__intro,
+  html.js.is-loaded .scroll-cue {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ── 08 · Impression ────────────────────────────────────────── */
+
+@media print {
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  .scroll-cue,
+  .marginalia,
+  .skip-link {
+    display: none;
+  }
+
+  img {
+    mix-blend-mode: normal;
+  }
+}
