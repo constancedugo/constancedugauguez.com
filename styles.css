@@ -19,6 +19,9 @@
   --paper:      #A8A857;
   --paper-soft: #B3B368;
 
+  --font-serif: "Fraunces", Georgia, serif;
+  --font-sans:  "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif;
+
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --dur:  800ms;
 
@@ -50,7 +53,7 @@ html {
 body {
   background: var(--paper);
   color: var(--ink);
-  font-family: "Fraunces", Georgia, serif;
+  font-family: var(--font-serif);
   font-optical-sizing: auto;
   font-weight: 400;
   font-size: 1.0625rem;               /* 17px */
@@ -65,8 +68,6 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
-  filter: grayscale(1) contrast(1.05);
-  mix-blend-mode: multiply;           /* imprimé sur le papier, pas collé dessus */
 }
 
 ::selection {
@@ -84,13 +85,15 @@ h1, h2, h3 {
   text-wrap: balance;
 }
 
+/* Grotesque neutre pour les petits textes : contrepoids au Fraunces,
+   qui reste réservé aux titres et au corps de texte. */
 .small-caps {
+  font-family: var(--font-sans);
   font-size: 0.6875rem;               /* 11px */
   font-weight: 500;
-  font-variation-settings: "opsz" 9;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  font-feature-settings: "ss01", "liga", "lnum";
+  font-feature-settings: "lnum";
 }
 
 /* ── 04 · Liens & focus ─────────────────────────────────────── */
@@ -160,16 +163,15 @@ a {
 .hero {
   position: relative;
   min-height: 100svh;
-  display: grid;
-  /* minmax(0, …) : le nom démesuré ne doit pas élargir la colonne */
-  grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: 1fr auto auto 1fr auto;
-  justify-items: center;
-  padding: var(--space-6) var(--space-4) var(--space-3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* le bas garde toujours assez d’air pour que la flèche ne soit
+     jamais rognée par le bord de l’écran */
+  padding: clamp(5rem, 9vh, 7rem) var(--space-4) clamp(3.5rem, 7vh, 5rem);
 }
 
 .hero__eyebrow {
-  align-self: end;
   margin-bottom: var(--space-3);
 }
 
@@ -215,14 +217,14 @@ a {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: var(--space-3);
-  margin-top: clamp(2rem, 6vh, 4rem);
+  /* davantage d’air sous le nom, pour que les deux blocs respirent */
+  margin-top: clamp(4rem, 12vh, 7rem);
   font-size: 0.9375rem;               /* 15px */
 }
 
 .hero__intro p {
   max-width: 26ch;
-  text-align: justify;
-  hyphens: auto;
+  text-align: left;
   text-wrap: pretty;
 }
 
@@ -236,8 +238,8 @@ a {
 }
 
 .scroll-cue {
-  align-self: end;
-  margin-top: var(--space-4);
+  flex-shrink: 0;
+  margin-top: auto;
   width: 3.5rem;
   height: 3.5rem;
   border: 1px solid var(--ink);
@@ -361,12 +363,15 @@ html:not(.js) .works__nav {
 .work {
   flex: 0 0 clamp(16rem, 30vw, 26rem);
   scroll-snap-align: start;
-  border-left: 1px solid var(--ink);  /* filets verticaux, comme un index */
   padding: var(--space-1) var(--space-3) 0;
 }
 
+.work:first-child {
+  padding-left: var(--space-4);
+}
+
 .work:last-child {
-  border-right: 1px solid var(--ink);
+  padding-right: var(--space-4);
 }
 
 .work__link {
@@ -396,13 +401,23 @@ html:not(.js) .works__nav {
 
 .work__name {
   margin-top: var(--space-3);
-  font-size: clamp(1.75rem, 3vw, 2.75rem);
-  line-height: 1;
+  font-size: clamp(1.375rem, 2.1vw, 1.875rem);
+  line-height: 1.1;
 }
 
 .work__meta {
   margin-top: var(--space-2);
   padding-bottom: var(--space-1);
+}
+
+.works__cue-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-8);
+}
+
+.scroll-cue--inline {
+  margin-top: 0;                      /* pas de flex column parent ici */
 }
 
 @media (max-width: 44rem) {
@@ -419,10 +434,12 @@ html:not(.js) .works__nav {
 /* ── 06c · About (curriculum) ───────────────────────────────── */
 
 .about {
-  padding: var(--section-pad) var(--space-4);
+  /* marge horizontale plus généreuse : les dates de la colonne CV
+     ont besoin de champ avant le bord de l’écran */
+  padding: var(--section-pad) clamp(var(--space-4), 6vw, 6rem);
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  column-gap: var(--space-3);
+  column-gap: var(--space-4);
   row-gap: var(--space-6);
 }
 
@@ -441,6 +458,9 @@ html:not(.js) .works__nav {
 .about__bio {
   grid-column: 1 / 6;
   align-self: start;
+  /* reste en place pendant que le CV défile à droite */
+  position: sticky;
+  top: clamp(6rem, 14vh, 9rem);
   font-size: clamp(1.125rem, 1.6vw, 1.375rem);
   line-height: 1.5;
   max-width: var(--measure);
@@ -514,6 +534,259 @@ html:not(.js) .works__nav {
   .about__cv {
     grid-column: 1 / -1;
   }
+
+  /* une seule colonne : plus de second bloc à côté duquel se fixer */
+  .about__bio {
+    position: static;
+  }
+}
+
+/* ── 06d · Colophon (pied de page) ──────────────────────────── */
+
+.site-footer {
+  border-top: 1px solid var(--ink);
+  padding: var(--space-6) var(--space-4) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.site-footer__row {
+  width: 100%;
+  max-width: 64rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-3);
+}
+
+.site-footer__links {
+  display: flex;
+  gap: var(--space-4);
+  list-style: none;
+  padding: 0;
+}
+
+.site-footer__colophon {
+  opacity: 0.75;
+  text-align: center;
+}
+
+/* ── 06e · Lien retour à l’index ─────────────────────────────── */
+
+.back-link {
+  display: inline-block;
+  margin: var(--space-6) var(--space-4) 0;
+}
+
+/* ── 09 · Pages projet ───────────────────────────────────────── */
+/* Même grille 12 colonnes, même rythme que la page d’accueil —
+   déclinés en gabarit éditorial pour chaque étude de cas. */
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--space-3);
+  row-gap: var(--space-6);
+  /* évite que le texte et les images ne s’étirent démesurément
+     sur les très grands écrans */
+  max-width: 84rem;
+  margin-inline: auto;
+}
+
+.span-1-12 { grid-column: 1 / -1; }
+.span-1-9  { grid-column: 1 / 10; }
+.span-1-7  { grid-column: 1 / 8; }
+.span-1-6  { grid-column: 1 / 7; }
+.span-1-5  { grid-column: 1 / 6; }
+.span-2-8  { grid-column: 2 / 9; }
+.span-7-12 { grid-column: 7 / 13; }
+.span-8-12 { grid-column: 8 / 13; }
+.span-9-12 { grid-column: 9 / 13; }
+.span-10-12 { grid-column: 10 / 13; }
+
+@media (max-width: 44rem) {
+  .span-1-12, .span-1-9, .span-1-7, .span-1-6, .span-1-5,
+  .span-2-8, .span-7-12, .span-8-12, .span-9-12, .span-10-12 {
+    grid-column: 1 / -1;
+  }
+}
+
+/* — Hero de projet — */
+
+.project-hero {
+  padding: clamp(7rem, 15vh, 10rem) var(--space-4) var(--section-pad);
+}
+
+.project-hero__eyebrow {
+  margin-bottom: var(--space-3);
+}
+
+.project-hero__title {
+  font-size: clamp(3rem, 8vw, 7.5rem);
+  line-height: 0.96;
+  text-wrap: balance;
+}
+
+.project-hero__meta {
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.meta-item__label {
+  display: block;
+  margin-bottom: 0.3em;
+  opacity: 0.7;
+}
+
+.meta-item__value {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+}
+
+.project-hero__intro {
+  align-self: start;
+  margin-top: var(--space-2);
+  font-size: clamp(1.125rem, 1.6vw, 1.375rem);
+  line-height: 1.55;
+  max-width: var(--measure);
+  text-align: left;
+  text-wrap: pretty;
+}
+
+/* — Couverture — */
+/* plein cadre jusqu’à taille normale d’écran, mais plafonnée
+   au-delà pour ne jamais devenir un mur d’image */
+
+.project-cover {
+  max-width: 100rem;
+  margin-inline: auto;
+}
+
+.project-cover img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 34rem;
+  object-fit: cover;
+}
+
+.project-cover figcaption {
+  margin-top: var(--space-1);
+  padding: 0 var(--space-4);
+}
+
+/* — Sections du cas (brief / process / results…) — */
+
+.project-section {
+  padding: var(--section-pad) var(--space-4);
+  border-top: 1px solid var(--ink);
+}
+
+.project-section__head {
+  margin-bottom: var(--space-6);
+}
+
+.project-section__index {
+  display: block;
+  margin-bottom: var(--space-2);
+  opacity: 0.7;
+}
+
+.project-section__title {
+  font-size: clamp(1.75rem, 3.5vw, 3rem);
+}
+
+.project-section__body p {
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  max-width: var(--measure);
+}
+
+.project-section__body p + p {
+  margin-top: var(--space-3);
+}
+
+/* — Figures & grille média (plein cadre / demi / tiers) — */
+
+.media {
+  overflow: hidden;
+}
+
+.media img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.media figcaption {
+  margin-top: var(--space-1);
+}
+
+/* plafond de hauteur par gabarit : une image ne doit jamais
+   dominer la page, même en plein cadre */
+.media--full {
+  grid-column: 1 / -1;
+}
+
+.media--full img {
+  max-height: 30rem;
+}
+
+.media--half {
+  grid-column: span 6;
+}
+
+.media--half img {
+  max-height: 24rem;
+}
+
+.media--third {
+  grid-column: span 4;
+}
+
+.media--third img {
+  max-height: 20rem;
+}
+
+@media (max-width: 44rem) {
+  .media--half,
+  .media--third {
+    grid-column: 1 / -1;
+  }
+
+  .media--full img,
+  .media--half img,
+  .media--third img {
+    max-height: 24rem;
+  }
+}
+
+/* — Projet suivant — */
+
+.project-next {
+  display: block;
+  padding: var(--section-pad) var(--space-4);
+  text-align: center;
+  text-decoration: none;
+  border-top: 1px solid var(--ink);
+  transition: background-color 600ms var(--ease);
+}
+
+.project-next:hover {
+  background-color: var(--paper-soft);
+}
+
+.project-next__label {
+  margin-bottom: var(--space-3);
+}
+
+.project-next__name {
+  font-size: clamp(2.5rem, 7vw, 6rem);
+  line-height: 1;
 }
 
 /* ── 07 · Révélations (motion) ──────────────────────────────── */
@@ -580,11 +853,8 @@ html:not(.js) .works__nav {
 
   .scroll-cue,
   .marginalia,
-  .skip-link {
+  .skip-link,
+  .site-footer__top {
     display: none;
-  }
-
-  img {
-    mix-blend-mode: normal;
   }
 }

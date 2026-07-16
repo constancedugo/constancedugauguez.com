@@ -16,20 +16,21 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&display=swap">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600&display=swap">
 
-  <link rel="stylesheet" href="styles.css?v=4">
+  <link rel="stylesheet" href="styles.css?v=6">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="site-head">
+  <header class="site-head" id="top">
     <p class="small-caps">Constance Dugauguez</p>
     <nav aria-label="Contact">
       <ul class="site-head__links">
         <li><a class="link small-caps" href="mailto:constanced.design@gmail.com">Email&thinsp;↗</a></li>
+        <li><a class="link small-caps" href="https://www.linkedin.com/in/constance-dugauguez" rel="noopener">LinkedIn&thinsp;↗</a></li>
         <li><a class="link small-caps" href="https://www.instagram.com/virguledesign.studio/" rel="noopener">Instagram&thinsp;↗</a></li>
       </ul>
     </nav>
@@ -60,14 +61,14 @@
         <span aria-hidden="true">↓</span>
       </a>
 
-      <p class="marginalia small-caps" aria-hidden="true">Portfolio — nº&hairsp;1 Edition , @2026</p>
+      <p class="marginalia small-caps" aria-hidden="true">CD Portfolio — nº&hairsp;1 Edition @2026</p>
     </section>
 
     <!-- ═══ 2 · Travaux sélectionnés ═══ -->
     <section class="works" id="travaux" aria-labelledby="works-title">
       <header class="works__head">
         <div data-reveal style="--i:0">
-          <p class="small-caps works__eyebrow">Summary — five (5) projects</p>
+          <p class="small-caps works__eyebrow">Project selection — five (5) projects</p>
           <h2 class="works__title" id="works-title">projects</h2>
         </div>
         <div class="works__nav" data-reveal style="--i:1">
@@ -108,7 +109,7 @@
                 <figcaption class="small-caps">Fig.&hairsp;03  </figcaption>
               </figure>
               <h3 class="work__name">Heritage Trees</h3>
-              <p class="work__meta small-caps">Direction artistique — Concept · 2026</p>
+              <p class="work__meta small-caps">Art Direction — Concept · 2026</p>
             </a>
           </li>
 
@@ -130,11 +131,17 @@
                 <figcaption class="small-caps">Fig.&hairsp;05  </figcaption>
               </figure>
               <h3 class="work__name">Experimentation</h3>
-              <p class="work__meta small-caps">Exploration — Technology &amp; mouvement · 2026</p>
+              <p class="work__meta small-caps">Exploration — Technology &amp; Movement · 2024–2026</p>
             </a>
           </li>
 
         </ul>
+      </div>
+
+      <div class="works__cue-wrap" data-reveal style="--i:5">
+        <a class="scroll-cue scroll-cue--inline" href="#about" aria-label="Scroll to about">
+          <span aria-hidden="true">↓</span>
+        </a>
       </div>
     </section>
 
@@ -226,10 +233,27 @@ Creativity & Visual Problem-Solving </p>
       </div>
     </section>
 
-    <!-- Sections à venir : colophon. -->
-
   </main>
 
-  <script src="main.js?v=6" defer></script>
+  <footer class="site-footer">
+    <a class="scroll-cue scroll-cue--inline" href="#top" aria-label="Back to top">
+      <span aria-hidden="true">↑</span>
+    </a>
+
+    <div class="site-footer__row">
+      <p class="small-caps">Constance Dugauguez</p>
+      <nav aria-label="Footer">
+        <ul class="site-footer__links">
+          <li><a class="link small-caps" href="mailto:constanced.design@gmail.com">Email</a></li>
+          <li><a class="link small-caps" href="https://www.linkedin.com/in/constance-dugauguez" rel="noopener">LinkedIn</a></li>
+          <li><a class="link small-caps" href="https://www.instagram.com/virguledesign.studio/" rel="noopener">Instagram</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <p class="small-caps site-footer__colophon">Set in Fraunces &amp; Inter — designed &amp; built by hand — Paris, <span data-clock>--:--:--</span> — © 2026 Constance Dugauguez</p>
+  </footer>
+
+  <script src="main.js?v=7" defer></script>
 </body>
 </html>
