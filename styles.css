@@ -116,7 +116,6 @@ a {
 :focus-visible {
   outline: 2px solid var(--ink);
   outline-offset: 4px;
-  border-radius: 1px;
 }
 
 .skip-link {
@@ -210,25 +209,6 @@ a {
   margin-left: 0.15em;
 }
 
-.hero__portrait {
-  position: absolute;
-  z-index: 2;
-  top: 50%;
-  right: clamp(10%, 18vw, 22%);
-  width: clamp(7rem, 15vw, 14rem);
-  transform: translateY(-58%) rotate(0.5deg);
-}
-
-.hero__portrait img {
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-}
-
-.hero__portrait figcaption {
-  margin-top: var(--space-1);
-  font-size: 0.5625rem;               /* 9px */
-}
-
 .hero__intro {
   width: 100%;
   display: grid;
@@ -297,13 +277,145 @@ a {
   .hero__name .line:not(.line--shift) { margin-right: 0; }
   .hero__name .line--shift { margin-left: 0; }
 
-  .hero__portrait {
-    top: 62%;
-    right: 4%;
-    width: 6.5rem;
+  .site-head { padding: var(--space-2) var(--space-2); }
+}
+
+/* ── 06b · Travaux sélectionnés (carrousel) ─────────────────── */
+
+.works {
+  padding: var(--section-pad) 0;
+}
+
+.works__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-4);
+  padding: 0 var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.works__eyebrow {
+  margin-bottom: var(--space-2);
+}
+
+.works__title {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+}
+
+.works__nav {
+  display: flex;
+  gap: var(--space-2);
+}
+
+html:not(.js) .works__nav {
+  display: none;
+}
+
+.carousel-btn {
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  background: none;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 1rem;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background-color 600ms var(--ease), opacity 600ms var(--ease);
+}
+
+.carousel-btn:hover:not(:disabled) {
+  background-color: var(--paper-soft);
+}
+
+.carousel-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.works__viewport {
+  overflow: hidden;
+}
+
+.works__track {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0 var(--space-4);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;              /* la marge suffit, pas d’ascenseur */
+}
+
+.works__track::-webkit-scrollbar {
+  display: none;
+}
+
+.work {
+  flex: 0 0 clamp(16rem, 30vw, 26rem);
+  scroll-snap-align: start;
+  border-left: 1px solid var(--ink);  /* filets verticaux, comme un index */
+  padding: var(--space-1) var(--space-3) 0;
+}
+
+.work:last-child {
+  border-right: 1px solid var(--ink);
+}
+
+.work__link {
+  display: block;
+  text-decoration: none;
+}
+
+.work__figure {
+  overflow: hidden;
+}
+
+.work__figure img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  transition: transform 900ms var(--ease);
+}
+
+.work__link:hover .work__figure img {
+  transform: scale(1.03);
+}
+
+.work__figure figcaption {
+  margin-top: var(--space-1);
+  font-size: 0.5625rem;               /* 9px */
+}
+
+.work__name {
+  margin-top: var(--space-3);
+  font-size: clamp(1.75rem, 3vw, 2.75rem);
+  line-height: 1;
+}
+
+.work__link:hover .work__name {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--ink);
+}
+
+.work__meta {
+  margin-top: var(--space-2);
+  padding-bottom: var(--space-1);
+}
+
+@media (max-width: 44rem) {
+  .works__head {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .site-head { padding: var(--space-2) var(--space-2); }
+  .work {
+    flex-basis: min(78vw, 20rem);
+  }
 }
 
 /* ── 07 · Révélations (motion) ──────────────────────────────── */
@@ -328,17 +440,29 @@ a {
     transform: translateY(0);
   }
 
-  html.js .hero__portrait,
   html.js .hero__intro,
   html.js .scroll-cue {
     opacity: 0;
     transition: opacity 900ms var(--ease) 400ms;
   }
 
-  html.js.is-loaded .hero__portrait,
   html.js.is-loaded .hero__intro,
   html.js.is-loaded .scroll-cue {
     opacity: 1;
+  }
+
+  html.js [data-reveal] {
+    opacity: 0;
+    transform: translateY(1.5rem);
+    transition:
+      opacity 900ms var(--ease),
+      transform 900ms var(--ease);
+    transition-delay: calc(var(--i, 0) * 80ms);
+  }
+
+  html.js [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
   }
 }
 

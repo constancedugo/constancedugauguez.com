@@ -19,7 +19,7 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&display=swap">
 
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=2">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -30,7 +30,7 @@
     <nav aria-label="Contact">
       <ul class="site-head__links">
         <li><a class="link small-caps" href="mailto:constanced.design@gmail.com">Email&thinsp;↗</a></li>
-        <li><a class="link small-caps" href="https://www.instagram.com" rel="noopener">Instagram&thinsp;↗</a></li>
+        <li><a class="link small-caps" href="https://www.instagram.com/virguledesign.studio/" rel="noopener">Instagram&thinsp;↗</a></li>
       </ul>
     </nav>
   </header>
@@ -63,11 +63,85 @@
       <p class="marginalia small-caps" aria-hidden="true">Portfolio — Édition nº&hairsp;1, MMXXVI</p>
     </section>
 
-    <!-- Sections à venir : manifeste, travaux sélectionnés, colophon. -->
-    <div id="travaux"></div>
+    <!-- ═══ 2 · Travaux sélectionnés ═══ -->
+    <section class="works" id="travaux" aria-labelledby="works-title">
+      <header class="works__head">
+        <div data-reveal style="--i:0">
+          <p class="small-caps works__eyebrow">Sommaire — cinq projets</p>
+          <h2 class="works__title" id="works-title">Travaux sélectionnés</h2>
+        </div>
+        <div class="works__nav" data-reveal style="--i:1">
+          <button class="carousel-btn" type="button" data-dir="-1" aria-label="Projet précédent">←</button>
+          <button class="carousel-btn" type="button" data-dir="1" aria-label="Projet suivant">→</button>
+        </div>
+      </header>
+
+      <div class="works__viewport" role="region" aria-roledescription="carrousel" aria-label="Travaux sélectionnés" tabindex="0">
+        <ul class="works__track" data-carousel>
+
+          <li class="work" data-reveal style="--i:0">
+            <a class="work__link" href="projets/kinnect.html">
+              <figure class="work__figure">
+                <img src="https://picsum.photos/id/180/900/1125" alt="Kinnect — aperçu de l’identité : logotype, application et jeu de cartes" loading="lazy" width="900" height="1125">
+                <figcaption class="small-caps">Fig.&hairsp;01  </figcaption>
+              </figure>
+              <h3 class="work__name">Kinnect</h3>
+              <p class="work__meta small-caps">Identity — App — Card · 2026</p>
+            </a>
+          </li>
+
+          <li class="work" data-reveal style="--i:1">
+            <a class="work__link" href="projets/annual-report.html">
+              <figure class="work__figure">
+                <img src="https://picsum.photos/id/24/900/1125" alt="Annual Report — double page du rapport annuel" loading="lazy" width="900" height="1125">
+                <figcaption class="small-caps">Fig.&hairsp;02  </figcaption>
+              </figure>
+              <h3 class="work__name">Annual Report</h3>
+              <p class="work__meta small-caps">Editorial — Freelance · 2026</p>
+            </a>
+          </li>
+
+          <li class="work" data-reveal style="--i:2">
+            <a class="work__link" href="projets/heritage-trees.html">
+              <figure class="work__figure">
+                <img src="https://picsum.photos/id/1039/900/1125" alt="Heritage Trees — recherche visuelle autour des arbres remarquables" loading="lazy" width="900" height="1125">
+                <figcaption class="small-caps">Fig.&hairsp;03  </figcaption>
+              </figure>
+              <h3 class="work__name">Heritage Trees</h3>
+              <p class="work__meta small-caps">Direction artistique — Concept · 2026</p>
+            </a>
+          </li>
+
+          <li class="work" data-reveal style="--i:3">
+            <a class="work__link" href="projets/creativity-through.html">
+              <figure class="work__figure">
+                <img src="https://picsum.photos/id/20/900/1125" alt="Creativity Through — outil pédagogique imprimé" loading="lazy" width="900" height="1125">
+                <figcaption class="small-caps">Fig.&hairsp;04 </figcaption>
+              </figure>
+              <h3 class="work__name">Creativity Through</h3>
+              <p class="work__meta small-caps">Educational · 2025</p>
+            </a>
+          </li>
+
+          <li class="work" data-reveal style="--i:4">
+            <a class="work__link" href="projets/experimentation.html">
+              <figure class="work__figure">
+                <img src="https://picsum.photos/id/1042/900/1125" alt="Expérimentation — étude de mouvement et de lumière" loading="lazy" width="900" height="1125">
+                <figcaption class="small-caps">Fig.&hairsp;05  </figcaption>
+              </figure>
+              <h3 class="work__name">Experimentation</h3>
+              <p class="work__meta small-caps">Exploration — Technology &amp; mouvement · 2026</p>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+    <!-- Sections à venir : manifeste, colophon. -->
 
   </main>
 
-  <script src="main.js" defer></script>
+  <script src="main.js?v=6" defer></script>
 </body>
 </html>
