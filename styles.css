@@ -605,15 +605,18 @@ html:not(.js) .works__nav {
 .span-1-7  { grid-column: 1 / 8; }
 .span-1-6  { grid-column: 1 / 7; }
 .span-1-5  { grid-column: 1 / 6; }
+.span-1-4  { grid-column: 1 / 5; }
+.span-5-8  { grid-column: 5 / 9; }
 .span-2-8  { grid-column: 2 / 9; }
+.span-6-12 { grid-column: 6 / 13; }
 .span-7-12 { grid-column: 7 / 13; }
 .span-8-12 { grid-column: 8 / 13; }
 .span-9-12 { grid-column: 9 / 13; }
 .span-10-12 { grid-column: 10 / 13; }
 
 @media (max-width: 44rem) {
-  .span-1-12, .span-1-9, .span-1-7, .span-1-6, .span-1-5,
-  .span-2-8, .span-7-12, .span-8-12, .span-9-12, .span-10-12 {
+  .span-1-12, .span-1-9, .span-1-7, .span-1-6, .span-1-5, .span-1-4,
+  .span-5-8, .span-2-8, .span-6-12, .span-7-12, .span-8-12, .span-9-12, .span-10-12 {
     grid-column: 1 / -1;
   }
 }
@@ -663,24 +666,24 @@ html:not(.js) .works__nav {
 }
 
 /* — Couverture — */
-/* plein cadre jusqu’à taille normale d’écran, mais plafonnée
-   au-delà pour ne jamais devenir un mur d’image */
+/* une image d’ouverture, pas une bannière : cadrée avec ses propres
+   marges, jamais bord à bord — c’est un portfolio, pas un mur d’images */
 
 .project-cover {
-  max-width: 100rem;
-  margin-inline: auto;
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
 }
 
 .project-cover img {
   width: 100%;
   aspect-ratio: 16 / 9;
-  max-height: 34rem;
+  max-height: 26rem;
   object-fit: cover;
 }
 
 .project-cover figcaption {
   margin-top: var(--space-1);
-  padding: 0 var(--space-4);
 }
 
 /* — Sections du cas (brief / process / results…) — */
@@ -714,58 +717,38 @@ html:not(.js) .works__nav {
   margin-top: var(--space-3);
 }
 
-/* — Figures & grille média (plein cadre / demi / tiers) — */
+/* — Figures — */
+/* toujours en retrait dans la grille (jamais bord à bord) et
+   plafonnées en hauteur : l’image illustre le texte, elle ne le
+   remplace pas — l’un ne va pas sans l’autre. La largeur vient des
+   utilitaires span-* déjà posés sur le texte, pas d’une classe à part. */
 
 .media {
+  align-self: start;
   overflow: hidden;
 }
 
 .media img {
   width: 100%;
   height: auto;
+  max-height: 22rem;
   object-fit: cover;
+}
+
+/* pour la figure occasionnelle qui mérite un peu plus de présence,
+   sans jamais rivaliser avec le texte */
+.media--lg img {
+  max-height: 28rem;
 }
 
 .media figcaption {
   margin-top: var(--space-1);
 }
 
-/* plafond de hauteur par gabarit : une image ne doit jamais
-   dominer la page, même en plein cadre */
-.media--full {
-  grid-column: 1 / -1;
-}
-
-.media--full img {
-  max-height: 30rem;
-}
-
-.media--half {
-  grid-column: span 6;
-}
-
-.media--half img {
-  max-height: 24rem;
-}
-
-.media--third {
-  grid-column: span 4;
-}
-
-.media--third img {
-  max-height: 20rem;
-}
-
 @media (max-width: 44rem) {
-  .media--half,
-  .media--third {
-    grid-column: 1 / -1;
-  }
-
-  .media--full img,
-  .media--half img,
-  .media--third img {
-    max-height: 24rem;
+  .media img,
+  .media--lg img {
+    max-height: 20rem;
   }
 }
 
