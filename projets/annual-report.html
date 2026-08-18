@@ -19,7 +19,7 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600&display=swap">
 
-  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../styles.css?v=11">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -40,7 +40,6 @@
 
     <!-- ═══ Hero ═══ -->
     <section class="project-hero project-grid">
-      <p class="small-caps project-hero__eyebrow span-1-12">Fig.&hairsp;01 — Editorial, 2026</p>
 
       <h1 class="project-hero__title span-1-9">Annual Report</h1>
 
@@ -64,82 +63,75 @@
       </div>
 
       <p class="project-hero__intro span-1-6">A real freelance client, a real annual report: shaping a year of activity into a dense editorial object that's both rigorous and enjoyable to read.</p>
+
+      <div class="project-hero__cue-wrap">
+        <a class="scroll-cue scroll-cue--inline" href="#brief" aria-label="Scroll to the brief">
+          <span aria-hidden="true">↓</span>
+        </a>
+      </div>
     </section>
 
-    <!-- ═══ Cover ═══ -->
-    <figure class="project-cover">
-      <img src="https://picsum.photos/id/24/1400/788" alt="Cover spread of the annual report" loading="lazy" width="1400" height="788">
-      <figcaption class="small-caps">Fig.&hairsp;02 — Cover, 2026</figcaption>
-    </figure>
-
-    <!-- ═══ 01 · Brief ═══ -->
+    <!-- ═══ 01 · Brief — une image, plus grande ═══ -->
     <section class="project-section" id="brief" aria-labelledby="brief-title">
-      <header class="project-section__head project-grid">
-        <p class="small-caps project-section__index span-1-12">01</p>
-        <h2 class="project-section__title span-1-9" id="brief-title">Brief</h2>
-      </header>
-
-      <div class="project-section__body project-grid">
-        <div class="span-1-7">
+      <div class="project-grid">
+        <div class="project-section__text span-1-6">
+          <p class="small-caps project-section__index">01</p>
+          <h2 class="project-section__title" id="brief-title">Brief</h2>
           <p>A real freelance client, a real annual report: shaping a year of activity into a dense editorial object that's both rigorous and enjoyable to read.</p>
         </div>
 
-        <figure class="media media--lg span-9-12">
+        <figure class="media media--lg span-7-12">
           <img src="https://picsum.photos/id/1050/900/1125" alt="Spread from the annual report" loading="lazy" width="900" height="1125">
-          <figcaption class="small-caps">Fig.&hairsp;03 — Spread, 2026</figcaption>
+          <figcaption class="small-caps">Fig.&hairsp;01 — Spread, 2026</figcaption>
         </figure>
 
         <!-- Add more brief images or paragraphs here -->
       </div>
     </section>
 
-    <!-- ═══ 02 · Process ═══ -->
+    <!-- ═══ 02 · Process — texte en haut, images côte à côte en dessous ═══ -->
     <section class="project-section" id="process" aria-labelledby="process-title">
-      <header class="project-section__head project-grid">
-        <p class="small-caps project-section__index span-1-12">02</p>
-        <h2 class="project-section__title span-1-9" id="process-title">Process</h2>
-      </header>
-
-      <div class="project-section__body project-grid">
-        <figure class="media span-1-4">
-          <img src="https://picsum.photos/id/1074/900/1125" alt="Data pages from the annual report" loading="lazy" width="900" height="1125">
-          <figcaption class="small-caps">Fig.&hairsp;04 — Data pages, 2026</figcaption>
-        </figure>
-        <figure class="media span-1-4">
-          <img src="https://picsum.photos/id/1059/900/1125" alt="Layout of the key figures" loading="lazy" width="900" height="1125">
-          <figcaption class="small-caps">Fig.&hairsp;05 — Key figures, 2026</figcaption>
-        </figure>
-
-        <div class="span-6-12">
+      <div class="project-grid">
+        <div class="project-section__text span-1-7">
+          <p class="small-caps project-section__index">02</p>
+          <h2 class="project-section__title" id="process-title">Process</h2>
           <p>Building a strict editorial grid able to absorb data, quotes and visuals without losing readability.</p>
           <p>Careful attention to typographic hierarchy to guide readers through a document few people read cover to cover.</p>
         </div>
+
+        <figure class="media span-1-6">
+          <img src="https://picsum.photos/id/1074/900/1125" alt="Data pages from the annual report" loading="lazy" width="900" height="1125">
+          <figcaption class="small-caps">Fig.&hairsp;02 — Data pages, 2026</figcaption>
+        </figure>
+        <figure class="media span-7-12">
+          <img src="https://picsum.photos/id/1059/900/1125" alt="Layout of the key figures" loading="lazy" width="900" height="1125">
+          <figcaption class="small-caps">Fig.&hairsp;03 — Key figures, 2026</figcaption>
+        </figure>
 
         <!-- Add more process images, sketches, or paragraphs here -->
       </div>
     </section>
 
-    <!-- ═══ 03 · Results ═══ -->
+    <!-- ═══ 03 · Results — deux images, plus discrètes ═══ -->
     <section class="project-section" id="results" aria-labelledby="results-title">
-      <header class="project-section__head project-grid">
-        <p class="small-caps project-section__index span-1-12">03</p>
-        <h2 class="project-section__title span-1-9" id="results-title">Results</h2>
-      </header>
-
-      <div class="project-section__body project-grid">
-        <div class="span-1-7">
+      <div class="project-grid">
+        <div class="project-section__text span-1-6">
+          <p class="small-caps project-section__index">03</p>
+          <h2 class="project-section__title" id="results-title">Results</h2>
           <p>An annual report delivered on time, approved by the client, and now the base template for future editions.</p>
           <p>Complete InDesign layout, print files, and a reusable template for future editions of the report.</p>
         </div>
 
-        <figure class="media span-9-12">
-          <img src="https://picsum.photos/id/1043/900/1125" alt="Cover of the annual report" loading="lazy" width="900" height="1125">
-          <figcaption class="small-caps">Fig.&hairsp;06 — Cover, 2026</figcaption>
-        </figure>
-        <figure class="media span-9-12">
-          <img src="https://picsum.photos/id/1039/900/1125" alt="Contents page of the annual report" loading="lazy" width="900" height="1125">
-          <figcaption class="small-caps">Fig.&hairsp;07 — Contents, 2026</figcaption>
-        </figure>
+        <div class="media-stack span-7-12">
+          <figure class="media">
+            <img src="https://picsum.photos/id/1043/900/1125" alt="Cover of the annual report" loading="lazy" width="900" height="1125">
+            <figcaption class="small-caps">Fig.&hairsp;04 — Cover, 2026</figcaption>
+          </figure>
+          <figure class="media">
+            <img src="https://picsum.photos/id/1039/900/1125" alt="Contents page of the annual report" loading="lazy" width="900" height="1125">
+            <figcaption class="small-caps">Fig.&hairsp;05 — Contents, 2026</figcaption>
+          </figure>
+        </div>
 
         <!-- Add more results, documentation, or deliverable images here -->
       </div>
@@ -174,6 +166,6 @@
     <p class="small-caps site-footer__colophon">Set in Fraunces &amp; Inter — designed &amp; built by hand — Paris, <span data-clock>--:--:--</span> — © 2026 Constance Dugauguez</p>
   </footer>
 
-  <script src="../main.js" defer></script>
+  <script src="../main.js?v=2" defer></script>
 </body>
 </html>

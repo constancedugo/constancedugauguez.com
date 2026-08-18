@@ -19,7 +19,7 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600&display=swap">
 
-  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../styles.css?v=11">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -40,7 +40,6 @@
 
     <!-- ═══ Hero ═══ -->
     <section class="project-hero project-grid">
-      <p class="small-caps project-hero__eyebrow span-1-12">Fig.&hairsp;01 — Exploration, 2024–2026</p>
 
       <h1 class="project-hero__title span-1-9">Experimentation</h1>
 
@@ -64,30 +63,27 @@
       </div>
 
       <p class="project-hero__intro span-1-6">This page isn't a case study but a playground: experiments around movement, generative form and interaction, made outside any client brief.</p>
+
+      <div class="project-hero__cue-wrap">
+        <a class="scroll-cue scroll-cue--inline" href="#brief" aria-label="Scroll to the brief">
+          <span aria-hidden="true">↓</span>
+        </a>
+      </div>
     </section>
 
-    <!-- ═══ Cover ═══ -->
-    <figure class="project-cover">
-      <img src="https://picsum.photos/id/1042/1400/788" alt="Cover composition blending technology and movement" loading="lazy" width="1400" height="788">
-      <figcaption class="small-caps">Fig.&hairsp;02 — Cover, 2026</figcaption>
-    </figure>
-
-    <!-- ═══ 01 · About this exploration ═══ -->
+    <!-- ═══ 01 · About this exploration — une image, plus grande ═══ -->
     <section class="project-section" id="brief" aria-labelledby="brief-title">
-      <header class="project-section__head project-grid">
-        <p class="small-caps project-section__index span-1-12">01</p>
-        <h2 class="project-section__title span-1-9" id="brief-title">About this exploration</h2>
-      </header>
-
-      <div class="project-section__body project-grid">
-        <div class="span-1-7">
+      <div class="project-grid">
+        <div class="project-section__text span-1-6">
+          <p class="small-caps project-section__index">01</p>
+          <h2 class="project-section__title" id="brief-title">About this exploration</h2>
           <p>This page isn't a case study but a playground: experiments around movement, generative form, and interaction, made outside any client brief.</p>
           <p>A way to stay hands-on with tools and questions that later feed into more structured work — no big write-up needed, the visuals speak for themselves.</p>
         </div>
 
-        <figure class="media media--lg span-9-12">
+        <figure class="media media--lg span-7-12">
           <img src="https://picsum.photos/id/1080/900/1125" alt="Animated composition test blending technology and movement" loading="lazy" width="900" height="1125">
-          <figcaption class="small-caps">Fig.&hairsp;03 — Composition test, 2025</figcaption>
+          <figcaption class="small-caps">Fig.&hairsp;01 — Composition test, 2025</figcaption>
         </figure>
 
         <!-- Add more intro paragraphs here -->
@@ -98,28 +94,28 @@
     <!-- Trois images par rangée, jamais pleine largeur — un carnet
          de planches, pas un mur d’images. -->
     <section class="project-section" id="gallery" aria-labelledby="gallery-title">
-      <header class="project-section__head project-grid">
-        <p class="small-caps project-section__index span-1-12">02</p>
-        <h2 class="project-section__title span-1-9" id="gallery-title">Gallery</h2>
-      </header>
+      <div class="project-grid">
+        <div class="project-section__text span-1-12">
+          <p class="small-caps project-section__index">02</p>
+          <h2 class="project-section__title" id="gallery-title">Gallery</h2>
+        </div>
 
-      <div class="project-section__body project-grid">
         <figure class="media span-1-4">
           <img src="https://picsum.photos/id/1084/900/1125" alt="Study of generative forms" loading="lazy" width="900" height="1125">
-          <figcaption class="small-caps">Fig.&hairsp;04 — Generative study, 2025</figcaption>
+          <figcaption class="small-caps">Fig.&hairsp;02 — Generative study, 2025</figcaption>
         </figure>
         <figure class="media span-5-8">
           <img src="https://picsum.photos/id/1078/900/1125" alt="Animated pattern test" loading="lazy" width="900" height="1125">
-          <figcaption class="small-caps">Fig.&hairsp;05 — Pattern test, 2025</figcaption>
+          <figcaption class="small-caps">Fig.&hairsp;03 — Pattern test, 2025</figcaption>
         </figure>
         <figure class="media span-9-12">
           <img src="https://picsum.photos/id/1069/900/1125" alt="Interactive interface experiment" loading="lazy" width="900" height="1125">
-          <figcaption class="small-caps">Fig.&hairsp;06 — Interface experiment, 2026</figcaption>
+          <figcaption class="small-caps">Fig.&hairsp;04 — Interface experiment, 2026</figcaption>
         </figure>
 
         <figure class="media span-1-4">
           <img src="https://picsum.photos/id/1074/900/1125" alt="Study of vertical movement" loading="lazy" width="900" height="1125">
-          <figcaption class="small-caps">Fig.&hairsp;07 — Movement study, 2026</figcaption>
+          <figcaption class="small-caps">Fig.&hairsp;05 — Movement study, 2026</figcaption>
         </figure>
 
         <!-- Add more explorations, stills, or embedded video here -->
@@ -155,6 +151,6 @@
     <p class="small-caps site-footer__colophon">Set in Fraunces &amp; Inter — designed &amp; built by hand — Paris, <span data-clock>--:--:--</span> — © 2026 Constance Dugauguez</p>
   </footer>
 
-  <script src="../main.js" defer></script>
+  <script src="../main.js?v=2" defer></script>
 </body>
 </html>

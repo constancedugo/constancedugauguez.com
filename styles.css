@@ -610,13 +610,14 @@ html:not(.js) .works__nav {
 .span-2-8  { grid-column: 2 / 9; }
 .span-6-12 { grid-column: 6 / 13; }
 .span-7-12 { grid-column: 7 / 13; }
+.span-8-9  { grid-column: 8 / 10; }
 .span-8-12 { grid-column: 8 / 13; }
 .span-9-12 { grid-column: 9 / 13; }
 .span-10-12 { grid-column: 10 / 13; }
 
 @media (max-width: 44rem) {
   .span-1-12, .span-1-9, .span-1-7, .span-1-6, .span-1-5, .span-1-4,
-  .span-5-8, .span-2-8, .span-6-12, .span-7-12, .span-8-12, .span-9-12, .span-10-12 {
+  .span-5-8, .span-2-8, .span-6-12, .span-7-12, .span-8-9, .span-8-12, .span-9-12, .span-10-12 {
     grid-column: 1 / -1;
   }
 }
@@ -624,7 +625,17 @@ html:not(.js) .works__nav {
 /* — Hero de projet — */
 
 .project-hero {
-  padding: clamp(7rem, 15vh, 10rem) var(--space-4) var(--section-pad);
+  padding: clamp(7rem, 15vh, 10rem) var(--space-4) clamp(4rem, 8vw, 7rem);
+}
+
+/* flèche de suite, pour les pages sans image de couverture — même
+   principe que sur la page d’accueil : indiquer qu’il y a une suite
+   plutôt que de laisser un grand vide après le hero */
+.project-hero__cue-wrap {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-4);
 }
 
 .project-hero__eyebrow {
@@ -687,14 +698,21 @@ html:not(.js) .works__nav {
 }
 
 /* — Sections du cas (brief / process / results…) — */
+/* Pas de filet horizontal entre les sections : le blanc du papier
+   suffit à les distinguer, comme les chapitres d’un livre. Marge
+   plus resserrée que --section-pad : ce padding s’additionne en
+   haut ET en bas de chaque section, donc entre deux sections
+   consécutives l’écart réel est déjà le double de cette valeur. */
 
 .project-section {
-  padding: var(--section-pad) var(--space-4);
-  border-top: 1px solid var(--ink);
+  padding: clamp(4rem, 8vw, 7rem) var(--space-4);
 }
 
-.project-section__head {
-  margin-bottom: var(--space-6);
+/* le titre reste attaché à son texte — un seul bloc, jamais un
+   bandeau séparé qui s’éloigne des paragraphes qu’il annonce */
+.project-section__text {
+  display: flex;
+  flex-direction: column;
 }
 
 .project-section__index {
@@ -705,40 +723,80 @@ html:not(.js) .works__nav {
 
 .project-section__title {
   font-size: clamp(1.75rem, 3.5vw, 3rem);
+  margin-bottom: var(--space-4);
 }
 
-.project-section__body p {
+.project-section__text p {
   font-size: 1.0625rem;
   line-height: 1.65;
   max-width: var(--measure);
 }
 
-.project-section__body p + p {
+.project-section__text p + p {
   margin-top: var(--space-3);
 }
 
 /* — Figures — */
-/* toujours en retrait dans la grille (jamais bord à bord) et
-   plafonnées en hauteur : l’image illustre le texte, elle ne le
-   remplace pas — l’un ne va pas sans l’autre. La largeur vient des
-   utilitaires span-* déjà posés sur le texte, pas d’une classe à part. */
+/* toujours en retrait dans la grille (jamais bord à bord) : l’image
+   illustre le texte, elle ne le remplace pas — l’un ne va pas sans
+   l’autre. Plus grande seule, plus discrète à deux, pour que la
+   grille respire sans jamais devenir un mur d’images. */
 
 .media {
   align-self: start;
   overflow: hidden;
 }
 
+/* hauteur fixe plutôt qu’un simple plafond : deux photos source de
+   proportions différentes, côte à côte, doivent quand même s’aligner
+   pile sur la même ligne — un max-height seul laisse l’image la
+   plus « carrée » plus courte que sa voisine */
 .media img {
   width: 100%;
-  height: auto;
-  max-height: 22rem;
+  height: 24rem;
   object-fit: cover;
 }
 
-/* pour la figure occasionnelle qui mérite un peu plus de présence,
-   sans jamais rivaliser avec le texte */
+/* seule dans sa section : elle peut prendre toute sa place */
 .media--lg img {
-  max-height: 28rem;
+  height: 32rem;
+}
+
+/* plus étroite et plus haute : pour une image dont le cadrage
+   serré coupe autrement une part importante du contenu — alignée
+   à droite, sur le même bord que ses voisines plus larges */
+.media--tall {
+  align-self: flex-end;
+  width: min(75%, 28rem);
+}
+
+.media--tall img {
+  height: 30rem;
+}
+
+/* paire d’images empilées, proches l’une de l’autre — dans son
+   propre conteneur flex pour ne pas hériter de la hauteur de la
+   colonne de texte voisine (sinon le second visuel se retrouve
+   collé au bas du texte, loin du premier) */
+.media-stack {
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* dans une grille, align-self contrôle l’axe vertical ; dans ce
+   conteneur flex (colonne), c’est l’axe horizontal — sans ce reset,
+   chaque figure se réduirait à la largeur de son image plutôt que
+   de remplir la pile */
+.media-stack .media {
+  align-self: stretch;
+}
+
+/* .media--tall doit garder son alignement à droite même empilée —
+   sinon la règle ci-dessus (plus spécifique) l’emporterait */
+.media-stack .media--tall {
+  align-self: flex-end;
 }
 
 .media figcaption {
@@ -746,9 +804,20 @@ html:not(.js) .works__nav {
 }
 
 @media (max-width: 44rem) {
-  .media img,
+  .media img {
+    height: 20rem;
+  }
+
   .media--lg img {
-    max-height: 20rem;
+    height: 22rem;
+  }
+
+  .media--tall {
+    width: 100%;
+  }
+
+  .media--tall img {
+    height: 24rem;
   }
 }
 

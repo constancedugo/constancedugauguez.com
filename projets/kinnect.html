@@ -19,7 +19,7 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600&display=swap">
 
-  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../styles.css?v=11">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -40,8 +40,6 @@
 
     <!-- ═══ Hero ═══ -->
     <section class="project-hero project-grid">
-      <p class="small-caps project-hero__eyebrow span-1-12">Fig.&hairsp;01 — Identity, 2026</p>
-
       <h1 class="project-hero__title span-1-9">Kinnect</h1>
 
       <div class="project-hero__meta span-10-12">
@@ -64,86 +62,78 @@
       </div>
 
       <p class="project-hero__intro span-1-6">2 Minutes, One Card, Real Connection Social impact · Card game + mobile app · Group Project</p>
+
+      <div class="project-hero__cue-wrap">
+        <a class="scroll-cue scroll-cue--inline" href="#brief" aria-label="Scroll to the brief">
+          <span aria-hidden="true">↓</span>
+        </a>
+      </div>
     </section>
 
-    <!-- ═══ Cover ═══ -->
-    <figure class="project-cover">
-      <img src="https://picsum.photos/id/180/1400/788" alt="Overview of the Kinnect identity" loading="lazy" width="1400" height="788">
-      <figcaption class="small-caps">Fig.&hairsp;02 — Cover, 2026</figcaption>
-    </figure>
-
-    <!-- ═══ 01 · Brief ═══ -->
+    <!-- ═══ 01 · Brief — une image, plus grande ═══ -->
     <section class="project-section" id="brief" aria-labelledby="brief-title">
-      <header class="project-section__head project-grid">
-        <p class="small-caps project-section__index span-1-12">01</p>
-        <h2 class="project-section__title span-1-9" id="brief-title">The problem</h2>
-      </header>
-
-      <div class="project-section__body project-grid">
-        <div class="span-1-7">
+      <div class="project-grid">
+        <div class="project-section__text span-1-6">
+          <p class="small-caps project-section__index">01</p>
+          <h2 class="project-section__title" id="brief-title">The problem</h2>
           <p>39% of Singaporeans aged 62+ report feeling lonely — and 86% of those seniors live with their families. Living together doesn't mean feeling connected: in multigenerational homes, school, work and screens fill the day, and meaningful interaction disappears.</p>
           <p>Two surveys confirmed it from both sides. Seniors (63+) wanted more quality time and shared activities. Younger respondents (13–25) wanted the same, and were open to an app to stay close to their grandparents.</p>
           <p>Problem statement: despite living with family, many elderly people experience loneliness from limited quality interactions with younger generations. The challenge: building a system flexible enough to be accessible across generations, from youngers to elders.</p>
         </div>
 
-        <figure class="media media--lg span-9-12">
-          <img src="../images/Kinnect-B.png" alt="Overview of the Kinnect identity applied across multiple formats" loading="lazy" width="900" height="1125">
-          <figcaption class="small-caps">Fig.&hairsp;03 — Applications, 2026</figcaption>
+        <figure class="media media--lg span-7-12">
+          <img src="../images/Kinnect-Ages.png" alt="Overview of the Kinnect identity applied across multiple formats" loading="lazy" width="900" height="1125">
+          <figcaption class="small-caps">Fig.&hairsp;01 — Reality</figcaption>
         </figure>
 
         <!-- Add more brief images or paragraphs here -->
       </div>
     </section>
 
-    <!-- ═══ 02 · Process ═══ -->
+    <!-- ═══ 02 · Process — texte en haut, images côte à côte en dessous ═══ -->
     <section class="project-section" id="process" aria-labelledby="process-title">
-      <header class="project-section__head project-grid">
-        <p class="small-caps project-section__index span-1-12">02</p>
-        <h2 class="project-section__title span-1-9" id="process-title">The thinking</h2>
-      </header>
-
-      <div class="project-section__body project-grid">
-        <figure class="media span-1-4">
-          <img src="https://picsum.photos/id/1005/900/1125" alt="Exploration of the Kinnect colour system" loading="lazy" width="900" height="1125">
-          <figcaption class="small-caps">Fig.&hairsp;04 — Colour study, 2026</figcaption>
-        </figure>
-        <figure class="media span-1-4">
-          <img src="https://picsum.photos/id/1011/900/1125" alt="Identity applied across the Kinnect cards" loading="lazy" width="900" height="1125">
-          <figcaption class="small-caps">Fig.&hairsp;05 — Card system, 2026</figcaption>
-        </figure>
-
-        <div class="span-6-12">
+      <div class="project-grid">
+        <div class="project-section__text span-1-7">
+          <p class="small-caps project-section__index">02</p>
+          <h2 class="project-section__title" id="process-title">The thinking</h2>
           <p>Loneliness here isn't a distance problem, it's an attention problem.</p>
           <p>The solution couldn't ask for more time — only a lower barrier to starting a conversation: two minutes, one prompt, no planning. And since screens were part of the problem, it couldn't lead with an app.</p>
         </div>
+
+        <figure class="media span-1-6">
+          <img src="../images/Kinnect-Think.png" alt="Exploration of the Kinnect colour system" loading="lazy" width="900" height="1125">
+          <figcaption class="small-caps">Fig.&hairsp;02 — Issue</figcaption>
+        </figure>
+        <figure class="media span-7-12">
+          <img src="../images/Kinnect-B.png" alt="Identity applied across the Kinnect cards" loading="lazy" width="900" height="1125">
+          <figcaption class="small-caps">Fig.&hairsp;03 — Card system</figcaption>
+        </figure>
 
         <!-- Add more process images, sketches, or paragraphs here -->
       </div>
     </section>
 
-    <!-- ═══ 03 · Results ═══ -->
+    <!-- ═══ 03 · Results — deux images, plus discrètes ═══ -->
     <section class="project-section" id="results" aria-labelledby="results-title">
-      <header class="project-section__head project-grid">
-        <p class="small-caps project-section__index span-1-12">03</p>
-        <h2 class="project-section__title span-1-9" id="results-title">The Solution</h2>
-      </header>
-
-      <div class="project-section__body project-grid">
-        <div class="span-1-7">
-          <p>Short term — the card game. A physical deck of conversation prompts in four categories: Today.., What if.., Imagine, Your Generation. It sits on the table, works for every age, needs no onboarding. Sold at pop-up stands outside community centres and libraries around National Grandparents Day.</p>
+      <div class="project-grid">
+        <div class="project-section__text span-1-6">
+          <p class="small-caps project-section__index">03</p>
+          <h2 class="project-section__title" id="results-title">The Solution</h2>
+          <p>Short term — the card game. A physical deck of conversation prompts in four categories to create interest between generations: Today.., What if.., Imagine, Your Generation. It sits on the table, works for every age, needs no onboarding. Sold at pop-up stands outside community centres and libraries around National Grandparents Day.</p>
           <p>Long term — the app. A QR code inside the box unlocks a digital extension: challenges, streaks, mini-games and shared progress that turn one good evening into a habit. Accessibility-first, after user testing flagged text and navigation sizing for elderly users.</p>
           <p>Awareness → engagement → habit.</p>
         </div>
 
-        <!-- TODO Constance : remplacer par une vraie capture de l’app -->
-        <figure class="media span-9-12">
-          <img src="https://picsum.photos/id/1035/900/1125" alt="Kinnect app with the final identity" loading="lazy" width="900" height="1125">
-          <figcaption class="small-caps">Fig.&hairsp;06 — App, 2026</figcaption>
-        </figure>
-        <figure class="media span-9-12">
-          <img src="https://picsum.photos/id/1027/900/1125" alt="Detail of the Kinnect cards" loading="lazy" width="900" height="1125">
-          <figcaption class="small-caps">Fig.&hairsp;07 — Detail, 2026</figcaption>
-        </figure>
+        <div class="media-stack span-7-12">
+          <figure class="media">
+            <img src="../images/Kinnect-Box.png" alt="Kinnect app with the final identity" loading="lazy" width="900" height="1125">
+            <figcaption class="small-caps">Fig.&hairsp;04 — The Game </figcaption>
+          </figure>
+          <figure class="media media--tall">
+            <img src="../images/Kinnect-Train.png" alt="Detail of the Kinnect cards" loading="lazy" width="900" height="1125">
+            <figcaption class="small-caps">Fig.&hairsp;05 — Touch point</figcaption>
+          </figure>
+        </div>
 
         <!-- Add more results, documentation, or deliverable images here -->
       </div>
@@ -178,6 +168,6 @@
     <p class="small-caps site-footer__colophon">Set in Fraunces &amp; Inter — designed &amp; built by hand — New York & Montreal, <span data-clock>--:--:--</span> — © 2026 Constance Dugauguez</p>
   </footer>
 
-  <script src="../main.js" defer></script>
+  <script src="../main.js?v=2" defer></script>
 </body>
 </html>
