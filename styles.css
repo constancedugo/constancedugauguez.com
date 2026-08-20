@@ -774,6 +774,33 @@ html:not(.js) .works__nav {
   height: 30rem;
 }
 
+/* cadré carré plutôt qu’en bande — largeur plafonnée à la hauteur
+   d’origine (24rem) pour que le carré ne soit qu’un réarrangement
+   de la forme, jamais un agrandissement */
+.media--square {
+  width: 24rem;
+  max-width: 100%;
+}
+
+.media--square img {
+  height: auto;
+  aspect-ratio: 1 / 1;
+}
+
+/* petite planche de quatre visuels, deux par deux, carrés — pour
+   une section qui documente plusieurs images plutôt qu’une ou deux */
+.media-grid {
+  align-self: start;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+}
+
+.media-grid .media img {
+  height: auto;
+  aspect-ratio: 1 / 1;
+}
+
 /* paire d’images empilées, proches l’une de l’autre — dans son
    propre conteneur flex pour ne pas hériter de la hauteur de la
    colonne de texte voisine (sinon le second visuel se retrouve
@@ -818,6 +845,11 @@ html:not(.js) .works__nav {
 
   .media--tall img {
     height: 24rem;
+  }
+
+  .media-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-2);
   }
 }
 
