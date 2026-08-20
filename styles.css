@@ -185,10 +185,6 @@ a {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   justify-items: center;
-  /* l’ensemble du bloc est ramené vers la gauche : sans cela, la
-     ligne décalée à droite viendrait buter sur la marginalia
-     verticale épinglée au bord de l’écran */
-  padding-right: 5rem;
 }
 
 .hero__name-wrap > h1 {
@@ -218,6 +214,10 @@ a {
 .hero__name {
   /* environ une lettre et demie d’écart entre les deux lignes */
   --stagger: 1em;
+  /* le bloc entier recule d’un cheveu vers la gauche : le décalage
+     et le bord droit étant liés, c’est le seul moyen de garder
+     l’écart voulu sans que le « Z » ne touche la marginalia */
+  transform: translateX(-1rem);
 }
 
 .hero__name .line:not(.line--shift) {
@@ -298,7 +298,7 @@ a {
      donc pas de compensation à droite non plus */
   .hero__name .line:not(.line--shift) { margin-right: 0; }
   .hero__name .line--shift { margin-left: 0; }
-  .hero__name-wrap { padding-right: 0; }
+  .hero__name { transform: none; }
 
   .site-head { padding: var(--space-2) var(--space-2); }
 }
@@ -774,6 +774,12 @@ html:not(.js) .works__nav {
 /* seule dans sa section : elle peut prendre toute sa place */
 .media--lg img {
   height: 32rem;
+}
+
+/* garde les proportions d’origine de la photo : aucun recadrage,
+   l’image est montrée telle qu’elle a été cadrée à la prise de vue */
+.media--natural img {
+  height: auto;
 }
 
 /* plus étroite et plus haute : pour une image dont le cadrage
