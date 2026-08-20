@@ -125,17 +125,19 @@
     updateButtons();
   }
 
-  /* ── Horloge du colophon (heure de Paris) ─────────────────── */
+  /* ── Horloge du colophon (heure de New York) ──────────────── */
 
   const clock = document.querySelector('[data-clock]');
 
   if (clock) {
     const tick = () => {
-      clock.textContent = new Intl.DateTimeFormat('fr-FR', {
+      /* en-GB plutôt que en-US : même langue, mais affichage 24 h,
+         plus sobre qu’un « 10:51:29 PM » dans une ligne de colophon */
+      clock.textContent = new Intl.DateTimeFormat('en-GB', {
         hour: '2-digit',
         minute: '2-digit',
         second: '2-digit',
-        timeZone: 'Europe/Paris',
+        timeZone: 'America/New_York',
       }).format(new Date());
     };
     tick();

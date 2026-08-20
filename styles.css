@@ -185,6 +185,10 @@ a {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   justify-items: center;
+  /* l’ensemble du bloc est ramené vers la gauche : sans cela, la
+     ligne décalée à droite viendrait buter sur la marginalia
+     verticale épinglée au bord de l’écran */
+  padding-right: 5rem;
 }
 
 .hero__name-wrap > h1 {
@@ -206,14 +210,22 @@ a {
   width: max-content;
 }
 
-/* décalage éditorial, à la Regina Musi : première ligne à gauche… */
-.hero__name .line:not(.line--shift) {
-  margin-right: 0.5em;
+/* Décalage éditorial, à la Regina Musi. Symétrique et franc : une
+   ligne poussée à gauche, l’autre à droite d’une même valeur, pour
+   que le décalage se lise comme un parti pris et non comme un
+   défaut d’alignement. La marge décale de la moitié de sa valeur,
+   d’où un écart total entre les deux lignes de --stagger. */
+.hero__name {
+  /* environ une lettre et demie d’écart entre les deux lignes */
+  --stagger: 1em;
 }
 
-/* …seconde ligne un rien à droite */
+.hero__name .line:not(.line--shift) {
+  margin-right: var(--stagger);
+}
+
 .hero__name .line--shift {
-  margin-left: 0.15em;
+  margin-left: var(--stagger);
 }
 
 .hero__intro {
@@ -282,9 +294,11 @@ a {
   .hero__intro p:first-child { grid-column: 1 / 8; }
   .hero__intro p:last-child  { grid-column: 5 / 13; }
 
-  /* sur petit écran : pas de décalage, débord symétrique et discret */
+  /* sur petit écran : pas de décalage, débord symétrique et discret —
+     donc pas de compensation à droite non plus */
   .hero__name .line:not(.line--shift) { margin-right: 0; }
   .hero__name .line--shift { margin-left: 0; }
+  .hero__name-wrap { padding-right: 0; }
 
   .site-head { padding: var(--space-2) var(--space-2); }
 }
