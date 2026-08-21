@@ -19,7 +19,7 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600&display=swap">
 
-  <link rel="stylesheet" href="../styles.css?v=20">
+  <link rel="stylesheet" href="../styles.css?v=22">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -177,10 +177,28 @@ That left one problem. A poem can only describe the past. The present had to be 
 
   </main>
 
-  <a class="project-next" href="creativity-through.html">
-    <p class="small-caps project-next__label">Next project</p>
-    <p class="project-next__name">Creativity Through →</p>
-  </a>
+  <nav class="project-nav" aria-label="Other projects">
+    <div class="project-nav__inner">
+      <p class="small-caps project-nav__head">Other projects</p>
+
+      <div class="project-nav__list">
+        <a class="project-nav__item" href="creativity-through.html">
+          <img src="../images/CT.png" alt="Creativity Through — educational poster series" loading="lazy" width="900" height="1125">
+          <p class="small-caps project-nav__label">04 — Educational</p>
+        </a>
+
+        <a class="project-nav__item" href="experimentation.html">
+          <img src="https://picsum.photos/id/1042/900/1125" alt="Experimentation — technology and movement" loading="lazy" width="900" height="1125">
+          <p class="small-caps project-nav__label">05 — Exploration · Technology &amp; Movement</p>
+        </a>
+
+        <a class="project-nav__item" href="kinnect.html">
+          <img src="../images/Kinnect.png" alt="Kinnect — identity, app and card deck" loading="lazy" width="900" height="1125">
+          <p class="small-caps project-nav__label">01 — Identity · App · Cards</p>
+        </a>
+      </div>
+    </div>
+  </nav>
 
   <footer class="site-footer">
     <a class="scroll-cue scroll-cue--inline" href="#top" aria-label="Back to top">

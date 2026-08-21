@@ -19,7 +19,7 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600&display=swap">
 
-  <link rel="stylesheet" href="../styles.css?v=11">
+  <link rel="stylesheet" href="../styles.css?v=22">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -127,10 +127,28 @@
 
   </main>
 
-  <a class="project-next" href="kinnect.html">
-    <p class="small-caps project-next__label">Next project</p>
-    <p class="project-next__name">Kinnect →</p>
-  </a>
+  <nav class="project-nav" aria-label="Other projects">
+    <div class="project-nav__inner">
+      <p class="small-caps project-nav__head">Other projects</p>
+
+      <div class="project-nav__list">
+        <a class="project-nav__item" href="kinnect.html">
+          <img src="../images/Kinnect.png" alt="Kinnect — identity, app and card deck" loading="lazy" width="900" height="1125">
+          <p class="small-caps project-nav__label">01 — Identity · App · Cards</p>
+        </a>
+
+        <a class="project-nav__item" href="annual-report.html">
+          <img src="https://picsum.photos/id/24/900/1125" alt="Annual Report — editorial design" loading="lazy" width="900" height="1125">
+          <p class="small-caps project-nav__label">02 — Editorial · Freelance</p>
+        </a>
+
+        <a class="project-nav__item" href="heritage-trees.html">
+          <img src="../images/Tree.jpeg" alt="Heritage Trees — conceptual exploration" loading="lazy" width="900" height="1125">
+          <p class="small-caps project-nav__label">03 — Art Direction · Concept</p>
+        </a>
+      </div>
+    </div>
+  </nav>
 
   <footer class="site-footer">
     <a class="scroll-cue scroll-cue--inline" href="#top" aria-label="Back to top">
