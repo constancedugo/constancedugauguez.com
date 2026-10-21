@@ -47,6 +47,67 @@
     revealables.forEach((el) => el.classList.add('is-visible'));
   }
 
+  /* ── Machine à écrire du hero ─────────────────────────────── */
+
+  /* Le mot de départ est déjà dans le HTML : sans JS, la phrase reste
+     complète et juste. On ne prend la main qu’une fois la fonte posée. */
+
+  const typer = document.querySelector('[data-typewriter]');
+
+  if (typer && !reduceMotion) {
+    const words = (typer.dataset.words || '')
+      .split('|')
+      .map((w) => w.trim())
+      .filter(Boolean);
+
+    if (words.length > 1) {
+      const text = document.createElement('span');
+      const caret = document.createElement('span');
+      caret.className = 'typewriter-caret';
+      caret.setAttribute('aria-hidden', 'true');
+
+      /* Le mot qui défile change trop vite pour une synthèse vocale :
+         on annonce le premier, puis on laisse la zone muette. */
+      typer.textContent = '';
+      typer.append(text, caret);
+      text.textContent = words[0];
+
+      const TYPE = 55, ERASE = 32, HOLD = 2200, BREATH = 420;
+      let word = 0, letters = words[0].length, erasing = false;
+
+      const frame = () => {
+        const current = words[word];
+        let delay;
+
+        if (erasing) {
+          letters -= 1;
+          delay = ERASE;
+          if (letters === 0) {
+            erasing = false;
+            word = (word + 1) % words.length;
+            delay = BREATH;
+          }
+        } else {
+          if (letters < current.length) {
+            letters += 1;
+            delay = letters === current.length ? HOLD : TYPE;
+            if (letters === current.length) erasing = true;
+          } else {
+            erasing = true;
+            delay = HOLD;
+          }
+        }
+
+        text.textContent = words[word].slice(0, letters);
+        /* Onglet caché : requestAnimationFrame dort, setTimeout traîne.
+           On se contente de reprendre là où on en est au retour. */
+        setTimeout(frame, delay);
+      };
+
+      setTimeout(frame, 1600);   /* on laisse le hero finir de se lever */
+    }
+  }
+
   /* ── Carrousel des travaux ────────────────────────────────── */
 
   const track = document.querySelector('[data-carousel]');

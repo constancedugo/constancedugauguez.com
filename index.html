@@ -19,49 +19,61 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Afacad:ital,wght@0,400;0,500;0,600;1,400&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Afacad:ital,wght@0,400;0,500;0,600;1,400&display=swap">
 
-  <link rel="stylesheet" href="styles.css?v=31">
+  <link rel="stylesheet" href="styles.css?v=37">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
+  <!-- Navigation centrée, logo au milieu — principe repris de la référence -->
   <header class="site-head" id="top">
-    <p class="small-caps">Constance Dugauguez</p>
-    <nav aria-label="Contact">
-      <ul class="site-head__links">
-        <li><a class="link small-caps" href="mailto:constanced.design@gmail.com">Email&thinsp;↗</a></li>
-        <li><a class="link small-caps" href="https://www.linkedin.com/in/constance-dugauguez" rel="noopener">LinkedIn&thinsp;↗</a></li>
+    <nav class="site-nav" aria-label="Main">
+      <ul class="site-nav__group">
+        <li><a class="link small-caps" href="#travaux">Projects</a></li>
+        <li><a class="link small-caps" href="#about">About</a></li>
+      </ul>
+
+      <a class="site-nav__logo" href="#top" aria-label="Constance Dugauguez — back to top">
+        <span class="site-nav__logo-first"><span class="paren">(</span>constance<span class="paren">)</span></span>
+        <span class="site-nav__logo-last italic">dugauguez</span>
+      </a>
+
+      <ul class="site-nav__group site-nav__group--end">
         <li><a class="link small-caps" href="https://www.instagram.com/virguledesign.studio/" rel="noopener">Instagram&thinsp;↗</a></li>
+        <li><a class="link small-caps" href="mailto:constanced.design@gmail.com">Contact&thinsp;↗</a></li>
       </ul>
     </nav>
   </header>
 
   <main id="main">
 
-    <!-- ═══ 1 · Hero ═══ -->
+    <!-- ═══ 1 · Hero — conversationnel et centré ═══ -->
     <section class="hero">
-      <p class="hero__eyebrow small-caps">
-        <span class="line"><span class="line-inner" style="--i:0">Graphic Designer / Art Director</span></span>
+      <h1 class="hero__hello">
+        <span class="line">
+          <span class="line-inner" style="--i:0">Hello! I&rsquo;m<!--
+       TODO Constance : dépose ta photo dans images/portrait.jpg, puis
+       remplace toute la ligne ci-dessous par :
+       <img class="hero__face" src="images/portrait.jpg" alt="" width="400" height="400">
+       Le cadrage rond et la taille se font tout seuls.
+    --><span class="hero__face hero__face--mono" aria-hidden="true"><span>CD</span></span>Constance</span>
+        </span>
+        <span class="line">
+          <span class="line-inner" style="--i:1"><!--
+       L’article fait partie du mot cyclé : « an art director » ne
+       s’accommode pas d’un « a » figé devant.
+    --><span class="italic" data-typewriter
+              data-words="a graphic designer|an art director|an image maker">a graphic designer</span> based between New York &amp; Montreal</span>
+        </span>
+      </h1>
+
+      <p class="hero__sub" data-reveal style="--i:2">
+        <span class="paren">(</span>Selected work below<span class="paren">)</span>
       </p>
-
-      <div class="hero__name-wrap">
-        <h1 class="hero__name">
-          <span class="line"><span class="line-inner" style="--i:1">Constance</span></span>
-          <span class="line line--shift"><span class="line-inner" style="--i:2">Dugauguez</span></span>
-        </h1>
-        
-      </div>
-
-      <div class="hero__intro">
-        <p>I build digital experiences that people remember, not just products they use.</p>
-        <p>Every culture tells a different story. Design is how I make them speak the same language.</p>
-      </div>
 
       <a class="scroll-cue" href="#travaux" aria-label="Scroll to projects">
         <span aria-hidden="true">↓</span>
       </a>
-
-      <p class="marginalia small-caps" aria-hidden="true">CD Portfolio — nº&hairsp;1 Edition @2026</p>
     </section>
 
     <!-- ═══ 2 · Travaux sélectionnés ═══ -->
@@ -273,9 +285,9 @@
       </nav>
     </div>
 
-    <p class="small-caps site-footer__colophon">Set in Fraunces &amp; Inter — designed &amp; built by hand — New York, <span data-clock>--:--:--</span> — © 2026 Constance Dugauguez</p>
+    <p class="small-caps site-footer__colophon">Set in Cormorant Garamond &amp; Afacad — designed &amp; built by hand — New York, <span data-clock>--:--:--</span> — © 2026 Constance Dugauguez</p>
   </footer>
 
-  <script src="main.js?v=8" defer></script>
+  <script src="main.js?v=9" defer></script>
 </body>
 </html>
