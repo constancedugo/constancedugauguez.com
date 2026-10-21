@@ -12,31 +12,27 @@
   <meta property="og:description" content="Identities, editorial design and images composed like books — typography, white space, the almost-nothing.">
   <meta property="og:image" content="https://picsum.photos/id/1027/1200/630?grayscale">
 
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2064%2064%27%3E%3Crect%20width%3D%2764%27%20height%3D%2764%27%20fill%3D%27%23A8A857%27%2F%3E%3Ctext%20x%3D%2732%27%20y%3D%2745%27%20font-family%3D%27Georgia%2Cserif%27%20font-size%3D%2734%27%20text-anchor%3D%27middle%27%20fill%3D%27%232E3618%27%3ECD%3C%2Ftext%3E%3C%2Fsvg%3E">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2064%2064%27%3E%3Crect%20width%3D%2764%27%20height%3D%2764%27%20fill%3D%27%23580119%27%2F%3E%3Ccircle%20cx%3D%2732%27%20cy%3D%2732%27%20r%3D%2715%27%20fill%3D%27%23FFFDEF%27%2F%3E%3C%2Fsvg%3E">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Afacad:ital,wght@0,400;0,500;0,600;1,400&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Afacad:ital,wght@0,400;0,500;0,600;1,400&display=swap">
 
-  <link rel="stylesheet" href="styles.css?v=37">
+  <link rel="stylesheet" href="styles.css?v=40">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Navigation centrée, logo au milieu — principe repris de la référence -->
+  <!-- Pas de logo ici : on est déjà sur l’accueil, et le nom tient
+       toute la place dans la phrase juste en dessous. -->
   <header class="site-head" id="top">
-    <nav class="site-nav" aria-label="Main">
+    <nav class="site-nav site-nav--home" aria-label="Main">
       <ul class="site-nav__group">
         <li><a class="link small-caps" href="#travaux">Projects</a></li>
-        <li><a class="link small-caps" href="#about">About</a></li>
+        <li><a class="link small-caps" href="about.html">About</a></li>
       </ul>
-
-      <a class="site-nav__logo" href="#top" aria-label="Constance Dugauguez — back to top">
-        <span class="site-nav__logo-first"><span class="paren">(</span>constance<span class="paren">)</span></span>
-        <span class="site-nav__logo-last italic">dugauguez</span>
-      </a>
 
       <ul class="site-nav__group site-nav__group--end">
         <li><a class="link small-caps" href="https://www.instagram.com/virguledesign.studio/" rel="noopener">Instagram&thinsp;↗</a></li>
@@ -56,14 +52,14 @@
        remplace toute la ligne ci-dessous par :
        <img class="hero__face" src="images/portrait.jpg" alt="" width="400" height="400">
        Le cadrage rond et la taille se font tout seuls.
-    --><span class="hero__face hero__face--mono" aria-hidden="true"><span>CD</span></span>Constance</span>
+    --><span class="hero__face hero__face--mono" aria-hidden="true"></span>Constance</span>
         </span>
         <span class="line">
-          <span class="line-inner" style="--i:1"><!--
-       L’article fait partie du mot cyclé : « an art director » ne
-       s’accommode pas d’un « a » figé devant.
+          <span class="line-inner" style="--i:1">I do <!--
+       Des domaines plutôt que des titres : « I do branding » se dit,
+       « I’m a branding » non. Au passage, plus d’article à accorder.
     --><span class="italic" data-typewriter
-              data-words="a graphic designer|an art director|an image maker">a graphic designer</span> based between New York &amp; Montreal</span>
+              data-words="graphic design|branding|art direction|editorial design|visual identity|image-making|the occasional poster|a bit of everything">graphic design</span> between New York &amp; Montreal</span>
         </span>
       </h1>
 
@@ -157,115 +153,6 @@
       </div>
     </section>
 
-    <!-- ═══ 3 · About / Curriculum ═══ -->
-    <section class="about" id="about" aria-labelledby="about-title">
-      <header class="about__head" data-reveal style="--i:0">
-        <h2 class="about__title" id="about-title"><span class="paren">(</span>Behind the work<span class="paren">)</span></h2>
-      </header>
-
-      <div class="about__bio" data-reveal style="--i:1">
-        <p>Hello! I'm Constance, a graphic designer working across communication design — branding, editorial and identity systems. I like <span class="italic">research</span> and <span class="italic">experimentation</span> in equal measure: unexpected ideas, unexpected mediums, and the craft to make them speak clearly.</p>
-        <p>Currently studying Communication Design at Parsons, between New York and Montreal, and taking on freelance identity and editorial projects along the way.</p>
-        <a class="link small-caps about__resume" href="assets/Dugauguez-Constance-resume.pdf" download>Download resume&thinsp;(PDF)&thinsp;↗</a>
-      </div>
-
-      <div class="about__cv">
-        <div class="cv-group" data-reveal style="--i:2">
-          <h3 class="small-caps cv-group__label">Education</h3>
-          <ul>
-            <li class="cv-item">
-              <p class="cv-item__what">BFA Communication Design<small>Parsons School of Design, New York — GPA 3.9&thinsp;/&thinsp;4</small></p>
-              <p class="cv-item__when small-caps">Aug 2024 — May 2027</p>
-            </li>
-            <li class="cv-item">
-              <p class="cv-item__what">Study abroad programme<small>LASALLE College of the Arts, Singapore — GPA 4.5&thinsp;/&thinsp;5</small></p>
-              <p class="cv-item__when small-caps">2026</p>
-            </li>
-            <li class="cv-item">
-              <p class="cv-item__what">Associate Degree in Graphic Design<small>Cégep du Vieux-Montréal — Quebec DEC equivalent</small></p>
-              <p class="cv-item__when small-caps">2022 — 2024</p>
-            </li>
-          </ul>
-        </div>
-
-        <div class="cv-group" data-reveal style="--i:3">
-          <h3 class="small-caps cv-group__label">Experience</h3>
-          <ul>
-            <li class="cv-item">
-              <p class="cv-item__what">Software &amp; programming tutor, The New School<small>One-on-one tutoring in programming fundamentals, coding languages and design software — debugging, code review and feedback adapted to each learner</small></p>
-              <p class="cv-item__when small-caps">Sept 2026 — Present</p>
-            </li>
-            <li class="cv-item">
-              <p class="cv-item__what">Freelance designer<small>Brand identities, illustration &amp; visual communication for independent clients</small></p>
-              <p class="cv-item__when small-caps">May 2022 — Present</p>
-            </li>
-            <li class="cv-item">
-              <p class="cv-item__what">Photographer, Eurovia Québec<small>Documenting sites &amp; operations for internal and promotional use</small></p>
-              <p class="cv-item__when small-caps">Aug 2021</p>
-            </li>
-            <li class="cv-item">
-              <p class="cv-item__what">VIP hostess, Formula 1 Grand Prix<small>Montréal — guest coordination in a high-pressure environment</small></p>
-              <p class="cv-item__when small-caps">May 2023</p>
-            </li>
-          </ul>
-        </div>
-
-        <div class="cv-group" data-reveal style="--i:4">
-          <h3 class="small-caps cv-group__label">Certifications &amp; recognition</h3>
-          <ul>
-            <li class="cv-item">
-              <p class="cv-item__what">Inside LVMH Certificate<small>Creation &amp; Branding · Operations &amp; Supply Chain</small></p>
-              <p class="cv-item__when small-caps">2025</p>
-            </li>
-            <li class="cv-item">
-              <p class="cv-item__what">Finalist, solidarity campaign poster</p>
-              <p class="cv-item__when small-caps">2023</p>
-            </li>
-            <li class="cv-item">
-              <p class="cv-item__what">3<sup>rd</sup> place, «&thinsp;Carré Rouge&thinsp;» anniversary contest</p>
-              <p class="cv-item__when small-caps">2022</p>
-            </li>
-          </ul>
-        </div>
-
-        <div class="cv-group" data-reveal style="--i:5">
-          <h3 class="small-caps cv-group__label">Volunteering</h3>
-          <ul>
-            <li class="cv-item">
-              <p class="cv-item__what">Scout leader</p>
-              <p class="cv-item__when small-caps">2019 — Present</p>
-            </li>
-            <li class="cv-item">
-              <p class="cv-item__what">Communication &amp; installation coordinator<small>Graduating Students Exhibition</small></p>
-              <p class="cv-item__when small-caps">2024</p>
-            </li>
-            <li class="cv-item">
-              <p class="cv-item__what">Assistant, Accueil Bonneau<small>Support for people in precarious situations</small></p>
-              <p class="cv-item__when small-caps">2022 — 2024</p>
-            </li>
-            <li class="cv-item">
-              <p class="cv-item__what">Recreation assistant, Château d'Indie<small>Nursing home</small></p>
-              <p class="cv-item__when small-caps">Fall 2023</p>
-            </li>
-          </ul>
-        </div>
-
-        <div class="cv-group" data-reveal style="--i:6">
-          <h3 class="small-caps cv-group__label">Skills</h3>
-          <ul>
-            <li class="cv-item">
-              <p class="cv-item__what">InDesign · Photoshop · Illustrator · After Effects · Figma · UX/UI · HTML &amp; CSS</p>
-            </li>
-            <li class="cv-item">
-              <p class="cv-item__what">Typography &amp; visual problem-solving · Collaborative in multicultural teams</p>
-            </li>
-            <li class="cv-item">
-              <p class="cv-item__what">Bilingual — French &amp; English</p>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
 
   </main>
 
@@ -288,6 +175,6 @@
     <p class="small-caps site-footer__colophon">Set in Cormorant Garamond &amp; Afacad — designed &amp; built by hand — New York, <span data-clock>--:--:--</span> — © 2026 Constance Dugauguez</p>
   </footer>
 
-  <script src="main.js?v=9" defer></script>
+  <script src="main.js?v=10" defer></script>
 </body>
 </html>

@@ -72,7 +72,7 @@
       typer.append(text, caret);
       text.textContent = words[0];
 
-      const TYPE = 55, ERASE = 32, HOLD = 2200, BREATH = 420;
+      const TYPE = 34, ERASE = 16, HOLD = 1100, BREATH = 200;
       let word = 0, letters = words[0].length, erasing = false;
 
       const frame = () => {
@@ -104,7 +104,7 @@
         setTimeout(frame, delay);
       };
 
-      setTimeout(frame, 1600);   /* on laisse le hero finir de se lever */
+      setTimeout(frame, 1100);   /* on laisse le hero finir de se lever */
     }
   }
 

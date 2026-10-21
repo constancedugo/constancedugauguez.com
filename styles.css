@@ -15,12 +15,17 @@
 /* ── 01 · Tokens ────────────────────────────────────────────── */
 
 :root {
-  /* Direction « Designare » : ivoire chaud et brun profond, à la
-     place de l’olive. Les deux mêmes rôles qu’avant (--ink sur
-     --paper), donc tout le site bascule d’un coup. */
-  --ink:        #482C16;   /* brun chaud, pour le texte */
+  /* Ivoire chaud et bordeaux profond. Les deux mêmes rôles qu’avant
+     (--ink sur --paper), donc tout le site bascule d’un coup.
+     Contraste mesuré : 14,3:1 — très au-delà du AA exigé. */
+  --ink:        #580119;   /* bordeaux profond, pour le texte */
   --paper:      #FFFDEF;   /* ivoire crème, le fond */
-  --paper-soft: #F2EEDC;   /* survols et aplats discrets */
+  --paper-soft: #F2E9DE;   /* l’ivoire teinté de 8 % de bordeaux */
+
+  /* Sur le panneau bordeaux, le texte secondaire s’éteint par la
+     couleur et non par l’opacité : une ivoire à 60 % d’opacité sur
+     du bordeaux tombe sous le seuil de lisibilité. */
+  --paper-dim:  #E2C9CF;   /* ivoire rosé, 8,9:1 sur --ink */
 
   /* Cormorant Garamond remplace Fraunces : même famille d’idée que
      l’ITC Garamond Light de la référence — haute en contraste,
@@ -210,6 +215,13 @@ a {
   white-space: nowrap;
 }
 
+/* Sur l’accueil, pas de logo : on y est déjà. Les deux groupes
+   tiennent alors les deux bords. */
+.site-nav--home {
+  grid-template-columns: auto auto;
+  justify-content: space-between;
+}
+
 .site-nav__logo {
   font-family: var(--font-serif);
   font-size: 1.25rem;
@@ -300,17 +312,11 @@ a {
   background: var(--paper-soft);
 }
 
-/* marqueur provisoire, le temps que la photo arrive */
+/* Marqueur provisoire, le temps que la photo arrive : un simple
+   rond plein, sans initiales — « CD » se lisait comme un monogramme
+   de maison, ce qu’il ne doit pas être. */
 .hero__face--mono {
   background: var(--ink);
-  color: var(--paper);
-}
-
-.hero__face--mono > span {
-  font-family: var(--font-sans);
-  font-size: 0.26em;
-  font-weight: 500;
-  letter-spacing: 0.08em;
 }
 
 /* Le curseur est un bloc en ligne : il ouvre donc une césure possible
@@ -320,13 +326,16 @@ a {
   white-space: nowrap;
 }
 
-/* curseur clignotant de la frappe */
+/* Curseur rond plutôt que barre : il répond au point posé dans la
+   phrase juste au-dessus, et la frappe cesse de ressembler à un
+   terminal. */
 .typewriter-caret {
   display: inline-block;
-  width: 0.06em;
-  height: 0.82em;
-  margin-left: 0.04em;
-  vertical-align: -0.08em;
+  width: 0.19em;
+  height: 0.19em;
+  margin-left: 0.1em;
+  vertical-align: 0.12em;
+  border-radius: 999px;
   background: currentColor;
   animation: caret-blink 1s steps(1) infinite;
 }
@@ -638,79 +647,110 @@ html:not(.js) .works__nav {
   }
 }
 
-/* ── 06c · About (curriculum) ───────────────────────────────── */
+/* ── 06c · Page About (curriculum) ──────────────────────────── */
 
-/* Panneau inversé, comme le bloc « (Behind the Designs) » de la
-   référence : le brun passe en fond, l’ivoire en texte. C’est la
-   seule respiration sombre de la page, elle marque l’arrêt. */
-.about {
+/* La page entière s’inverse : bordeaux en fond, ivoire en texte.
+   Le CV avait sa place dans une colonne de l’accueil, où il fallait
+   tout rapetisser pour tenir — c’est précisément ce qui le rendait
+   illisible. Une page à lui seul lui rend sa taille de lecture. */
+.page-about {
   background: var(--ink);
   color: var(--paper);
-  border-radius: calc(var(--radius) * 5);
-  margin: 0 var(--space-4) var(--space-8);
-  padding: var(--section-pad) clamp(var(--space-4), 5vw, 5rem);
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  column-gap: var(--space-4);
-  row-gap: var(--space-6);
 }
 
-/* dans le panneau, la sélection s’inverse elle aussi */
-.about ::selection {
+.page-about ::selection {
   background: var(--paper);
   color: var(--ink);
 }
 
-.about :focus-visible {
+.page-about :focus-visible {
   outline-color: var(--paper);
 }
 
-.about__head {
-  grid-column: 1 / -1;
+.page-about .site-footer {
+  border-top-color: var(--paper-dim);
+}
+
+/* — Titre — */
+
+.about-hero {
+  padding: clamp(7rem, 16vh, 11rem) var(--space-4) var(--space-6);
   text-align: center;
-  margin-bottom: var(--space-4);
 }
 
-.about__eyebrow {
-  margin-bottom: var(--space-2);
+.about-hero__title {
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
 }
 
-.about__title {
-  font-size: clamp(2.5rem, 6vw, 5rem);
+/* — Portrait et biographie — */
+
+/* Flex et non grille : tant que le portrait n’est pas fourni, la
+   biographie doit s’étaler seule. Dans une grille à deux colonnes
+   elle resterait coincée dans la première. */
+.about-intro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  /* centré dans les deux états : seule, la biographie n’est pas
+     échouée à gauche ; avec le portrait, la paire reste groupée */
+  justify-content: center;
+  gap: clamp(var(--space-4), 5vw, var(--space-7));
+  max-width: 62rem;
+  margin: 0 auto;
+  padding: 0 var(--space-4) var(--section-pad);
 }
 
-.about__bio {
-  grid-column: 1 / 6;
-  align-self: start;
-  /* reste en place pendant que le CV défile à droite */
-  position: sticky;
-  top: clamp(6rem, 14vh, 9rem);
-  font-size: clamp(1.125rem, 1.6vw, 1.375rem);
-  line-height: 1.5;
+.about-portrait {
+  flex: 0 0 18rem;
+  max-width: 100%;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--paper-dim);
+}
+
+.about-portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.about-bio {
+  flex: 1 1 26rem;
+  font-size: clamp(1.125rem, 1.7vw, 1.4375rem);
+  line-height: 1.55;
   max-width: var(--measure);
   text-wrap: pretty;
 }
 
-.about__bio p + p {
+.about-bio p + p {
   margin-top: var(--space-3);
 }
 
-.about__bio em {
-  font-style: italic;
-}
-
-.about__resume {
+.about-bio__resume {
   display: inline-block;
   margin-top: var(--space-4);
 }
 
-.about__cv {
-  grid-column: 7 / 13;
+/* — Le curriculum — */
+
+.cv {
+  max-width: 62rem;
+  margin: 0 auto;
+  padding: 0 var(--space-4) var(--section-pad);
 }
 
+/* Chaque rubrique est une rangée : son intitulé à gauche, ses
+   entrées à droite. L’œil retrouve la colonne des dates d’une
+   rubrique à l’autre. */
 .cv-group {
-  border-top: 1px solid var(--ink);
-  padding-top: var(--space-2);
+  display: grid;
+  grid-template-columns: minmax(0, 10rem) minmax(0, 1fr);
+  gap: var(--space-4);
+  border-top: 1px solid var(--paper-dim);
+  padding-top: var(--space-3);
 }
 
 .cv-group + .cv-group {
@@ -718,7 +758,9 @@ html:not(.js) .works__nav {
 }
 
 .cv-group__label {
-  margin-bottom: var(--space-3);
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  margin: 0;
 }
 
 .cv-group ul {
@@ -728,47 +770,57 @@ html:not(.js) .works__nav {
 }
 
 .cv-item {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 11rem) minmax(0, 1fr);
+  gap: var(--space-1) var(--space-4);
   align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-3);
 }
 
 .cv-item + .cv-item {
-  margin-top: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+/* La date passe devant l’intitulé dans le flux pour que la lecture
+   à la voix annonce « 2024 — 2027, BFA… » et non l’inverse ; à
+   l’écran elle reste à gauche, alignée sur sa colonne. */
+.cv-item__when {
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  color: var(--paper-dim);
+  margin: 0;
 }
 
 .cv-item__what {
-  max-width: 40ch;
+  font-size: 1.125rem;
+  line-height: 1.35;
+  margin: 0;
 }
 
-.cv-item__what small {
-  display: block;
-  font-size: 0.8125rem;
-  opacity: 0.85;
+.cv-item__where {
+  font-size: 1rem;
+  line-height: 1.45;
+  color: var(--paper-dim);
+  margin-top: 0.15em;
+  max-width: 46ch;
 }
 
-.cv-item__when {
-  white-space: nowrap;
-  font-size: 0.625rem;
+@media (max-width: 52rem) {
+  .about-portrait {
+    flex-basis: 14rem;
+  }
 }
 
 @media (max-width: 44rem) {
-  /* Douze colonnes, ce sont onze gouttières : à elles seules elles
-     dépassent déjà la largeur d’un téléphone. Sur mobile le panneau
-     n’a de toute façon plus qu’une colonne — autant le dire. */
-  .about {
+  /* Plus de colonnes : l’intitulé coiffe ses entrées, la date
+     coiffe la sienne. Rien ne rétrécit pour tenir. */
+  .cv-group,
+  .cv-item {
     grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-2);
   }
 
-  .about__bio,
-  .about__cv {
-    grid-column: 1 / -1;
-  }
-
-  /* une seule colonne : plus de second bloc à côté duquel se fixer */
-  .about__bio {
-    position: static;
+  .cv-group {
+    gap: var(--space-3);
   }
 }
 
