@@ -15,12 +15,23 @@
 /* ── 01 · Tokens ────────────────────────────────────────────── */
 
 :root {
-  --ink:        #2E3618;
-  --paper:      #A8A857;
-  --paper-soft: #B3B368;
+  /* Direction « Designare » : ivoire chaud et brun profond, à la
+     place de l’olive. Les deux mêmes rôles qu’avant (--ink sur
+     --paper), donc tout le site bascule d’un coup. */
+  --ink:        #482C16;   /* brun chaud, pour le texte */
+  --paper:      #FFFDEF;   /* ivoire crème, le fond */
+  --paper-soft: #F2EEDC;   /* survols et aplats discrets */
 
-  --font-serif: "Fraunces", Georgia, serif;
-  --font-sans:  "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  /* Cormorant Garamond remplace Fraunces : même famille d’idée que
+     l’ITC Garamond Light de la référence — haute en contraste,
+     étroite, et surtout une vraie italique dont on se sert comme
+     d’un accent. Afacad est la sans exacte de la référence. */
+  --font-serif: "Cormorant Garamond", Garamond, Georgia, serif;
+  --font-sans:  "Afacad", -apple-system, "Helvetica Neue", Arial, sans-serif;
+
+  /* un seul token pour l’arrondi : passe-le à 0 et tout le site
+     revient à l’angle vif d’avant */
+  --radius: 8px;
 
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --dur:  800ms;
@@ -50,15 +61,15 @@ html {
   scroll-behavior: smooth;
 }
 
+/* le texte courant passe en sans, comme dans la référence : le
+   serif est désormais réservé aux titres, où son contraste porte */
 body {
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--font-serif);
-  font-optical-sizing: auto;
+  font-family: var(--font-sans);
   font-weight: 400;
   font-size: 1.0625rem;               /* 17px */
-  line-height: 1.5;
-  font-feature-settings: "ss01", "liga", "onum";
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;                   /* le nom déborde volontairement */
   min-height: 100svh;
@@ -68,6 +79,7 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
+  border-radius: var(--radius);
 }
 
 ::selection {
@@ -78,11 +90,23 @@ img {
 /* ── 03 · Typographie ───────────────────────────────────────── */
 
 h1, h2, h3 {
-  font-weight: 380;
-  font-variation-settings: "opsz" 144;
-  letter-spacing: -0.02em;
-  line-height: 1;
+  font-family: var(--font-serif);
+  font-weight: 300;                   /* le Light fait tout le charme */
+  letter-spacing: -0.005em;
+  line-height: 1.04;
   text-wrap: balance;
+}
+
+/* l’italique comme accent, à la façon de la référence */
+.italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 300;
+}
+
+/* le motif des parenthèses, en plus clair que le texte */
+.paren {
+  opacity: 0.55;
 }
 
 /* Grotesque neutre pour les petits textes : contrepoids au Fraunces,
@@ -193,8 +217,11 @@ a {
 }
 
 .hero__name {
-  /* borné aussi par la hauteur : la flèche doit rester dans l’écran */
-  font-size: clamp(4rem, min(18vw, 26vh), 16rem);
+  /* Cormorant est nettement plus large que Fraunces à corps égal
+     (5,94 em pour « DUGAUGUEZ » contre ~5,5) : le facteur vw est
+     recalculé pour que le nom tienne, décalage compris.
+     Toujours borné par la hauteur pour que la flèche reste visible. */
+  font-size: clamp(3rem, min(13vw, 24vh), 14rem);
   text-transform: uppercase;
   white-space: nowrap;                /* autorisé à saigner hors cadre */
   line-height: 0.86;
@@ -451,18 +478,35 @@ html:not(.js) .works__nav {
 
 /* ── 06c · About (curriculum) ───────────────────────────────── */
 
+/* Panneau inversé, comme le bloc « (Behind the Designs) » de la
+   référence : le brun passe en fond, l’ivoire en texte. C’est la
+   seule respiration sombre de la page, elle marque l’arrêt. */
 .about {
-  /* marge horizontale plus généreuse : les dates de la colonne CV
-     ont besoin de champ avant le bord de l’écran */
-  padding: var(--section-pad) clamp(var(--space-4), 6vw, 6rem);
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: calc(var(--radius) * 5);
+  margin: 0 var(--space-4) var(--space-8);
+  padding: var(--section-pad) clamp(var(--space-4), 5vw, 5rem);
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   column-gap: var(--space-4);
   row-gap: var(--space-6);
 }
 
+/* dans le panneau, la sélection s’inverse elle aussi */
+.about ::selection {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.about :focus-visible {
+  outline-color: var(--paper);
+}
+
 .about__head {
   grid-column: 1 / -1;
+  text-align: center;
+  margin-bottom: var(--space-4);
 }
 
 .about__eyebrow {
