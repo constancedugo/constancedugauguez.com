@@ -26,6 +26,7 @@
      couleur et non par l’opacité : une ivoire à 60 % d’opacité sur
      du bordeaux tombe sous le seuil de lisibilité. */
   --paper-dim:  #E2C9CF;   /* ivoire rosé, 8,9:1 sur --ink */
+  --ink-dim:    #925964;   /* son symétrique : 5,4:1 sur --paper */
 
   /* Instrument Serif : une seule graisse, romaine et italique. La
      contrainte est l’intérêt — plus de gras ni de light à doser,
@@ -613,10 +614,25 @@ a {
   outline-color: var(--paper);
 }
 
-/* La page About est déjà bordeaux : son pied de page s’y fondrait
-   sans rien pour l’en détacher. On lui rend un filet. */
+/* Sur la page About, tout est déjà bordeaux : c’est le pied de page
+   qui s’inverse, en ivoire. Le contraste fait seul la séparation,
+   sans filet — et l’inversion s’annule donc deux fois ici. */
 .page-about .site-footer {
-  border-top: 1px solid var(--paper-dim);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.page-about .site-footer ::selection {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.page-about .site-footer :focus-visible {
+  outline-color: var(--ink);
+}
+
+.page-about .site-footer__colophon {
+  color: var(--ink-dim);
 }
 
 /* — Titre — */
