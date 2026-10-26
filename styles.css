@@ -253,15 +253,16 @@ a {
 
 .hero {
   position: relative;
-  min-height: 100svh;
+  /* Un écran plein, moins une bande : la section des travaux dépasse
+     déjà sous le pli. C’est elle qui dit qu’il y a une suite — plus
+     besoin d’une flèche pour l’annoncer. */
+  min-height: calc(100svh - clamp(7rem, 18vh, 12rem));
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  /* le bas garde toujours assez d’air pour que la flèche ne soit
-     jamais rognée par le bord de l’écran */
-  padding: clamp(6rem, 12vh, 9rem) var(--space-4) clamp(3.5rem, 7vh, 5rem);
+  padding: clamp(5rem, 11vh, 8rem) var(--space-4) clamp(2.5rem, 5vh, 3.5rem);
 }
 
 /* — Hero conversationnel —
@@ -467,8 +468,12 @@ a {
    presque toute la largeur, comme dans la référence. Ce sont ces
    deux valeurs, et elles seules, qui décident de la taille des
    cartes — le reste de la section suit. */
+/* Haut volontairement court : c’est ce qui fait que l’intitulé de la
+   section affleure sous le pli du hero. Le bas garde sa respiration. */
 .works {
-  padding: var(--section-pad) clamp(var(--space-2), 1.8vw, var(--space-5));
+  padding: clamp(2rem, 3.5vw, 3.5rem)
+           clamp(var(--space-2), 1.8vw, var(--space-5))
+           var(--section-pad);
 }
 
 .works__head {
@@ -577,10 +582,34 @@ a {
   color: var(--paper);
 }
 
-.works__cue-wrap {
+.works__more {
   display: flex;
   justify-content: center;
-  margin-top: var(--space-8);
+  margin-top: clamp(var(--space-7), 7vw, 6rem);
+}
+
+/* Bouton-pastille, le même objet que l’étiquette des cartes : la
+   page n’invente pas une nouvelle forme pour une action de plus. */
+.btn {
+  display: inline-block;
+  padding: 0.9em 1.8em;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 600ms var(--ease), color 600ms var(--ease);
+}
+
+.btn:hover,
+.btn:focus-visible {
+  background: transparent;
+  color: var(--ink);
 }
 
 .scroll-cue--inline {
@@ -607,8 +636,10 @@ a {
   outline-color: var(--paper);
 }
 
+/* La page About est déjà bordeaux : son pied de page s’y fondrait
+   sans rien pour l’en détacher. On lui rend un filet. */
 .page-about .site-footer {
-  border-top-color: var(--paper-dim);
+  border-top: 1px solid var(--paper-dim);
 }
 
 /* — Titre — */
@@ -785,13 +816,35 @@ a {
 
 /* ── 06d · Colophon (pied de page) ──────────────────────────── */
 
+/* Aplat bordeaux : le pied de page ferme le document par un bloc de
+   couleur plutôt que par un filet. Plus de bordure — c’est le
+   changement de fond qui fait la séparation. */
 .site-footer {
-  border-top: 1px solid var(--ink);
-  padding: var(--space-6) var(--space-4) var(--space-4);
+  background: var(--ink);
+  color: var(--paper);
+  padding: clamp(var(--space-7), 7vw, 5rem) var(--space-4) var(--space-6);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-4);
+  gap: var(--space-5);
+}
+
+/* tout ce qui se repérait sur --ink doit s’inverser ici */
+.site-footer ::selection {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.site-footer :focus-visible {
+  outline-color: var(--paper);
+}
+
+.site-footer .scroll-cue {
+  border-color: var(--paper-dim);
+}
+
+.site-footer .scroll-cue:hover {
+  background-color: rgb(255 255 255 / 0.12);
 }
 
 .site-footer__row {
@@ -811,8 +864,10 @@ a {
   padding: 0;
 }
 
+/* par la couleur et non par l’opacité : une ivoire translucide sur
+   du bordeaux tombe sous le seuil de lisibilité */
 .site-footer__colophon {
-  opacity: 0.75;
+  color: var(--paper-dim);
   text-align: center;
 }
 
@@ -864,16 +919,6 @@ a {
 
 .project-hero {
   padding: clamp(7rem, 15vh, 10rem) var(--space-4) clamp(4rem, 8vw, 7rem);
-}
-
-/* flèche de suite, pour les pages sans image de couverture — même
-   principe que sur la page d’accueil : indiquer qu’il y a une suite
-   plutôt que de laisser un grand vide après le hero */
-.project-hero__cue-wrap {
-  grid-column: 1 / -1;
-  display: flex;
-  justify-content: center;
-  margin-top: var(--space-4);
 }
 
 .project-hero__eyebrow {
