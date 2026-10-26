@@ -1256,6 +1256,67 @@ a {
   }
 }
 
+/* ── 06f · Curseur ──────────────────────────────────────────── */
+
+/* La flèche système ne disparaît que lorsque le JS a posé son point
+   et ajouté cette classe. Si le script ne tourne pas, le curseur
+   d’origine reste : on ne laisse jamais la page sans pointeur. */
+html.has-cursor,
+html.has-cursor * {
+  cursor: none;
+}
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  pointer-events: none;      /* le point ne doit rien intercepter */
+  will-change: transform;
+}
+
+/* L’échelle vit sur l’enfant : le parent porte déjà la position, et
+   une transformation ne peut pas servir deux maîtres. */
+.cursor span {
+  display: block;
+  width: 0.6875rem;
+  height: 0.6875rem;
+  margin: -0.34375rem 0 0 -0.34375rem;
+  border-radius: 999px;
+  background: var(--ink);
+  transition:
+    transform 450ms var(--ease-soft),
+    opacity 250ms linear,
+    background-color 250ms linear;
+}
+
+/* sur un lien, le point s’ouvre et s’éclaircit : on voit à travers
+   ce qu’on s’apprête à cliquer */
+.cursor.is-link span {
+  transform: scale(2.6);
+  opacity: 0.4;
+}
+
+.cursor.is-down span {
+  transform: scale(0.75);
+}
+
+.cursor.is-out span {
+  opacity: 0;
+}
+
+/* Sur un aplat bordeaux, un point bordeaux n’existe pas. */
+.cursor.is-inverted span,
+.page-about .cursor span {
+  background: var(--paper);
+}
+
+/* …et la page About inverse une fois de plus : son pied de page est
+   ivoire, le point y redevient bordeaux. */
+.page-about .cursor.is-inverted span {
+  background: var(--ink);
+}
+
 /* ── 07 · Révélations (motion) ──────────────────────────────── */
 
 .line {

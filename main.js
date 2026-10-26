@@ -116,6 +116,89 @@
     }
   }
 
+  /* ── Curseur ──────────────────────────────────────────────── */
+
+  /* Trois conditions avant de masquer le curseur système, parce que
+     le remplacer mal vaut bien pire que ne pas le remplacer :
+       — un vrai pointeur (ni doigt, ni stylet) ;
+       — pas de demande de mouvement réduit, auquel cas on laisse la
+         flèche d’origine plutôt que d’imposer un suiveur ;
+       — et le point n’est posé qu’à la première vraie souris vue,
+         pour qu’un écran tactile branché sur un portable ne se
+         retrouve jamais sans curseur du tout. */
+
+  const pointeurFin = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  if (pointeurFin && !reduceMotion) {
+    const point = document.createElement('div');
+    point.className = 'cursor';
+    point.setAttribute('aria-hidden', 'true');
+    point.appendChild(document.createElement('span'));
+
+    let viseX = 0, viseY = 0, x = 0, y = 0, rafId = null, ne = false;
+
+    const boucle = () => {
+      /* interpolation : le point rattrape la souris sans la coller —
+         c’est ce retard infime qui lui donne du poids */
+      x += (viseX - x) * 0.22;
+      y += (viseY - y) * 0.22;
+      point.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+
+      /* on s’arrête net une fois posé : pas de boucle qui tourne
+         dans le vide tant que la souris ne bouge pas */
+      if (Math.abs(viseX - x) > 0.1 || Math.abs(viseY - y) > 0.1) {
+        rafId = requestAnimationFrame(boucle);
+      } else {
+        rafId = null;
+      }
+    };
+
+    const suivre = (e) => {
+      viseX = e.clientX;
+      viseY = e.clientY;
+
+      if (!ne) {
+        /* première souris : on pose le point sous elle sans glisser
+           depuis le coin, puis seulement on masque la flèche */
+        ne = true;
+        x = viseX; y = viseY;
+        document.body.appendChild(point);
+        document.documentElement.classList.add('has-cursor');
+      }
+
+      point.classList.remove('is-out');
+      if (!rafId) rafId = requestAnimationFrame(boucle);
+    };
+
+    const cliquable = 'a, button, summary, [role="button"], input, textarea, select';
+
+    document.addEventListener('pointermove', (e) => {
+      if (e.pointerType === 'mouse') suivre(e);
+    }, { passive: true });
+
+    document.addEventListener('pointerover', (e) => {
+      if (!ne || !e.target.closest) return;
+      point.classList.toggle('is-link', !!e.target.closest(cliquable));
+    }, { passive: true });
+
+    document.addEventListener('pointerdown', () => point.classList.add('is-down'), { passive: true });
+    document.addEventListener('pointerup', () => point.classList.remove('is-down'), { passive: true });
+
+    /* sorti de la fenêtre : le point s’efface au lieu de rester
+       collé au bord */
+    document.addEventListener('mouseleave', () => point.classList.add('is-out'));
+    window.addEventListener('blur', () => point.classList.add('is-out'));
+
+    /* Le fond bordeaux avalerait un point bordeaux. On inverse sur
+       les zones sombres, en s’appuyant sur le survol plutôt que sur
+       un relevé de couleur à chaque image. */
+    const zonesSombres = document.querySelectorAll('.site-footer');
+    zonesSombres.forEach((zone) => {
+      zone.addEventListener('pointerenter', () => point.classList.add('is-inverted'));
+      zone.addEventListener('pointerleave', () => point.classList.remove('is-inverted'));
+    });
+  }
+
   /* ── Horloge du colophon (heure de New York) ──────────────── */
 
   const clock = document.querySelector('[data-clock]');
