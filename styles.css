@@ -919,7 +919,15 @@ a {
 /* — Hero de projet — */
 
 .project-hero {
-  padding: clamp(7rem, 15vh, 10rem) var(--space-4) clamp(4rem, 8vw, 7rem);
+  padding: clamp(6rem, 13vh, 8.5rem) var(--space-4) clamp(2rem, 4vw, 3.5rem);
+}
+
+/* Le titre et son chapô forment un seul bloc. Séparés, ils tombaient
+   dans deux rangées de grille distinctes : la première prenait la
+   hauteur du bloc d’infos voisin, et le chapô se retrouvait rejeté
+   deux cents pixels sous le titre qu’il accompagne. */
+.project-hero__lead {
+  align-self: start;
 }
 
 .project-hero__eyebrow {
@@ -939,22 +947,26 @@ a {
   gap: var(--space-3);
 }
 
+/* Ces quatre lignes portent les faits du projet — année, nature,
+   rôle, outils. À 11 et 16 px elles se lisaient comme une mention
+   légale. */
 .meta-item__label {
   display: block;
-  margin-bottom: 0.3em;
+  margin-bottom: 0.45em;
+  font-size: 0.8125rem;
   opacity: 0.7;
 }
 
 .meta-item__value {
   font-family: var(--font-serif);
-  font-size: 1rem;
+  font-size: clamp(1.1875rem, 1.5vw, 1.4375rem);
+  line-height: 1.25;
 }
 
 /* même correction que pour le corps de texte : 34ch étranglait le
    chapô dans une colonne deux fois plus large */
 .project-hero__intro {
-  align-self: start;
-  margin-top: var(--space-2);
+  margin-top: var(--space-3);
   font-size: clamp(1.125rem, 1.6vw, 1.375rem);
   line-height: 1.5;
   max-width: 52ch;
@@ -990,8 +1002,15 @@ a {
    haut ET en bas de chaque section, donc entre deux sections
    consécutives l’écart réel est déjà le double de cette valeur. */
 
+/* Haut raccourci : la section 01 suivait le hero à sept rem de
+   distance, en plus du bas du hero — le projet mettait un écran
+   entier à commencer. */
 .project-section {
-  padding: clamp(4rem, 8vw, 7rem) var(--space-4);
+  padding: clamp(2.5rem, 5vw, 4.5rem) var(--space-4);
+}
+
+.project-section:first-of-type {
+  padding-top: clamp(1.5rem, 3vw, 2.5rem);
 }
 
 /* le titre reste attaché à son texte — un seul bloc, jamais un
