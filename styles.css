@@ -452,19 +452,20 @@ a {
   .site-head { padding: var(--space-2) var(--space-2); }
 }
 
-/* ── 06b · Travaux sélectionnés (carrousel) ─────────────────── */
+/* ── 06b · Travaux sélectionnés (grille) ────────────────────── */
+
+/* Le carrousel cachait les projets : il fallait cliquer une flèche
+   pour savoir qu’il en restait. Une grille les montre tous d’un
+   coup, et accepte d’en recevoir d’autres sans rien changer. */
 
 .works {
-  padding: var(--section-pad) 0;
+  padding: var(--section-pad) var(--space-4);
 }
 
 .works__head {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: var(--space-4);
-  padding: 0 var(--space-4);
-  margin-bottom: var(--space-6);
+  max-width: 76rem;
+  margin: 0 auto var(--space-7);
+  text-align: center;
 }
 
 .works__eyebrow {
@@ -475,84 +476,57 @@ a {
   font-size: clamp(2.5rem, 6vw, 5rem);
 }
 
-.works__nav {
-  display: flex;
-  gap: var(--space-2);
-}
-
-html:not(.js) .works__nav {
-  display: none;
-}
-
-.carousel-btn {
-  width: 3rem;
-  height: 3rem;
-  border: 1px solid var(--ink);
-  border-radius: 50%;
-  background: none;
-  color: var(--ink);
-  font-family: inherit;
-  font-size: 1rem;
+/* auto-fit : trois cartes de front sur un grand écran, deux puis une
+   quand la place manque, sans média-requête à tenir à jour. */
+.works__grid {
   display: grid;
-  place-items: center;
-  cursor: pointer;
-  transition: background-color 600ms var(--ease), opacity 600ms var(--ease);
-}
-
-.carousel-btn:hover:not(:disabled) {
-  background-color: var(--paper-soft);
-}
-
-.carousel-btn:disabled {
-  opacity: 0.3;
-  cursor: default;
-}
-
-.works__viewport {
-  overflow: hidden;
-}
-
-.works__track {
-  display: flex;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  gap: var(--space-5) var(--space-4);
+  max-width: 76rem;
+  margin: 0 auto;
   list-style: none;
-  margin: 0;
-  padding: 0 var(--space-4);
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  overscroll-behavior-x: contain;
-  scrollbar-width: none;              /* la marge suffit, pas d’ascenseur */
+  padding: 0;
 }
 
-.works__track::-webkit-scrollbar {
-  display: none;
+@media (min-width: 64rem) {
+  /* au-delà de 1024 px on fige à trois : auto-fit en mettrait quatre
+     et les cartes perdraient leur présence */
+  .works__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 .work {
-  flex: 0 0 clamp(16rem, 30vw, 26rem);
-  scroll-snap-align: start;
-  padding: var(--space-1) var(--space-3) 0;
-}
-
-.work:first-child {
-  padding-left: var(--space-4);
-}
-
-.work:last-child {
-  padding-right: var(--space-4);
+  display: flex;
 }
 
 .work__link {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: var(--space-3);
+  border: 1px solid var(--paper-soft);
+  border-radius: calc(var(--radius) * 2);
   text-decoration: none;
+  transition: border-color 600ms var(--ease), background-color 600ms var(--ease);
+}
+
+.work__link:hover,
+.work__link:focus-visible {
+  border-color: var(--ink);
+  background-color: var(--paper-soft);
 }
 
 .work__figure {
+  margin: 0;
   overflow: hidden;
+  border-radius: var(--radius);
 }
 
 .work__figure img {
+  display: block;
   width: 100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   transition: transform 900ms var(--ease);
 }
@@ -561,20 +535,34 @@ html:not(.js) .works__nav {
   transform: scale(1.03);
 }
 
-.work__figure figcaption {
-  margin-top: var(--space-1);
-  font-size: 0.5625rem;               /* 9px */
-}
-
 .work__name {
   margin-top: var(--space-3);
-  font-size: clamp(1.375rem, 2.1vw, 1.875rem);
+  font-size: clamp(1.375rem, 2vw, 1.75rem);
   line-height: 1.1;
 }
 
-.work__meta {
+.work__desc {
   margin-top: var(--space-2);
-  padding-bottom: var(--space-1);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+/* `margin-top: auto` pousse l’étiquette tout en bas de la carte :
+   quelle que soit la longueur des descriptions, elles s’alignent
+   toutes sur une même ligne d’une carte à l’autre. */
+.work__tag {
+  align-self: flex-start;
+  margin-top: auto;
+  padding-top: var(--space-4);
+}
+
+.work__tag span {
+  display: inline-block;
+  padding: 0.55em 1.15em;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
 }
 
 .works__cue-wrap {
@@ -585,17 +573,6 @@ html:not(.js) .works__nav {
 
 .scroll-cue--inline {
   margin-top: 0;                      /* pas de flex column parent ici */
-}
-
-@media (max-width: 44rem) {
-  .works__head {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .work {
-    flex-basis: min(78vw, 20rem);
-  }
 }
 
 /* ── 06c · Page About (curriculum) ──────────────────────────── */
