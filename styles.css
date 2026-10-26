@@ -703,15 +703,15 @@ a {
   padding: 0 var(--space-4) var(--section-pad);
 }
 
-/* Chaque rubrique est une rangée : son intitulé à gauche, ses
-   entrées à droite. L’œil retrouve la colonne des dates d’une
-   rubrique à l’autre. */
+/* Trois colonnes : rubrique, date, entrée. La date garde sa colonne
+   à elle parce qu’un CV se parcourt par les dates — les fondre dans
+   le texte ferait perdre ce repère. */
 .cv-group {
   display: grid;
-  grid-template-columns: minmax(0, 10rem) minmax(0, 1fr);
-  gap: var(--space-4);
+  grid-template-columns: minmax(0, 11rem) minmax(0, 1fr);
+  gap: var(--space-5);
   border-top: 1px solid var(--paper-dim);
-  padding-top: var(--space-3);
+  padding-top: var(--space-4);
 }
 
 .cv-group + .cv-group {
@@ -721,7 +721,14 @@ a {
 /* L’intitulé de rubrique était un label de 14 px, au même corps que
    les dates : rien ne disait que c’était un titre. Il passe au
    sérif, au corps d’un vrai titre de section. */
+/* L’intitulé suit sa rubrique pendant le défilement. Sans cela, sur
+   une rubrique longue comme Experience, il disparaissait en haut et
+   on ne savait plus ce qu’on lisait — c’est là que la colonne de
+   gauche paraissait vide et la page illisible. */
 .cv-group__label {
+  position: sticky;
+  top: var(--space-4);
+  align-self: start;
   font-family: var(--font-serif);
   font-size: clamp(1.5rem, 2.2vw, 2rem);
   font-weight: 400;
@@ -738,13 +745,13 @@ a {
 
 .cv-item {
   display: grid;
-  grid-template-columns: minmax(0, 11rem) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 9.5rem) minmax(0, 1fr);
   gap: var(--space-1) var(--space-4);
   align-items: baseline;
 }
 
 .cv-item + .cv-item {
-  margin-top: var(--space-4);
+  margin-top: var(--space-5);
 }
 
 /* La date passe devant l’intitulé dans le flux pour que la lecture
@@ -800,6 +807,12 @@ a {
   .cv-group {
     gap: var(--space-3);
   }
+
+  /* collant sur une seule colonne, l’intitulé recouvrirait ses
+     propres entrées */
+  .cv-group__label {
+    position: static;
+  }
 }
 
 /* ── 06d · Colophon (pied de page) ──────────────────────────── */
@@ -843,6 +856,13 @@ a {
   gap: var(--space-4);
   list-style: none;
   padding: 0;
+}
+
+/* Le nom est le retour à l’accueil. Les parenthèses le signalent
+   comme cliquable avant même le survol — c’est le seul lien du
+   site qui n’a pas de flèche ni d’intitulé pour le dire. */
+.site-footer__home {
+  text-decoration: none;
 }
 
 /* par la couleur et non par l’opacité : une ivoire translucide sur
