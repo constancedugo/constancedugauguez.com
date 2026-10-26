@@ -463,12 +463,16 @@ a {
    pour savoir qu’il en restait. Une grille les montre tous d’un
    coup, et accepte d’en recevoir d’autres sans rien changer. */
 
+/* Marge latérale resserrée et plafond relevé : la grille tient
+   presque toute la largeur, comme dans la référence. Ce sont ces
+   deux valeurs, et elles seules, qui décident de la taille des
+   cartes — le reste de la section suit. */
 .works {
-  padding: var(--section-pad) var(--space-4);
+  padding: var(--section-pad) clamp(var(--space-2), 1.8vw, var(--space-5));
 }
 
 .works__head {
-  max-width: 76rem;
+  max-width: 96rem;
   margin: 0 auto clamp(var(--space-7), 7vw, 6rem);
   text-align: center;
 }
@@ -490,7 +494,7 @@ a {
      elle qui sépare les rangées, et il lui faut plus d’air pour que
      deux cartes superposées ne se lisent pas comme une seule */
   gap: clamp(var(--space-6), 6vw, 5.5rem) clamp(var(--space-4), 3.5vw, var(--space-7));
-  max-width: 76rem;
+  max-width: 96rem;
   margin: 0 auto;
   list-style: none;
   padding: 0;
