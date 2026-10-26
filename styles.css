@@ -294,31 +294,6 @@ a {
   text-wrap: balance;
 }
 
-/* la photo, posée dans la phrase elle-même.
-   Aucune `font-size` ici : les `em` de largeur se calculent sur la
-   taille de l’élément lui-même, donc la réduire rabougrirait la
-   pastille. Les initiales portent la leur, dans l’enfant. */
-.hero__face {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  vertical-align: -0.14em;
-  width: 0.92em;
-  height: 0.92em;
-  margin: 0 0.16em;
-  border-radius: 999px;
-  object-fit: cover;
-  overflow: hidden;
-  background: var(--paper-soft);
-}
-
-/* Marqueur provisoire, le temps que la photo arrive : un simple
-   rond plein, sans initiales — « CD » se lisait comme un monogramme
-   de maison, ce qu’il ne doit pas être. */
-.hero__face--mono {
-  background: var(--ink);
-}
-
 /* Le curseur est un bloc en ligne : il ouvre donc une césure possible
    juste avant lui, et se retrouvait rejeté seul en début de ligne.
    On soude le mot et son curseur. */
@@ -326,16 +301,14 @@ a {
   white-space: nowrap;
 }
 
-/* Curseur rond plutôt que barre : il répond au point posé dans la
-   phrase juste au-dessus, et la frappe cesse de ressembler à un
-   terminal. */
+/* Curseur : une barre droite, posée sur la ligne de base et montant
+   à hauteur de capitale. */
 .typewriter-caret {
   display: inline-block;
-  width: 0.19em;
-  height: 0.19em;
-  margin-left: 0.1em;
-  vertical-align: 0.12em;
-  border-radius: 999px;
+  width: 0.05em;
+  height: 0.72em;
+  margin-left: 0.07em;
+  vertical-align: -0.04em;
   background: currentColor;
   animation: caret-blink 1s steps(1) infinite;
 }
