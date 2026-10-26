@@ -41,11 +41,16 @@
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --dur:  800ms;
 
+  /* L’échelle était trouée : 5 et 7 manquaient, et toute déclaration
+     qui les appelait était jetée en bloc par le navigateur — une
+     gouttière écrite var(--space-5) valait zéro, sans rien signaler. */
   --space-1: 0.5rem;   /*   8px */
   --space-2: 1rem;     /*  16px */
   --space-3: 1.5rem;   /*  24px */
   --space-4: 2rem;     /*  32px */
+  --space-5: 2.5rem;   /*  40px */
   --space-6: 3rem;     /*  48px */
+  --space-7: 3.5rem;   /*  56px */
   --space-8: 4rem;     /*  64px */
   --section-pad: clamp(6rem, 12vw, 12rem);
 
@@ -464,7 +469,7 @@ a {
 
 .works__head {
   max-width: 76rem;
-  margin: 0 auto var(--space-7);
+  margin: 0 auto clamp(var(--space-7), 7vw, 6rem);
   text-align: center;
 }
 
@@ -481,7 +486,10 @@ a {
 .works__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
-  gap: var(--space-5) var(--space-4);
+  /* la gouttière verticale est plus large que l’horizontale : c’est
+     elle qui sépare les rangées, et il lui faut plus d’air pour que
+     deux cartes superposées ne se lisent pas comme une seule */
+  gap: clamp(var(--space-6), 6vw, 5.5rem) clamp(var(--space-4), 3.5vw, var(--space-7));
   max-width: 76rem;
   margin: 0 auto;
   list-style: none;
@@ -504,7 +512,7 @@ a {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: var(--space-3);
+  padding: var(--space-4);
   border: 1px solid var(--paper-soft);
   border-radius: calc(var(--radius) * 2);
   text-decoration: none;
@@ -536,7 +544,7 @@ a {
 }
 
 .work__name {
-  margin-top: var(--space-3);
+  margin-top: var(--space-4);
   font-size: clamp(1.375rem, 2vw, 1.75rem);
   line-height: 1.1;
 }
@@ -544,7 +552,7 @@ a {
 .work__desc {
   margin-top: var(--space-2);
   font-size: 0.9375rem;
-  line-height: 1.5;
+  line-height: 1.55;
   text-wrap: pretty;
 }
 
