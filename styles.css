@@ -223,19 +223,24 @@ a {
 }
 
 @media (max-width: 44rem) {
-  /* minmax(0,…) sinon le groupe de droite, plus large, vole de la
-     place à celui de gauche et les deux cessent d’être à parité.
-     Les libellés ne se coupant plus, on les laisse passer à la ligne
-     plutôt que déborder. */
+  /* Deux colonnes figées forçaient les trois liens de droite à
+     s’empiler l’un sous l’autre. En flex, le second groupe passe
+     entier à la ligne suivante : deux rangées au lieu de quatre. */
   .site-nav {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    column-gap: var(--space-2);
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: var(--space-3);
     row-gap: var(--space-2);
   }
 
   .site-nav__group {
     flex-wrap: wrap;
     gap: var(--space-1) var(--space-3);
+  }
+
+  /* plus de bord droit à tenir : tout s’aligne sur la marge gauche */
+  .site-nav__group--end {
+    justify-content: flex-start;
   }
 }
 
