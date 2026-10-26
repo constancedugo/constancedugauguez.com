@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════════════
    Constance Dugauguez — Portfolio
-   Composé en Fraunces. Trois couleurs, rien d’autre.
+   Composé en Instrument Serif. Trois couleurs, rien d’autre.
 
    01 · Tokens
    02 · Reset & base
@@ -27,11 +27,11 @@
      du bordeaux tombe sous le seuil de lisibilité. */
   --paper-dim:  #E2C9CF;   /* ivoire rosé, 8,9:1 sur --ink */
 
-  /* Cormorant Garamond remplace Fraunces : même famille d’idée que
-     l’ITC Garamond Light de la référence — haute en contraste,
-     étroite, et surtout une vraie italique dont on se sert comme
-     d’un accent. Afacad est la sans exacte de la référence. */
-  --font-serif: "Cormorant Garamond", Garamond, Georgia, serif;
+  /* Instrument Serif : une seule graisse, romaine et italique. La
+     contrainte est l’intérêt — plus de gras ni de light à doser,
+     le seul contraste qui reste est celui de l’italique, et il
+     porte toute la voix. Afacad tient les petits textes. */
+  --font-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
   --font-sans:  "Afacad", -apple-system, "Helvetica Neue", Arial, sans-serif;
 
   /* un seul token pour l’arrondi : passe-le à 0 et tout le site
@@ -94,19 +94,22 @@ img {
 
 /* ── 03 · Typographie ───────────────────────────────────────── */
 
+/* Instrument Serif n’a qu’une graisse. Déclarer 300 n’allégerait
+   rien — aucun navigateur ne synthétise un Light — alors on dit 400
+   et le contraste se joue ailleurs : romain contre italique. */
 h1, h2, h3 {
   font-family: var(--font-serif);
-  font-weight: 300;                   /* le Light fait tout le charme */
+  font-weight: 400;
   letter-spacing: -0.005em;
   line-height: 1.04;
   text-wrap: balance;
 }
 
-/* l’italique comme accent, à la façon de la référence */
+/* l’italique comme seul accent disponible, et c’est volontaire */
 .italic {
   font-family: var(--font-serif);
   font-style: italic;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 /* le motif des parenthèses, en plus clair que le texte */
@@ -287,8 +290,11 @@ a {
 /* — Hero conversationnel —
    un corps bien plus modeste que l’ancien nom géant : ici c’est la
    phrase qui porte, pas la taille. */
+/* 24ch et non 20 : Instrument Serif est plus étroite que Cormorant,
+   et à 20ch le plus long des mots cyclés faisait passer le bloc de
+   trois à quatre lignes — toute la phrase sautait à chaque mot. */
 .hero__hello {
-  max-width: 20ch;
+  max-width: 24ch;
   font-size: clamp(2.25rem, 6.5vw, 5.5rem);
   line-height: 1.12;
   text-wrap: balance;
@@ -322,7 +328,7 @@ a {
   font-size: clamp(1rem, 1.6vw, 1.25rem);
   font-family: var(--font-serif);
   font-style: italic;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 /* Cette règle doit suivre le `padding` raccourci de `.hero` ci-dessus,

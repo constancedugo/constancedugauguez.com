@@ -212,11 +212,11 @@
     '┌──────────────────────────────────────────────┐\n' +
     '│                                              │\n' +
     '│   Constance Dugauguez — Portfolio            │\n' +
-    '│   Composé en Fraunces, corps 17/24.          │\n' +
+    '│   Composé en Instrument Serif & Afacad.      │\n' +
     '│   Trois couleurs, un crayon, des marges.     │\n' +
     '│   Conçu & codé à la main — MMXXVI            │\n' +
     '│                                              │\n' +
     '└──────────────────────────────────────────────┘\n',
-    'color:#2E3618; background:#A8A857; font-family:Georgia,serif; line-height:1.4;'
+    'color:#FFFDEF; background:#580119; font-family:Georgia,serif; line-height:1.4;'
   );
 })();
