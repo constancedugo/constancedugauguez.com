@@ -950,12 +950,14 @@ a {
   font-size: 1rem;
 }
 
+/* même correction que pour le corps de texte : 34ch étranglait le
+   chapô dans une colonne deux fois plus large */
 .project-hero__intro {
   align-self: start;
   margin-top: var(--space-2);
   font-size: clamp(1.125rem, 1.6vw, 1.375rem);
-  line-height: 1.55;
-  max-width: var(--measure);
+  line-height: 1.5;
+  max-width: 52ch;
   text-align: left;
   text-wrap: pretty;
 }
@@ -1010,10 +1012,15 @@ a {
   margin-bottom: var(--space-4);
 }
 
+/* --measure vaut 34ch : une mesure de titre, pas de corps de texte.
+   Appliquée ici, elle bridait le paragraphe à 301 px dans une
+   colonne de 660 — d’où 359 px de blanc que personne n’avait voulu,
+   et des lignes de 35 signes. 66ch remplit la colonne et reste dans
+   la fourchette lisible. */
 .project-section__text p {
-  font-size: 1.0625rem;
-  line-height: 1.65;
-  max-width: var(--measure);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  max-width: 66ch;
 }
 
 .project-section__text p + p {
@@ -1161,50 +1168,53 @@ a {
   opacity: 0.7;
 }
 
-/* Petites vignettes largement espacées : le blanc entre elles
-   compte autant que les images. Largeur fixe plutôt que colonnes
-   de grille — c’est l’écart qui s’étire avec la page, pas les
-   images, pour que ça reste un index et non une galerie. */
+/* Index en texte seul : le nom du projet et son type, rien d’autre.
+   Des vignettes ici répétaient les images de la page qu’on vient de
+   lire, sans rien ajouter. */
 .project-nav__list {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 13rem));
-  justify-content: space-between;
-  gap: var(--space-4);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--paper-soft);
 }
 
 .project-nav__item {
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-4);
+  padding: clamp(var(--space-3), 2.5vw, var(--space-5)) 0;
+  border-bottom: 1px solid var(--paper-soft);
   text-decoration: none;
+  transition: padding-left 600ms var(--ease), border-color 600ms var(--ease);
 }
 
-.project-nav__item img {
-  width: 100%;
-  height: 11rem;
-  object-fit: cover;
-  transition: transform 900ms var(--ease);
+.project-nav__item:hover,
+.project-nav__item:focus-visible {
+  /* la ligne se décale : le survol se voit sans rien colorer */
+  padding-left: var(--space-3);
+  border-color: var(--ink);
 }
 
-.project-nav__item:hover img {
-  transform: scale(1.03);
+.project-nav__name {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 3.5vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.005em;
 }
 
-/* le numéro et le type, sous la vignette */
 .project-nav__label {
-  margin-top: var(--space-2);
+  color: var(--ink);
+  opacity: 0.65;
   text-wrap: pretty;
 }
 
 @media (max-width: 44rem) {
-  /* trois colonnes égales qui se partagent la largeur — l’écart
-     généreux n’a plus de place sur petit écran */
-  .project-nav__list {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    justify-content: stretch;
-    gap: var(--space-2);
-  }
-
-  .project-nav__item img {
-    height: 7rem;
+  .project-nav__item {
+    /* le type passe sous le nom plutôt que de le comprimer */
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
