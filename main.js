@@ -8,14 +8,20 @@
 
   /* ── Révélation du hero au chargement ─────────────────────── */
 
+  /* Le CSS cache le hero (opacité 0) en attendant cette classe. Tout
+     ce qui la pose doit donc être increvable : un requestAnimationFrame
+     seul ne suffit pas — il ne se déclenche pas tant que l’onglet est
+     en arrière-plan, et le titre resterait invisible. Le rAF garde la
+     main dans le cas normal, le délai rattrape le reste. */
+  const show = () => document.documentElement.classList.add('is-loaded');
+
   const reveal = () => {
-    requestAnimationFrame(() => {
-      document.documentElement.classList.add('is-loaded');
-    });
+    requestAnimationFrame(show);
+    setTimeout(show, 1200);
   };
 
   if (reduceMotion) {
-    document.documentElement.classList.add('is-loaded');
+    show();
   } else if (document.fonts && document.fonts.ready) {
     // On attend la fonte pour que les lignes se lèvent déjà composées.
     Promise.race([
@@ -104,7 +110,9 @@
         setTimeout(frame, delay);
       };
 
-      setTimeout(frame, 1100);   /* on laisse le hero finir de se lever */
+      /* On attend que les deux lignes et le rappel soient posés :
+         la frappe commence après le hero, pas pendant. */
+      setTimeout(frame, 1750);
     }
   }
 

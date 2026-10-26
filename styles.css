@@ -40,6 +40,9 @@
   --radius: 8px;
 
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  /* décélération douce : vitesse de départ raisonnable, arrivée
+     posée — pour les mouvements longs, où --ease claque */
+  --ease-soft: cubic-bezier(0.33, 1, 0.68, 1);
   --dur:  800ms;
 
   /* L’échelle était trouée : 5 et 7 manquaient, et toute déclaration
@@ -1265,21 +1268,47 @@ a {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  /* Durées raccourcies : à 900 ms et 80 ms d’écart, une rubrique de
-     CV mettait près d’une seconde et demie à finir de se poser. */
+  /* Le hero a son propre tempo, plus lent que les révélations au
+     défilement — c’est la première chose qu’on voit du site, elle
+     n’a pas à être expédiée.
+
+     Et surtout sa propre courbe : --ease est quasi exponentielle,
+     elle part à toute vitesse puis rampe. Sur 110 % de course en
+     620 ms, ça se lisait comme un claquement suivi d’un traînage.
+     --ease-soft démarre doucement et se pose. L’opacité accompagne
+     la montée pour que le bord du masque ne tranche pas net. */
   html.js .line-inner {
+    opacity: 0;
     transform: translateY(110%);
-    transition: transform 620ms var(--ease);
-    transition-delay: calc(var(--i, 0) * 55ms);
+    transition:
+      transform 1100ms var(--ease-soft),
+      opacity 700ms var(--ease-soft);
+    transition-delay: calc(var(--i, 0) * 110ms);
   }
 
   html.js.is-loaded .line-inner {
+    opacity: 1;
     transform: translateY(0);
+  }
+
+  /* la ligne de rappel entre à la suite des deux lignes du titre,
+     au même tempo qu’elles plutôt qu’à celui du défilement */
+  html.js .hero__sub {
+    opacity: 0;
+    transform: translateY(0.75rem);
+    transition:
+      opacity 900ms var(--ease-soft) 620ms,
+      transform 900ms var(--ease-soft) 620ms;
+  }
+
+  html.js.is-loaded .hero__sub {
+    opacity: 1;
+    transform: none;
   }
 
   html.js .hero__intro {
     opacity: 0;
-    transition: opacity 600ms var(--ease) 260ms;
+    transition: opacity 700ms var(--ease-soft) 300ms;
   }
 
   html.js.is-loaded .hero__intro {
