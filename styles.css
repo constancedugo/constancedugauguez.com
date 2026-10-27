@@ -479,10 +479,10 @@ a {
 .works__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
-  /* la gouttière verticale est plus large que l’horizontale : c’est
-     elle qui sépare les rangées, et il lui faut plus d’air pour que
-     deux cartes superposées ne se lisent pas comme une seule */
-  gap: clamp(var(--space-6), 6vw, 5.5rem) clamp(var(--space-4), 3.5vw, var(--space-7));
+  /* une seule gouttière, identique en largeur et en hauteur : la
+     grille se lit comme une trame régulière, sans direction
+     privilégiée */
+  gap: clamp(var(--space-4), 3.5vw, var(--space-7));
   max-width: 96rem;
   margin: 0 auto;
   list-style: none;
