@@ -31,9 +31,10 @@
   /* Instrument Serif : une seule graisse, romaine et italique. La
      contrainte est l’intérêt — plus de gras ni de light à doser,
      le seul contraste qui reste est celui de l’italique, et il
-     porte toute la voix. Afacad tient les petits textes. */
+     porte toute la voix. Montserrat tient les petits textes — la
+     même que le CV, pour que les deux se lisent comme un seul jeu. */
   --font-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
-  --font-sans:  "Afacad", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-sans:  "Montserrat", -apple-system, "Helvetica Neue", Arial, sans-serif;
 
   /* un seul token pour l’arrondi : passe-le à 0 et tout le site
      revient à l’angle vif d’avant */
