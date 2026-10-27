@@ -78,8 +78,22 @@
       typer.append(text, caret);
       text.textContent = words[0];
 
-      const TYPE = 34, ERASE = 16, HOLD = 1100, BREATH = 200;
+      /* La frappe se lit, elle ne défile pas : un mot doit avoir le
+         temps d’être lu avant de partir. TYPE et ERASE sont des
+         vitesses de base — la courbe ci-dessous les module. */
+      const TYPE = 72, ERASE = 34, HOLD = 2000, BREATH = 420;
       let word = 0, letters = words[0].length, erasing = false;
+
+      /* Une lettre posée seule claque ; une lettre posée dans un
+         mouvement se fond. On part lentement, on prend de la vitesse
+         au milieu, on ralentit en arrivant — la même courbe que les
+         transitions CSS du site, appliquée au rythme des lettres. */
+      const adoucir = (base, i, total) => {
+        if (total < 2) return base;
+        const t = i / (total - 1);          /* 0 → 1 sur le mot */
+        const elan = Math.sin(Math.PI * t); /* 0 aux bords, 1 au centre */
+        return base * (1.5 - 0.7 * elan);
+      };
 
       const frame = () => {
         const current = words[word];
@@ -87,7 +101,7 @@
 
         if (erasing) {
           letters -= 1;
-          delay = ERASE;
+          delay = adoucir(ERASE, letters, current.length);
           if (letters === 0) {
             erasing = false;
             word = (word + 1) % words.length;
@@ -96,7 +110,9 @@
         } else {
           if (letters < current.length) {
             letters += 1;
-            delay = letters === current.length ? HOLD : TYPE;
+            delay = letters === current.length
+              ? HOLD
+              : adoucir(TYPE, letters, current.length);
             if (letters === current.length) erasing = true;
           } else {
             erasing = true;

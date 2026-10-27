@@ -259,10 +259,10 @@ a {
 
 .hero {
   position: relative;
-  /* Un écran plein, moins une bande : la section des travaux dépasse
-     déjà sous le pli. C’est elle qui dit qu’il y a une suite — plus
-     besoin d’une flèche pour l’annoncer. */
-  min-height: calc(100svh - clamp(7rem, 18vh, 12rem));
+  /* L’écran entier, désormais : la bande de travaux qui dépassait
+     sous le pli servait à dire qu’il y avait une suite. Le rappel
+     cliquable le dit mieux, le hero peut donc respirer en entier. */
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -300,19 +300,50 @@ a {
   margin-left: 0.07em;
   vertical-align: -0.04em;
   background: currentColor;
-  animation: caret-blink 1s steps(1) infinite;
+  /* un fondu et non un `steps(1)` : le battement carré hachait la
+     ligne, celui-ci respire au même rythme que la frappe */
+  animation: caret-blink 1.4s var(--ease-soft) infinite;
 }
 
 @keyframes caret-blink {
-  50% { opacity: 0; }
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0; }
 }
 
+/* Le rappel est devenu l’action principale du hero : il descend vers
+   le bas de l’écran — là où le regard va chercher la suite — et
+   grossit assez pour se lire comme une invitation, pas comme une
+   note de bas de page. */
 .hero__sub {
-  margin-top: var(--space-6);
-  font-size: clamp(1rem, 1.6vw, 1.25rem);
+  margin-top: clamp(var(--space-6), 13vh, 8.5rem);
+  font-size: clamp(1.25rem, 2.4vw, 2rem);
   font-family: var(--font-serif);
   font-style: italic;
   font-weight: 400;
+}
+
+/* Cliquable sans rien autour : ni cadre, ni aplat, ni soulignement.
+   Le point qui suit la souris grossit déjà sur tout lien ; il ne
+   reste à faire qu’un signe, et ce sont les parenthèses qui le font
+   — elles s’écartent, comme pour laisser passer. */
+.hero__sub {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.hero__sub .paren {
+  display: inline-block;
+  transition: transform 600ms var(--ease);
+}
+
+.hero__sub:hover .paren:first-child,
+.hero__sub:focus-visible .paren:first-child {
+  transform: translateX(-0.22em);
+}
+
+.hero__sub:hover .paren:last-child,
+.hero__sub:focus-visible .paren:last-child {
+  transform: translateX(0.22em);
 }
 
 /* Cette règle doit suivre le `padding` raccourci de `.hero` ci-dessus,
@@ -455,7 +486,9 @@ a {
 /* Haut volontairement court : c’est ce qui fait que l’intitulé de la
    section affleure sous le pli du hero. Le bas garde sa respiration. */
 .works {
-  padding: clamp(2rem, 3.5vw, 3.5rem)
+  /* on ne tombe plus sur les cartes à la seconde où le hero finit :
+     le défilement arrive sur un blanc, puis sur le titre */
+  padding: clamp(var(--space-5), 9vh, 7rem)
            clamp(var(--space-2), 1.8vw, var(--space-5))
            var(--section-pad);
 }
