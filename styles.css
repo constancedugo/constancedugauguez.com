@@ -542,16 +542,9 @@ a {
   line-height: 1.1;
 }
 
-.work__desc {
-  margin-top: var(--space-2);
-  font-size: 0.9375rem;
-  line-height: 1.55;
-  text-wrap: pretty;
-}
-
 /* `margin-top: auto` pousse l’étiquette tout en bas de la carte :
-   quelle que soit la longueur des descriptions, elles s’alignent
-   toutes sur une même ligne d’une carte à l’autre. */
+   qu’un titre tienne sur une ou deux lignes, les étiquettes
+   s’alignent toutes sur une même ligne d’une carte à l’autre. */
 .work__tag {
   align-self: flex-start;
   margin-top: auto;
