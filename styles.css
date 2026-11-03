@@ -321,6 +321,39 @@ a {
   50%      { opacity: 0; }
 }
 
+/* Cliquable sans rien autour : ni cadre, ni aplat, ni soulignement.
+   Le point qui suit la souris grossit déjà sur tout lien ; il ne
+   reste à faire qu’un signe, et ce sont les parenthèses qui le font
+   — elles s’écartent, comme pour laisser passer.
+
+   C’était la manière du hero ; c’est maintenant celle de tous les
+   liens qui invitent à continuer. Le seul autre de la page portait
+   un aplat bordeaux et une flèche : deux vocabulaires pour un même
+   geste, et le plus bruyant au bas de la planche, là où il fallait
+   le moins. Seule la taille change d’un endroit à l’autre. */
+.paren-link {
+  display: inline-block;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.paren-link .paren {
+  display: inline-block;
+  transition: transform 600ms var(--ease);
+}
+
+.paren-link:hover .paren:first-child,
+.paren-link:focus-visible .paren:first-child {
+  transform: translateX(-0.22em);
+}
+
+.paren-link:hover .paren:last-child,
+.paren-link:focus-visible .paren:last-child {
+  transform: translateX(0.22em);
+}
+
 /* Le rappel est devenu l’action principale du hero : il descend vers
    le bas de l’écran — là où le regard va chercher la suite — et
    grossit assez pour se lire comme une invitation, pas comme une
@@ -328,33 +361,6 @@ a {
 .hero__sub {
   margin-top: clamp(var(--space-6), 13vh, 8.5rem);
   font-size: clamp(1.25rem, 2.4vw, 2rem);
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 400;
-}
-
-/* Cliquable sans rien autour : ni cadre, ni aplat, ni soulignement.
-   Le point qui suit la souris grossit déjà sur tout lien ; il ne
-   reste à faire qu’un signe, et ce sont les parenthèses qui le font
-   — elles s’écartent, comme pour laisser passer. */
-.hero__sub {
-  display: inline-block;
-  text-decoration: none;
-}
-
-.hero__sub .paren {
-  display: inline-block;
-  transition: transform 600ms var(--ease);
-}
-
-.hero__sub:hover .paren:first-child,
-.hero__sub:focus-visible .paren:first-child {
-  transform: translateX(-0.22em);
-}
-
-.hero__sub:hover .paren:last-child,
-.hero__sub:focus-visible .paren:last-child {
-  transform: translateX(0.22em);
 }
 
 /* Cette règle doit suivre le `padding` raccourci de `.hero` ci-dessus,
@@ -668,7 +674,7 @@ a {
 }
 
 /* Crochets plutôt que pastille : une étiquette se lit, elle ne se
-   clique pas. La pastille pleine reste au seul .btn de la page. */
+   clique pas. */
 .work__tag {
   flex: none;
   font-size: 0.625rem;
@@ -705,30 +711,10 @@ a {
   margin-top: clamp(var(--space-7), 7vw, 6rem);
 }
 
-/* La pastille a disparu avec les cartes, et l’arrondi des images
-   avec elle : un bouton rond serait désormais la seule courbe de la
-   page. Il prend donc le même angle que tout le reste, et son
-   --radius, pour suivre le jour où le token rebougera. */
-.btn {
-  display: inline-block;
-  padding: 0.9em 1.8em;
-  border: 1px solid var(--ink);
-  border-radius: var(--radius);
-  background: var(--ink);
-  color: var(--paper);
-  font-family: var(--font-sans);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: background-color 600ms var(--ease), color 600ms var(--ease);
-}
-
-.btn:hover,
-.btn:focus-visible {
-  background: transparent;
-  color: var(--ink);
+/* Un cran sous le lien du hero : celui-là ouvre la page, celui-ci
+   la referme. Même geste, voix plus basse. */
+.works__more .paren-link {
+  font-size: clamp(1.125rem, 1.9vw, 1.625rem);
 }
 
 
