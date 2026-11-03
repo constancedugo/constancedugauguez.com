@@ -589,10 +589,20 @@ a {
    de la même largeur ni à la même hauteur. Le cinquième projet
    reprend la position 1, le sixième la position 2 : la composition
    se prolonge d'elle-même, sans rien à régler à la main. */
-.work:nth-child(4n + 1) { grid-column: 1 / 6;  }
-.work:nth-child(4n + 2) { grid-column: 8 / 12; margin-top: clamp(2rem, 7vw, 5.5rem); }
-.work:nth-child(4n + 3) { grid-column: 3 / 6;  margin-top: clamp(1rem, 4vw, 3rem); }
-.work:nth-child(4n + 4) { grid-column: 8 / 13; }
+/* Huit positions, de trois colonnes chacune — un quart de la page,
+   comme dans la référence. Les rangées sont alignées en haut : ce
+   qui fait la composition, ce ne sont pas des décalages verticaux,
+   ce sont les colonnes qu’on laisse vides et les hauteurs d’image
+   qui diffèrent. Trois de front ; puis deux à gauche et une au bord
+   droit ; puis deux au centre. Le cycle reprend à la neuvième. */
+.work:nth-child(8n + 1) { grid-column: 1 / 4;   }
+.work:nth-child(8n + 2) { grid-column: 4 / 7;   }
+.work:nth-child(8n + 3) { grid-column: 7 / 10;  }
+.work:nth-child(8n + 4) { grid-column: 1 / 4;   }
+.work:nth-child(8n + 5) { grid-column: 4 / 7;   }
+.work:nth-child(8n + 6) { grid-column: 10 / 13; }
+.work:nth-child(8n + 7) { grid-column: 4 / 7;   }
+.work:nth-child(8n + 8) { grid-column: 7 / 10;  }
 
 /* :nth-child compte aussi les projets masqués par un filtre : dès
    qu’une catégorie est choisie, la composition se troue. Le script
@@ -600,10 +610,14 @@ a {
    reprennent la main sur celles du dessus — mêmes places, mais
    comptées sur ce qu’on voit. Sans JS, data-pos n’existe pas et
    :nth-child suffit. */
-.work[data-pos="0"] { grid-column: 1 / 6;  margin-top: 0; }
-.work[data-pos="1"] { grid-column: 8 / 12; margin-top: clamp(2rem, 7vw, 5.5rem); }
-.work[data-pos="2"] { grid-column: 3 / 6;  margin-top: clamp(1rem, 4vw, 3rem); }
-.work[data-pos="3"] { grid-column: 8 / 13; margin-top: 0; }
+.work[data-pos="0"] { grid-column: 1 / 4;   }
+.work[data-pos="1"] { grid-column: 4 / 7;   }
+.work[data-pos="2"] { grid-column: 7 / 10;  }
+.work[data-pos="3"] { grid-column: 1 / 4;   }
+.work[data-pos="4"] { grid-column: 4 / 7;   }
+.work[data-pos="5"] { grid-column: 10 / 13; }
+.work[data-pos="6"] { grid-column: 4 / 7;   }
+.work[data-pos="7"] { grid-column: 7 / 10;  }
 
 /* .work porte display:block, qui l’emporterait sur l’attribut
    hidden — sans cette ligne, filtrer ne masquerait rien. */
@@ -614,14 +628,6 @@ a {
 /* Le décalage de format fait le reste du travail : les deux grandes
    positions en paysage, les deux petites en carré. Deux formats
    suffisent — trois donneraient du désordre, pas du rythme. */
-.work:nth-child(4n + 2) .work__figure img,
-.work:nth-child(4n + 3) .work__figure img,
-.work[data-pos="1"] .work__figure img,
-.work[data-pos="2"] .work__figure img { aspect-ratio: 1 / 1; }
-
-.work[data-pos="0"] .work__figure img,
-.work[data-pos="3"] .work__figure img { aspect-ratio: 4 / 3; }
-
 .work__link {
   display: block;
   text-decoration: none;
@@ -633,11 +639,16 @@ a {
   border-radius: var(--radius);
 }
 
+/* Aucun recadrage. Les vignettes de Constance sont des portraits
+   4:5 ; les forcer en 4/3 leur coupait un tiers de la hauteur, et
+   une image dont on ne voit qu’un morceau ne dit rien du projet.
+   Toutes font la même largeur, chacune garde sa hauteur : c’est
+   cette différence de hauteur qui fait la planche, pas une série
+   de formats décidés à l’avance. */
 .work__figure img {
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  height: auto;
   transition: transform 900ms var(--ease);
 }
 
@@ -646,36 +657,39 @@ a {
   transform: scale(1.02);
 }
 
-/* Une seule ligne sous l'image, tenue par un filet d'un pixel. Au
-   survol le filet passe à l'encre : tout le bloc répond, sans qu'on
-   ait besoin d'un fond ni d'un cadre pour le dire. */
+/* Une seule ligne sous l’image, et rien pour la tenir : le filet
+   redessinait le bas d’un cadre sous chaque vignette, soit ce dont
+   on venait de les débarrasser. C’est l’image au-dessus qui tient
+   la légende, et le survol se joue sur le nom. */
 .work__caption {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: var(--space-2);
-  margin-top: var(--space-2);
-  padding-top: var(--space-1);
-  border-top: 1px solid var(--paper-soft);
-  transition: border-color 600ms var(--ease);
+  gap: var(--space-1);
+  margin-top: 0.6rem;
 }
 
-.work__link:hover .work__caption,
-.work__link:focus-visible .work__caption {
-  border-top-color: var(--ink);
-}
-
-/* Le nom descend de 28 px à 17 px : dans une planche contact, c'est
-   l'image qui porte le projet, la légende ne fait que le nommer. */
+/* Le nom descend de 28 px à 15 px : dans une planche contact, c’est
+   l’image qui porte le projet, la légende ne fait que la nommer —
+   et la vignette ne fait plus que 318 px de large. */
 .work__name {
-  font-size: 1.0625rem;
-  line-height: 1.2;
+  font-size: 0.9375rem;
+  line-height: 1.25;
+  text-wrap: pretty;
+}
+
+.work__link:hover .work__name,
+.work__link:focus-visible .work__name {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
 }
 
 /* Crochets plutôt que pastille : une étiquette se lit, elle ne se
    clique pas. La pastille pleine reste au seul .btn de la page. */
 .work__tag {
   flex: none;
+  font-size: 0.625rem;
   color: var(--ink-dim);
   transition: color 600ms var(--ease);
 }
@@ -688,17 +702,26 @@ a {
 /* Sous 52 rem, deux colonnes décalées ne tiennent plus : un projet
    par rangée, pleine largeur, et plus aucun décalage vertical. */
 @media (max-width: 52rem) {
-  .work:nth-child(4n + 1),
-  .work:nth-child(4n + 2),
-  .work:nth-child(4n + 3),
-  .work:nth-child(4n + 4),
+  /* Deux de front plutôt qu’une seule pleine largeur : une planche
+     contact reste une planche contact sur un téléphone. Les douze
+     colonnes et les positions tombent ; les formats, eux, restent,
+     et c’est ce qui empêche les deux colonnes de faire un tableau. */
+  .works__grid {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: var(--space-2);
+    row-gap: var(--space-6);
+  }
+
+  .work:nth-child(n),
   .work[data-pos] {
-    grid-column: 1 / -1;
+    grid-column: auto;
     margin-top: 0;
   }
 
-  .works__grid {
-    row-gap: var(--space-7);
+  /* 160 px ne tiennent pas un nom et son étiquette côte à côte */
+  .work__caption {
+    flex-direction: column;
+    gap: 0.15rem;
   }
 }
 

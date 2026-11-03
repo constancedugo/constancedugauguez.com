@@ -245,11 +245,14 @@
   if (filterBar && worksGrid) {
     const works = Array.from(worksGrid.querySelectorAll('.work'));
 
-    /* La composition tourne sur quatre places. Tant que rien n'est
-       filtré, :nth-child les distribue tout seul — mais un projet
+    /* La composition tourne sur huit places — il faut que ce nombre
+       reste le même que le 8n des règles .work:nth-child du CSS, et
+       que les .work[data-pos] aillent de 0 à 7. Tant que rien n'est
+       filtré, :nth-child les distribue tout seul ; mais un projet
        masqué compte encore pour :nth-child, et la grille se troue
        dès le premier clic. On renumérote donc ce qui reste visible,
        et le CSS lit data-pos. */
+    const POSITIONS = 8;
     const layout = () => {
       let seen = 0;
       works.forEach((work) => {
@@ -257,7 +260,7 @@
           work.removeAttribute('data-pos');
           return;
         }
-        work.dataset.pos = String(seen % 4);
+        work.dataset.pos = String(seen % POSITIONS);
         seen += 1;
       });
     };
