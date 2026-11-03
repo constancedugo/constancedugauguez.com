@@ -19,7 +19,7 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Montserrat:wght@400;500&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Montserrat:wght@400;500&display=swap">
 
-  <link rel="stylesheet" href="../styles.css?v=65">
+  <link rel="stylesheet" href="../styles.css?v=66">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -48,7 +48,7 @@
     <section class="project-hero project-grid">
       <div class="project-hero__lead span-1-7">
         <h1 class="project-hero__title">Kinnect</h1>
-        <p class="project-hero__intro">2 Minutes, One Card, Real Connection Social impact <br>Card game + mobile app · Group Project</p>
+        <p class="project-hero__intro">2 minutes, one card, real connection — a social-impact card game and mobile app, made as a group project.</p>
       </div>
 
       <div class="project-hero__meta span-9-12">
@@ -72,77 +72,51 @@
 
     </section>
 
-    <!-- ═══ 01 · Brief — une image, plus grande ═══ -->
-    <section class="project-section" id="brief" aria-labelledby="brief-title">
+    <!-- ═══ Le projet, d'un seul tenant ═══ -->
+    <!-- Un bloc, pas de titre : pour en ajouter, écris simplement un
+         <p> de plus ici. -->
+    <section class="project-section" id="about">
       <div class="project-grid">
-        <div class="project-section__text span-1-6">
-          <p class="small-caps project-section__index">01</p>
-          <h2 class="project-section__title" id="brief-title">The problem</h2>
-          <p>39% of Singaporeans aged 62+ report feeling lonely, and 86% of them live with family. Sharing a home isn’t the same as feeling connected. In multigenerational households, school, work and screens fill the day, and real interaction slips away.
-          <p>Two surveys confirmed it from both sides. Seniors (63+) wanted more quality time and shared activities. Younger respondents (13–25) wanted the same, and were open to an app to stay close to their grandparents.
-          <p>The challenge: a system simple enough for every generation, from teens to grandparents.</p>
+        <div class="project-section__text span-1-8">
+          <p>39% of Singaporeans aged 62+ report feeling lonely, and 86% of them live with family. Sharing a home isn’t the same as feeling connected: in multigenerational households, school, work and screens fill the day, and real interaction slips away. Two surveys confirmed it from both sides — seniors (63+) wanted more quality time and shared activities, and 13–25s wanted exactly the same, and were open to an app to stay close to their grandparents.</p>
+          <p>Loneliness here isn’t a distance problem, it’s an attention problem. The solution couldn’t ask for more time, only for a lower barrier to starting a conversation: two minutes, one prompt, no planning. And since screens were part of the problem, it couldn’t lead with an app. The challenge was a system simple enough for every generation, from teens to grandparents.</p>
+          <p>Short term, the card game — a physical deck of conversation prompts in four categories: Today.., What if.., Imagine, Your Generation. It sits on the table, works for every age, needs no onboarding, and is sold at pop-up stands outside community centres and libraries around National Grandparents Day. Long term, the app — a QR code inside the box unlocks challenges, streaks, mini-games and shared progress that turn one good evening into a habit, with text and navigation resized after user testing with elderly players. Awareness → engagement → habit.</p>
         </div>
+      </div>
+    </section>
 
-        <figure class="media media--lg span-7-12">
-          <img src="../images/Kinnect-Ages.png" alt="Overview of the Kinnect identity applied across multiple formats" loading="lazy" width="900" height="1125">
+    <!-- ═══ Planche d'images ═══ -->
+    <!-- Pour ajouter un visuel : copie une <figure> et donne-lui une
+         classe span-*. Deux visuels dont les colonnes ne se
+         chevauchent pas se rangent d'eux-mêmes sur la même ligne. -->
+    <section class="project-section project-plates" aria-label="Project images">
+      <div class="project-grid">
+        <figure class="media span-1-7">
+          <img src="../images/Kinnect-Ages.png" alt="Overview of the Kinnect identity applied across multiple formats" loading="lazy" width="3127" height="2084">
           <figcaption class="small-caps">Fig.&hairsp;01 — Reality</figcaption>
         </figure>
 
-        <!-- Add more brief images or paragraphs here -->
-      </div>
-    </section>
-
-    <!-- ═══ 02 · Process — texte en haut, images côte à côte en dessous ═══ -->
-    <section class="project-section" id="process" aria-labelledby="process-title">
-      <div class="project-grid">
-        <div class="project-section__text span-1-7">
-          <p class="small-caps project-section__index">02</p>
-          <h2 class="project-section__title" id="process-title">The thinking</h2>
-          <p>Loneliness here isn't a distance problem, it's an attention problem.</p>
-          <p>The solution couldn't ask for more time — only a lower barrier to starting a conversation: two minutes, one prompt, no planning. And since screens were part of the problem, it couldn't lead with an app.</p>
-        </div>
-
-        <figure class="media span-1-6">
-          <img src="../images/Kinnect-Think.png" alt="Exploration of the Kinnect colour system" loading="lazy" width="900" height="1125">
+        <figure class="media span-8-12">
+          <img src="../images/Kinnect-Think.png" alt="Exploration of the Kinnect colour system" loading="lazy" width="2098" height="1168">
           <figcaption class="small-caps">Fig.&hairsp;02 — Issue</figcaption>
         </figure>
-        <figure class="media span-7-12">
-          <img src="../images/Kinnect-B.png" alt="Identity applied across the Kinnect cards" loading="lazy" width="900" height="1125">
+
+        <figure class="media span-1-5">
+          <img src="../images/Kinnect-B.png" alt="Identity applied across the Kinnect cards" loading="lazy" width="4492" height="2841">
           <figcaption class="small-caps">Fig.&hairsp;03 — Card system</figcaption>
         </figure>
 
-        <!-- Add more process images, sketches, or paragraphs here -->
+        <figure class="media span-6-12">
+          <img src="../images/Kinnect-Box.png" alt="Kinnect app with the final identity" loading="lazy" width="4096" height="2458">
+          <figcaption class="small-caps">Fig.&hairsp;04 — The game</figcaption>
+        </figure>
+
+        <figure class="media span-3-11">
+          <img src="../images/Kinnect-Train.png" alt="Detail of the Kinnect cards" loading="lazy" width="2303" height="2282">
+          <figcaption class="small-caps">Fig.&hairsp;05 — Touch point</figcaption>
+        </figure>
       </div>
     </section>
-
-    <!-- ═══ 03 · Results — deux images, plus discrètes ═══ -->
-    <section class="project-section" id="results" aria-labelledby="results-title">
-      <div class="project-grid">
-        <div class="project-section__text span-1-6">
-          <p class="small-caps project-section__index">03</p>
-          <h2 class="project-section__title" id="results-title">The Solution</h2>
-          <p>Short term — the card game. A physical deck of conversation prompts in four categories to create interest between generations: Today.., What if.., Imagine, Your Generation. It sits on the table, works for every age, needs no onboarding. Sold at pop-up stands outside community centres and libraries around National Grandparents Day.</p>
-          <p>Long term — the app. A QR code inside the box unlocks a digital extension: challenges, streaks, mini-games and shared progress that turn one good evening into a habit. Accessibility-first, after user testing flagged text and navigation sizing for elderly users.</p>
-          <p>Awareness → engagement → habit.</p>
-        </div>
-
-        <div class="media-stack span-7-12">
-          <figure class="media">
-            <img src="../images/Kinnect-Box.png" alt="Kinnect app with the final identity" loading="lazy" width="900" height="1125">
-            <figcaption class="small-caps">Fig.&hairsp;04 — The Game </figcaption>
-          </figure>
-          <figure class="media media--tall">
-            <img src="../images/Kinnect-Train.png" alt="Detail of the Kinnect cards" loading="lazy" width="900" height="1125">
-            <figcaption class="small-caps">Fig.&hairsp;05 — Touch point</figcaption>
-          </figure>
-        </div>
-
-        <!-- Add more results, documentation, or deliverable images here -->
-      </div>
-    </section>
-
-    <!-- Add further sections here (e.g. testing, reflection) following the
-         same .project-section / .project-grid / span-* pattern above. --> 
 
   </main>
 

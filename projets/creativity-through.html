@@ -19,7 +19,7 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Montserrat:wght@400;500&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Montserrat:wght@400;500&display=swap">
 
-  <link rel="stylesheet" href="../styles.css?v=65">
+  <link rel="stylesheet" href="../styles.css?v=66">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -73,78 +73,39 @@
 
     </section>
 
-    <!-- ═══ 01 · The premise — texte seul, colonne large ═══ -->
-    <section class="project-section" id="brief" aria-labelledby="brief-title">
+    <!-- ═══ Le projet, d'un seul tenant ═══ -->
+    <!-- Un bloc, pas de titre : pour en ajouter, écris simplement un
+         <p> de plus ici. -->
+    <section class="project-section" id="about">
       <div class="project-grid">
-        <div class="project-section__text span-1-7">
-          <p class="small-caps project-section__index">01</p>
-          <h2 class="project-section__title" id="brief-title">The Concept</h2>
-          <p>Colour, type and grid are usually taught as three separate subjects, each with its own list of rules. Learned that way, they read as constraints — things a designer has to get past in order to be creative.</p>
-          <p>The opposite is closer to the truth. Creative freedom comes from understanding structure well enough to know when to leave it. Creativity Through argues that design's foundations aren't limits but instruments: colour as emotion, type as expression, grid as structure — three parts of one system rather than three topics.</p>
+        <div class="project-section__text span-1-8">
+          <p>Colour, type and grid are usually taught as three separate subjects, each with its own list of rules. Learned that way, they read as constraints — things a designer has to get past in order to be creative. The opposite is closer to the truth: creative freedom comes from understanding structure well enough to know when to leave it. Creativity Through argues that design’s foundations aren’t limits but instruments — colour as emotion, type as expression, grid as structure, three parts of one system rather than three topics.</p>
+          <p>An argument about coherence had to be proven by the work itself, not stated in a caption, so each poster is made of its subject: the type poster built from letter anatomy, ascenders rising and descenders falling; the colour poster from the wheel dismantled into overlapping fields; the grid poster from a page of grid systems drawn as its own composition. All three share one typographic family, one modular grid and one evolving palette, so each stands alone but the set reads as a continuous composition side by side — same rules, three completely different results, which is the point. Takeaway postcards carry the system off the wall: a portable fragment of each poster, sealed with its own stamp and a line that undercuts the seriousness. Made for design students, educators, and anyone taught the fundamentals as a set of prohibitions.</p>
+          <p>The next step would be a digital layer: a QR code on each poster opening the same composition, animated — colours blending and reacting, letterforms morphing, the grid assembling, breaking apart and reorganising itself. Print can only ever show structure at rest; motion would let the posters demonstrate the argument in real time, on the same family, grid and palette, so the system stays coherent across both media.</p>
         </div>
-
-        <!-- Add more brief images or paragraphs here -->
       </div>
     </section>
 
-    <!-- ═══ 02 · The thinking — texte à gauche, affiches à droite ═══ -->
-    <section class="project-section" id="process" aria-labelledby="process-title">
+    <!-- ═══ Planche d'images ═══ -->
+    <!-- Pour ajouter un visuel : copie une <figure> et donne-lui une
+         classe span-*. Deux visuels dont les colonnes ne se
+         chevauchent pas se rangent d'eux-mêmes sur la même ligne. -->
+    <section class="project-section project-plates" aria-label="Project images">
       <div class="project-grid">
-        <div class="project-section__text span-1-6">
-          <p class="small-caps project-section__index">02</p>
-          <h2 class="project-section__title" id="process-title">The thinking</h2>
-          <p>An argument about coherence had to be proven by the work itself, not stated in a caption. So the series was built to demonstrate its own thesis twice over.</p>
-          <p>First, each poster is made of its subject. The type poster is built from letter anatomy — ascenders rising, descenders falling, counters and ligatures behaving as their definitions. The colour poster is the colour wheel dismantled into overlapping fields. The grid poster is a page of grid systems drawn as its own composition.</p>
-          <p>Second, the three share one typographic family, one modular grid and one evolving palette, so each stands alone but the set reads as a continuous composition when hung side by side. Same rules, three completely different results — which is the point.</p>
-        </div>
-
-        <figure class="media media--natural span-7-12">
+        <figure class="media media--natural span-1-12">
           <img src="../images/CT-poster.png" alt="The three Creativity Through posters — colour, type and grid" loading="lazy" width="4000" height="2666">
           <figcaption class="small-caps">Fig.&hairsp;01 — The three posters</figcaption>
         </figure>
 
-        <!-- Add more process images, sketches, or paragraphs here -->
-      </div>
-    </section>
-
-    <!-- ═══ 03 · The outcome — texte en haut, cartes + détail en dessous ═══ -->
-    <section class="project-section" id="results" aria-labelledby="results-title">
-      <div class="project-grid">
-        <div class="project-section__text span-1-7">
-          <p class="small-caps project-section__index">03</p>
-          <h2 class="project-section__title" id="results-title">The outcome</h2>
-          <p>Three posters forming one visual language, with takeaway postcards that carry the system off the wall: each a portable fragment of its poster, sealed with its own stamp and a line that undercuts the seriousness — bad kerning can never be justified, negative space, the real main character.</p>
-          <p>Made for design students, educators and anyone who was taught the fundamentals as a set of prohibitions.</p>
-        </div>
-
-        <figure class="media media--square span-1-4">
+        <figure class="media media--square span-1-6">
           <img src="../images/CT-card.png" alt="Takeaway postcards from the Creativity Through series" loading="lazy" width="4500" height="4500">
           <figcaption class="small-caps">Fig.&hairsp;02 — Takeaway postcards</figcaption>
         </figure>
 
-        <!-- TODO Constance : emplacement pour ta photo de détail
-             (tampon, kerning, grain du papier…). Remplace simplement
-             le src ci-dessous — le cadrage carré s’applique tout seul. -->
-        <figure class="media media--square span-5-8">
+        <figure class="media media--square span-7-12">
           <img src="../images/CT.png" alt="Detail of a Creativity Through postcard" loading="lazy" width="1029" height="1285">
           <figcaption class="small-caps">Fig.&hairsp;03 — Detail</figcaption>
         </figure>
-
-        <!-- Add more results, documentation, or deliverable images here -->
-      </div>
-    </section>
-
-    <!-- ═══ 04 · Going further — texte seul, colonne large ═══ -->
-    <section class="project-section" id="going-further" aria-labelledby="going-further-title">
-      <div class="project-grid">
-        <div class="project-section__text span-1-7">
-          <p class="small-caps project-section__index">04</p>
-          <h2 class="project-section__title" id="going-further-title">Going further</h2>
-          <p>The next step would be a digital layer: a QR code on each poster opening the same composition, animated. Colours blending and reacting, letterforms morphing and responding, the grid assembling, breaking apart and reorganising itself.</p>
-          <p>Print can only ever show structure at rest. Motion would let the posters demonstrate the argument in real time — structure visibly enabling freedom rather than describing it — while running on the same typographic family, grid and palette, so the system stays coherent across both media.</p>
-        </div>
-
-        <!-- Add motion stills or a video embed here -->
       </div>
     </section>
 

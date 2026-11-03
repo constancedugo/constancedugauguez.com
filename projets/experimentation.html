@@ -19,7 +19,7 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Montserrat:wght@400;500&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Montserrat:wght@400;500&display=swap">
 
-  <link rel="stylesheet" href="../styles.css?v=65">
+  <link rel="stylesheet" href="../styles.css?v=66">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -73,59 +73,49 @@
 
     </section>
 
-    <!-- ═══ 01 · About this exploration — une image, plus grande ═══ -->
-    <section class="project-section" id="brief" aria-labelledby="brief-title">
+    <!-- ═══ Le projet, d'un seul tenant ═══ -->
+    <!-- Un bloc, pas de titre : pour en ajouter, écris simplement un
+         <p> de plus ici. -->
+    <section class="project-section" id="about">
       <div class="project-grid">
-        <div class="project-section__text span-1-6">
-          <p class="small-caps project-section__index">01</p>
-          <h2 class="project-section__title" id="brief-title">About this exploration</h2>
-          <p>This page isn't a case study but a playground: experiments around movement, generative form, and interaction, made outside any client brief.</p>
-          <p>A way to stay hands-on with tools and questions that later feed into more structured work — no big write-up needed, the visuals speak for themselves.</p>
+        <div class="project-section__text span-1-8">
+          <p>This page isn’t a case study but a playground: experiments around movement, generative form and interaction, made outside any client brief. A way to stay hands-on with tools and questions that later feed into more structured work — no write-up needed, the visuals speak for themselves.</p>
         </div>
+      </div>
+    </section>
 
-        <figure class="media media--lg span-7-12">
+    <!-- ═══ Planche d'images ═══ -->
+    <!-- Pour ajouter un visuel : copie une <figure> et donne-lui une
+         classe span-*. Deux visuels dont les colonnes ne se
+         chevauchent pas se rangent d'eux-mêmes sur la même ligne. -->
+    <section class="project-section project-plates" aria-label="Project images">
+      <div class="project-grid">
+        <figure class="media span-1-7">
           <img src="https://picsum.photos/id/1080/900/1125" alt="Animated composition test blending technology and movement" loading="lazy" width="900" height="1125">
           <figcaption class="small-caps">Fig.&hairsp;01 — Composition test, 2025</figcaption>
         </figure>
 
-        <!-- Add more intro paragraphs here -->
-      </div>
-    </section>
-
-    <!-- ═══ 02 · Gallery ═══ -->
-    <!-- Trois images par rangée, jamais pleine largeur — un carnet
-         de planches, pas un mur d’images. -->
-    <section class="project-section" id="gallery" aria-labelledby="gallery-title">
-      <div class="project-grid">
-        <div class="project-section__text span-1-12">
-          <p class="small-caps project-section__index">02</p>
-          <h2 class="project-section__title" id="gallery-title">Gallery</h2>
-        </div>
-
-        <figure class="media span-1-4">
+        <figure class="media span-8-12">
           <img src="https://picsum.photos/id/1084/900/1125" alt="Study of generative forms" loading="lazy" width="900" height="1125">
           <figcaption class="small-caps">Fig.&hairsp;02 — Generative study, 2025</figcaption>
         </figure>
-        <figure class="media span-5-8">
+
+        <figure class="media span-1-4">
           <img src="https://picsum.photos/id/1078/900/1125" alt="Animated pattern test" loading="lazy" width="900" height="1125">
           <figcaption class="small-caps">Fig.&hairsp;03 — Pattern test, 2025</figcaption>
         </figure>
-        <figure class="media span-9-12">
+
+        <figure class="media span-5-8">
           <img src="https://picsum.photos/id/1069/900/1125" alt="Interactive interface experiment" loading="lazy" width="900" height="1125">
           <figcaption class="small-caps">Fig.&hairsp;04 — Interface experiment, 2026</figcaption>
         </figure>
 
-        <figure class="media span-1-4">
+        <figure class="media span-9-12">
           <img src="https://picsum.photos/id/1074/900/1125" alt="Study of vertical movement" loading="lazy" width="900" height="1125">
           <figcaption class="small-caps">Fig.&hairsp;05 — Movement study, 2026</figcaption>
         </figure>
-
-        <!-- Add more explorations, stills, or embedded video here -->
       </div>
     </section>
-
-    <!-- Add further sections here (e.g. testing, reflection) following the
-         same .project-section / .project-grid / span-* pattern above. -->
 
   </main>
 

@@ -505,51 +505,53 @@ a {
 }
 
 .works__title {
-  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-size: clamp(2.25rem, 4.5vw, 3.75rem);
 }
 
-/* auto-fit : trois cartes de front sur un grand écran, deux puis une
-   quand la place manque, sans média-requête à tenir à jour. */
+/* Plus de carte : ni cadre, ni fond, ni pastille. Une carte posait
+   une boîte autour de chaque projet et les forçait toutes à la même
+   taille — cinq rectangles identiques, et un trou à la place du
+   sixième. Ici les images sont posées à même la trame de douze
+   colonnes, décalées les unes des autres ; sous chacune, une seule
+   ligne : le nom à gauche, la catégorie à droite entre crochets.
+   C'est le blanc qui sépare, plus le filet. */
 .works__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
-  /* une seule gouttière, identique en largeur et en hauteur : la
-     grille se lit comme une trame régulière, sans direction
-     privilégiée */
-  gap: clamp(var(--space-4), 3.5vw, var(--space-7));
-  max-width: 96rem;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--space-3);
+  /* gouttière verticale plus généreuse que l'horizontale : sans
+     cadre, c'est elle seule qui dit où finit une rangée */
+  row-gap: clamp(var(--space-7), 7vw, 6rem);
+  /* même largeur de page que les pages projet : la grille d'accueil
+     et celle d'un cas se superposent exactement */
+  max-width: 84rem;
   margin: 0 auto;
   list-style: none;
   padding: 0;
 }
 
-@media (min-width: 64rem) {
-  /* au-delà de 1024 px on fige à trois : auto-fit en mettrait quatre
-     et les cartes perdraient leur présence */
-  .works__grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
+.work {
+  display: block;
 }
 
-.work {
-  display: flex;
-}
+/* Quatre positions qui se répètent, deux projets par rangée, jamais
+   de la même largeur ni à la même hauteur. Le cinquième projet
+   reprend la position 1, le sixième la position 2 : la composition
+   se prolonge d'elle-même, sans rien à régler à la main. */
+.work:nth-child(4n + 1) { grid-column: 1 / 7;  }
+.work:nth-child(4n + 2) { grid-column: 8 / 13; margin-top: clamp(2rem, 7vw, 5.5rem); }
+.work:nth-child(4n + 3) { grid-column: 2 / 6;  margin-top: clamp(1rem, 4vw, 3rem); }
+.work:nth-child(4n + 4) { grid-column: 7 / 13; }
+
+/* Le décalage de format fait le reste du travail : les deux grandes
+   positions en paysage, les deux petites en carré. Deux formats
+   suffisent — trois donneraient du désordre, pas du rythme. */
+.work:nth-child(4n + 2) .work__figure img,
+.work:nth-child(4n + 3) .work__figure img { aspect-ratio: 1 / 1; }
 
 .work__link {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: var(--space-3);
-  border: 1px solid var(--paper-soft);
-  border-radius: calc(var(--radius) * 2);
+  display: block;
   text-decoration: none;
-  transition: border-color 600ms var(--ease), background-color 600ms var(--ease);
-}
-
-.work__link:hover,
-.work__link:focus-visible {
-  border-color: var(--ink);
-  background-color: var(--paper-soft);
 }
 
 .work__figure {
@@ -566,42 +568,64 @@ a {
   transition: transform 900ms var(--ease);
 }
 
-.work__link:hover .work__figure img {
-  transform: scale(1.03);
+.work__link:hover .work__figure img,
+.work__link:focus-visible .work__figure img {
+  transform: scale(1.02);
 }
 
+/* Une seule ligne sous l'image, tenue par un filet d'un pixel. Au
+   survol le filet passe à l'encre : tout le bloc répond, sans qu'on
+   ait besoin d'un fond ni d'un cadre pour le dire. */
+.work__caption {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  padding-top: var(--space-1);
+  border-top: 1px solid var(--paper-soft);
+  transition: border-color 600ms var(--ease);
+}
+
+.work__link:hover .work__caption,
+.work__link:focus-visible .work__caption {
+  border-top-color: var(--ink);
+}
+
+/* Le nom descend de 28 px à 17 px : dans une planche contact, c'est
+   l'image qui porte le projet, la légende ne fait que le nommer. */
 .work__name {
-  margin-top: var(--space-3);
-  font-size: clamp(1.375rem, 2vw, 1.75rem);
-  line-height: 1.1;
+  font-size: 1.0625rem;
+  line-height: 1.2;
 }
 
-/* `margin-top: auto` pousse l’étiquette tout en bas de la carte :
-   qu’un titre tienne sur une ou deux lignes, les étiquettes
-   s’alignent toutes sur une même ligne d’une carte à l’autre. */
+/* Crochets plutôt que pastille : une étiquette se lit, elle ne se
+   clique pas. La pastille pleine reste au seul .btn de la page. */
 .work__tag {
-  align-self: flex-start;
-  margin-top: auto;
-  padding-top: var(--space-2);
+  flex: none;
+  color: var(--ink-dim);
+  transition: color 600ms var(--ease);
 }
 
-/* Pastille en contour, et non pleine : c’est une étiquette, pas une
-   action. Le bouton plein reste réservé au seul vrai bouton de la
-   page (.btn), qui le perdrait si cinq cartes l’imitaient. Au survol
-   elle se remplit — l’inverse exact du .btn, même vocabulaire. */
-.work__tag span {
-  display: inline-block;
-  padding: 0.55em 1.15em;
-  border: 1px solid var(--ink);
-  border-radius: 999px;
+.work__link:hover .work__tag,
+.work__link:focus-visible .work__tag {
   color: var(--ink);
-  transition: background-color 600ms var(--ease), color 600ms var(--ease);
 }
 
-.work__link:hover .work__tag span,
-.work__link:focus-visible .work__tag span {
-  background: var(--ink);
-  color: var(--paper);
+/* Sous 52 rem, deux colonnes décalées ne tiennent plus : un projet
+   par rangée, pleine largeur, et plus aucun décalage vertical. */
+@media (max-width: 52rem) {
+  .work:nth-child(4n + 1),
+  .work:nth-child(4n + 2),
+  .work:nth-child(4n + 3),
+  .work:nth-child(4n + 4) {
+    grid-column: 1 / -1;
+    margin-top: 0;
+  }
+
+  .works__grid {
+    row-gap: var(--space-7);
+  }
 }
 
 .works__more {
@@ -953,6 +977,7 @@ a {
 
 .span-1-12 { grid-column: 1 / -1; }
 .span-1-9  { grid-column: 1 / 10; }
+.span-1-8  { grid-column: 1 / 9; }
 .span-1-7  { grid-column: 1 / 8; }
 .span-1-6  { grid-column: 1 / 7; }
 .span-1-5  { grid-column: 1 / 6; }
@@ -965,10 +990,15 @@ a {
 .span-8-12 { grid-column: 8 / 13; }
 .span-9-12 { grid-column: 9 / 13; }
 .span-10-12 { grid-column: 10 / 13; }
+.span-2-6  { grid-column: 2 / 7; }
+.span-7-11 { grid-column: 7 / 12; }
+.span-3-11 { grid-column: 3 / 12; }
 
 @media (max-width: 44rem) {
-  .span-1-12, .span-1-9, .span-1-7, .span-1-6, .span-1-5, .span-1-4,
-  .span-5-8, .span-2-8, .span-6-12, .span-7-12, .span-8-9, .span-8-12, .span-9-12, .span-10-12 {
+  /* une liste nommée se périmait à chaque span ajouté — et un span
+     oublié ici restait sur douze colonnes au téléphone, sans rien
+     dire. Le sélecteur les attrape tous, y compris ceux à venir. */
+  .project-grid > [class*="span-"] {
     grid-column: 1 / -1;
   }
 }
@@ -992,8 +1022,8 @@ a {
 }
 
 .project-hero__title {
-  font-size: clamp(3rem, 8vw, 7.5rem);
-  line-height: 0.96;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 0.98;
   text-wrap: balance;
 }
 
@@ -1016,16 +1046,16 @@ a {
 
 .meta-item__value {
   font-family: var(--font-serif);
-  font-size: clamp(1.1875rem, 1.5vw, 1.4375rem);
-  line-height: 1.25;
+  font-size: clamp(1rem, 1.05vw, 1.125rem);
+  line-height: 1.3;
 }
 
 /* même correction que pour le corps de texte : 34ch étranglait le
    chapô dans une colonne deux fois plus large */
 .project-hero__intro {
   margin-top: var(--space-3);
-  font-size: clamp(1.125rem, 1.6vw, 1.375rem);
-  line-height: 1.5;
+  font-size: clamp(1rem, 1.1vw, 1.125rem);
+  line-height: 1.55;
   max-width: 52ch;
   text-align: left;
   text-wrap: pretty;
@@ -1070,37 +1100,29 @@ a {
   padding-top: clamp(1.5rem, 3vw, 2.5rem);
 }
 
-/* le titre reste attaché à son texte — un seul bloc, jamais un
-   bandeau séparé qui s’éloigne des paragraphes qu’il annonce */
+/* Un seul bloc de texte par projet, en haut de la page : ni numéro
+   de section, ni « 01 · Le problème » — le cas se raconte d’un
+   trait, puis les images prennent le relais sans qu’un titre
+   vienne les annoncer. Trois chapitres de trois lignes chacun
+   donnaient neuf blocs de ferraille éditoriale autour de très peu
+   de texte. */
 .project-section__text {
   display: flex;
   flex-direction: column;
 }
 
-.project-section__index {
-  display: block;
-  margin-bottom: var(--space-2);
-  opacity: 0.7;
-}
-
-.project-section__title {
-  font-size: clamp(1.75rem, 3.5vw, 3rem);
-  margin-bottom: var(--space-4);
-}
-
-/* --measure vaut 34ch : une mesure de titre, pas de corps de texte.
-   Appliquée ici, elle bridait le paragraphe à 301 px dans une
-   colonne de 660 — d’où 359 px de blanc que personne n’avait voulu,
-   et des lignes de 35 signes. 66ch remplit la colonne et reste dans
-   la fourchette lisible. */
+/* 18 px pour un paragraphe isolé sur une page d’images, c’était la
+   taille d’un chapô. À 16 px le texte redevient du texte — on le
+   lit, on ne le subit pas. Et 68ch tient la colonne de huit unités
+   sans couper les lignes trop court. */
 .project-section__text p {
-  font-size: 1.125rem;
-  line-height: 1.6;
-  max-width: 66ch;
+  font-size: 1rem;
+  line-height: 1.7;
+  max-width: 68ch;
 }
 
 .project-section__text p + p {
-  margin-top: var(--space-3);
+  margin-top: var(--space-4);
 }
 
 /* — Figures — */
@@ -1201,6 +1223,28 @@ a {
 
 .media figcaption {
   margin-top: var(--space-1);
+}
+
+/* — Planches d’images — */
+/* Une section sans texte : rien que des visuels posés sur la trame.
+   Ailleurs, une hauteur fixe aligne l’image sur la colonne de texte
+   voisine, au prix d’un recadrage. Ici il n’y a plus de voisine à
+   rattraper, et ce qu’on montre, ce sont des planches, des écrans,
+   des affiches : les rogner coupe le travail en deux. Donc rien
+   n’est recadré — c’est la largeur de colonne qui donne l’échelle,
+   et le décalage des hauteurs qui donne le rythme. Un carré reste
+   possible, pour une photo, mais il remplit sa colonne. */
+.project-plates .media img {
+  height: auto;
+}
+
+.project-plates .media--square img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.project-plates .media--square {
+  width: auto;
 }
 
 @media (max-width: 44rem) {
