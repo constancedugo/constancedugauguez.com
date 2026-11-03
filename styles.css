@@ -64,6 +64,12 @@
   --section-pad: clamp(6rem, 12vw, 12rem);
 
   --measure: 34ch;
+
+  /* Largeur de la planche de travaux — titre, filtres et grille s’y
+     calent tous les trois, sinon leurs bords gauches ne tombent pas
+     au même endroit. Trois colonnes là-dedans donnent des vignettes
+     de 320 px : change cette valeur et toute la planche suit. */
+  --works-width: 66rem;
 }
 
 /* ── 02 · Reset & base ──────────────────────────────────────── */
@@ -502,7 +508,7 @@ a {
    part du bord de la première image au lieu de flotter au centre
    au-dessus d’une composition qui, elle, est calée à gauche. */
 .works__head {
-  max-width: 84rem;
+  max-width: var(--works-width);
   margin: 0 auto clamp(var(--space-4), 3vw, var(--space-6));
   text-align: left;
 }
@@ -514,7 +520,7 @@ a {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-1) clamp(var(--space-3), 2.5vw, var(--space-5));
-  max-width: 84rem;
+  max-width: var(--works-width);
   margin: 0 auto clamp(var(--space-6), 5vw, var(--space-8));
 }
 
@@ -559,23 +565,21 @@ a {
   font-size: clamp(2.25rem, 4.5vw, 3.75rem);
 }
 
-/* Plus de carte : ni cadre, ni fond, ni pastille. Une carte posait
-   une boîte autour de chaque projet et les forçait toutes à la même
-   taille — cinq rectangles identiques, et un trou à la place du
-   sixième. Ici les images sont posées à même la trame de douze
-   colonnes, décalées les unes des autres ; sous chacune, une seule
-   ligne : le nom à gauche, la catégorie à droite entre crochets.
-   C'est le blanc qui sépare, plus le filet. */
+/* Plus de carte : ni cadre, ni fond, ni pastille — c'est le blanc
+   qui sépare. Et trois colonnes égales, pas une composition : un
+   portfolio n'a pas de projet plus important qu'un autre, et une
+   trame de douze colonnes avec des places variées donnait justement
+   ça — une grande vignette d'ouverture, une petite reléguée. Trois
+   colonnes se lisent d'un coup, et accueillent le dixième projet
+   exactement comme le troisième. */
 .works__grid {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  column-gap: var(--space-3);
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: var(--space-6);
   /* gouttière verticale plus généreuse que l'horizontale : sans
      cadre, c'est elle seule qui dit où finit une rangée */
-  row-gap: clamp(var(--space-7), 7vw, 6rem);
-  /* même largeur de page que les pages projet : la grille d'accueil
-     et celle d'un cas se superposent exactement */
-  max-width: 84rem;
+  row-gap: clamp(var(--space-6), 5vw, 4.5rem);
+  max-width: var(--works-width);
   margin: 0 auto;
   list-style: none;
   padding: 0;
@@ -589,35 +593,10 @@ a {
    de la même largeur ni à la même hauteur. Le cinquième projet
    reprend la position 1, le sixième la position 2 : la composition
    se prolonge d'elle-même, sans rien à régler à la main. */
-/* Huit positions, de trois colonnes chacune — un quart de la page,
-   comme dans la référence. Les rangées sont alignées en haut : ce
-   qui fait la composition, ce ne sont pas des décalages verticaux,
-   ce sont les colonnes qu’on laisse vides et les hauteurs d’image
-   qui diffèrent. Trois de front ; puis deux à gauche et une au bord
-   droit ; puis deux au centre. Le cycle reprend à la neuvième. */
-.work:nth-child(8n + 1) { grid-column: 1 / 4;   }
-.work:nth-child(8n + 2) { grid-column: 4 / 7;   }
-.work:nth-child(8n + 3) { grid-column: 7 / 10;  }
-.work:nth-child(8n + 4) { grid-column: 1 / 4;   }
-.work:nth-child(8n + 5) { grid-column: 4 / 7;   }
-.work:nth-child(8n + 6) { grid-column: 10 / 13; }
-.work:nth-child(8n + 7) { grid-column: 4 / 7;   }
-.work:nth-child(8n + 8) { grid-column: 7 / 10;  }
-
-/* :nth-child compte aussi les projets masqués par un filtre : dès
-   qu’une catégorie est choisie, la composition se troue. Le script
-   renumérote donc les projets restés visibles, et ces quatre règles
-   reprennent la main sur celles du dessus — mêmes places, mais
-   comptées sur ce qu’on voit. Sans JS, data-pos n’existe pas et
-   :nth-child suffit. */
-.work[data-pos="0"] { grid-column: 1 / 4;   }
-.work[data-pos="1"] { grid-column: 4 / 7;   }
-.work[data-pos="2"] { grid-column: 7 / 10;  }
-.work[data-pos="3"] { grid-column: 1 / 4;   }
-.work[data-pos="4"] { grid-column: 4 / 7;   }
-.work[data-pos="5"] { grid-column: 10 / 13; }
-.work[data-pos="6"] { grid-column: 4 / 7;   }
-.work[data-pos="7"] { grid-column: 7 / 10;  }
+/* Aucune place n’est assignée : chaque projet prend la cellule
+   suivante. C’est ce qui permet au filtre de masquer n’importe
+   lequel sans trouer la grille — les survivants se retassent tout
+   seuls, et le script n’a plus rien à renuméroter. */
 
 /* .work porte display:block, qui l’emporterait sur l’attribut
    hidden — sans cette ligne, filtrer ne masquerait rien. */
@@ -639,16 +618,19 @@ a {
   border-radius: var(--radius);
 }
 
-/* Aucun recadrage. Les vignettes de Constance sont des portraits
-   4:5 ; les forcer en 4/3 leur coupait un tiers de la hauteur, et
-   une image dont on ne voit qu’un morceau ne dit rien du projet.
-   Toutes font la même largeur, chacune garde sa hauteur : c’est
-   cette différence de hauteur qui fait la planche, pas une série
-   de formats décidés à l’avance. */
+/* Toutes les cellules sont carrées. Laisser chaque image à ses
+   proportions paraissait plus honnête, mais trois portraits 4:5 à
+   côté de deux paysages 4:3 donnaient des vignettes deux fois plus
+   hautes que leurs voisines : la grille désignait des favoris sans
+   qu’on le lui demande. Le carré est la seule forme qui ne penche
+   ni vers le portrait ni vers le paysage — il coupe un cinquième
+   d’un 4:5 et un quart d’un 4:3, et personne n’est servi deux fois
+   mieux que son voisin. */
 .work__figure img {
   display: block;
   width: 100%;
-  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
   transition: transform 900ms var(--ease);
 }
 
@@ -702,20 +684,12 @@ a {
 /* Sous 52 rem, deux colonnes décalées ne tiennent plus : un projet
    par rangée, pleine largeur, et plus aucun décalage vertical. */
 @media (max-width: 52rem) {
-  /* Deux de front plutôt qu’une seule pleine largeur : une planche
-     contact reste une planche contact sur un téléphone. Les douze
-     colonnes et les positions tombent ; les formats, eux, restent,
-     et c’est ce qui empêche les deux colonnes de faire un tableau. */
+  /* Deux de front plutôt que trois : à 375 px, trois vignettes
+     feraient 100 px de côté. */
   .works__grid {
     grid-template-columns: repeat(2, 1fr);
     column-gap: var(--space-2);
-    row-gap: var(--space-6);
-  }
-
-  .work:nth-child(n),
-  .work[data-pos] {
-    grid-column: auto;
-    margin-top: 0;
+    row-gap: var(--space-5);
   }
 
   /* 160 px ne tiennent pas un nom et son étiquette côte à côte */

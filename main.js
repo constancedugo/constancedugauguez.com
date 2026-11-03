@@ -245,27 +245,11 @@
   if (filterBar && worksGrid) {
     const works = Array.from(worksGrid.querySelectorAll('.work'));
 
-    /* La composition tourne sur huit places — il faut que ce nombre
-       reste le même que le 8n des règles .work:nth-child du CSS, et
-       que les .work[data-pos] aillent de 0 à 7. Tant que rien n'est
-       filtré, :nth-child les distribue tout seul ; mais un projet
-       masqué compte encore pour :nth-child, et la grille se troue
-       dès le premier clic. On renumérote donc ce qui reste visible,
-       et le CSS lit data-pos. */
-    const POSITIONS = 8;
-    const layout = () => {
-      let seen = 0;
-      works.forEach((work) => {
-        if (work.hidden) {
-          work.removeAttribute('data-pos');
-          return;
-        }
-        work.dataset.pos = String(seen % POSITIONS);
-        seen += 1;
-      });
-    };
-
-    layout();
+    /* Plus rien à replacer : les trois colonnes n'assignent aucune
+       cellule à personne, donc masquer un projet suffit — les
+       suivants se retassent d'eux-mêmes. (Avec la composition
+       d'avant, il fallait renuméroter les projets visibles à chaque
+       clic, sans quoi la grille se trouait.) */
 
     filterBar.addEventListener('click', (event) => {
       const button = event.target.closest('[data-filter]');
@@ -284,8 +268,6 @@
            l'opacité zéro. On le déclare vu. */
         work.classList.add('is-visible');
       });
-
-      layout();
     });
   }
 
