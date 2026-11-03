@@ -36,9 +36,13 @@
   --font-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
   --font-sans:  "Montserrat", -apple-system, "Helvetica Neue", Arial, sans-serif;
 
-  /* un seul token pour l’arrondi : passe-le à 0 et tout le site
-     revient à l’angle vif d’avant */
-  --radius: 8px;
+  /* Un seul token pour l’arrondi, et il vaut zéro. Un coin arrondi
+     met un cadre autour de l’image — exactement ce qu’on vient
+     d’enlever aux cartes. Repasse-le à 8px pour revenir en arrière.
+     La seule forme ronde qui reste est le point du curseur, qui est
+     un point : il garde son propre 999px, comme la pastille des
+     filtres. */
+  --radius: 0;
 
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   /* décélération douce : vitesse de départ raisonnable, arrivée
@@ -494,10 +498,57 @@ a {
            var(--section-pad);
 }
 
+/* Aligné à gauche, sur la même largeur que la grille : le titre
+   part du bord de la première image au lieu de flotter au centre
+   au-dessus d’une composition qui, elle, est calée à gauche. */
 .works__head {
-  max-width: 96rem;
-  margin: 0 auto clamp(var(--space-7), 7vw, 6rem);
-  text-align: center;
+  max-width: 84rem;
+  margin: 0 auto clamp(var(--space-4), 3vw, var(--space-6));
+  text-align: left;
+}
+
+/* Barre de filtres : une ligne de catégories sous le titre. Ce sont
+   de vrais boutons — sans JS ils ne font rien, et la grille reste
+   entière, ce qui est le bon état par défaut. */
+.works__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) clamp(var(--space-3), 2.5vw, var(--space-5));
+  max-width: 84rem;
+  margin: 0 auto clamp(var(--space-6), 5vw, var(--space-8));
+}
+
+.works__filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink-dim);
+  cursor: pointer;
+  transition: color 400ms var(--ease);
+}
+
+.works__filter:hover,
+.works__filter:focus-visible,
+.works__filter[aria-pressed="true"] {
+  color: var(--ink);
+}
+
+/* La pastille est toujours là, seulement transparente : la faire
+   apparaître ne doit pas pousser le mot d’un demi-cadratin. */
+.works__filter-dot {
+  width: 0.4em;
+  height: 0.4em;
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0;
+  transition: opacity 400ms var(--ease);
+}
+
+.works__filter[aria-pressed="true"] .works__filter-dot {
+  opacity: 1;
 }
 
 .works__eyebrow {
@@ -538,16 +589,38 @@ a {
    de la même largeur ni à la même hauteur. Le cinquième projet
    reprend la position 1, le sixième la position 2 : la composition
    se prolonge d'elle-même, sans rien à régler à la main. */
-.work:nth-child(4n + 1) { grid-column: 1 / 7;  }
-.work:nth-child(4n + 2) { grid-column: 8 / 13; margin-top: clamp(2rem, 7vw, 5.5rem); }
-.work:nth-child(4n + 3) { grid-column: 2 / 6;  margin-top: clamp(1rem, 4vw, 3rem); }
-.work:nth-child(4n + 4) { grid-column: 7 / 13; }
+.work:nth-child(4n + 1) { grid-column: 1 / 6;  }
+.work:nth-child(4n + 2) { grid-column: 8 / 12; margin-top: clamp(2rem, 7vw, 5.5rem); }
+.work:nth-child(4n + 3) { grid-column: 3 / 6;  margin-top: clamp(1rem, 4vw, 3rem); }
+.work:nth-child(4n + 4) { grid-column: 8 / 13; }
+
+/* :nth-child compte aussi les projets masqués par un filtre : dès
+   qu’une catégorie est choisie, la composition se troue. Le script
+   renumérote donc les projets restés visibles, et ces quatre règles
+   reprennent la main sur celles du dessus — mêmes places, mais
+   comptées sur ce qu’on voit. Sans JS, data-pos n’existe pas et
+   :nth-child suffit. */
+.work[data-pos="0"] { grid-column: 1 / 6;  margin-top: 0; }
+.work[data-pos="1"] { grid-column: 8 / 12; margin-top: clamp(2rem, 7vw, 5.5rem); }
+.work[data-pos="2"] { grid-column: 3 / 6;  margin-top: clamp(1rem, 4vw, 3rem); }
+.work[data-pos="3"] { grid-column: 8 / 13; margin-top: 0; }
+
+/* .work porte display:block, qui l’emporterait sur l’attribut
+   hidden — sans cette ligne, filtrer ne masquerait rien. */
+.work[hidden] {
+  display: none;
+}
 
 /* Le décalage de format fait le reste du travail : les deux grandes
    positions en paysage, les deux petites en carré. Deux formats
    suffisent — trois donneraient du désordre, pas du rythme. */
 .work:nth-child(4n + 2) .work__figure img,
-.work:nth-child(4n + 3) .work__figure img { aspect-ratio: 1 / 1; }
+.work:nth-child(4n + 3) .work__figure img,
+.work[data-pos="1"] .work__figure img,
+.work[data-pos="2"] .work__figure img { aspect-ratio: 1 / 1; }
+
+.work[data-pos="0"] .work__figure img,
+.work[data-pos="3"] .work__figure img { aspect-ratio: 4 / 3; }
 
 .work__link {
   display: block;
@@ -618,7 +691,8 @@ a {
   .work:nth-child(4n + 1),
   .work:nth-child(4n + 2),
   .work:nth-child(4n + 3),
-  .work:nth-child(4n + 4) {
+  .work:nth-child(4n + 4),
+  .work[data-pos] {
     grid-column: 1 / -1;
     margin-top: 0;
   }
@@ -634,13 +708,15 @@ a {
   margin-top: clamp(var(--space-7), 7vw, 6rem);
 }
 
-/* Bouton-pastille, le même objet que l’étiquette des cartes : la
-   page n’invente pas une nouvelle forme pour une action de plus. */
+/* La pastille a disparu avec les cartes, et l’arrondi des images
+   avec elle : un bouton rond serait désormais la seule courbe de la
+   page. Il prend donc le même angle que tout le reste, et son
+   --radius, pour suivre le jour où le token rebougera. */
 .btn {
   display: inline-block;
   padding: 0.9em 1.8em;
   border: 1px solid var(--ink);
-  border-radius: 999px;
+  border-radius: var(--radius);
   background: var(--ink);
   color: var(--paper);
   font-family: var(--font-sans);
@@ -993,6 +1069,7 @@ a {
 .span-2-6  { grid-column: 2 / 7; }
 .span-7-11 { grid-column: 7 / 12; }
 .span-3-11 { grid-column: 3 / 12; }
+.span-2-11 { grid-column: 2 / 12; }
 
 @media (max-width: 44rem) {
   /* une liste nommée se périmait à chaque span ajouté — et un span

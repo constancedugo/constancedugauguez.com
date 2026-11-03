@@ -19,7 +19,7 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Montserrat:wght@400;500&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Montserrat:wght@400;500&display=swap">
 
-  <link rel="stylesheet" href="styles.css?v=66">
+  <link rel="stylesheet" href="styles.css?v=68">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -77,9 +77,22 @@
         <h2 class="works__title" id="works-title">Design in <span class="italic">practice</span></h2>
       </header>
 
+
+      <!-- Barre de filtres. Pour ajouter une catégorie : un bouton de
+           plus ici, et le même data-filter en data-category sur le
+           <li> du projet. Le script fait le reste. -->
+      <div class="works__filters" data-works-filters role="group" aria-label="Filter projects by category" data-reveal style="--i:1">
+        <button class="works__filter small-caps" type="button" data-filter="all" aria-pressed="true"><span class="works__filter-dot" aria-hidden="true"></span>All</button>
+        <button class="works__filter small-caps" type="button" data-filter="identity" aria-pressed="false"><span class="works__filter-dot" aria-hidden="true"></span>Identity &amp; App</button>
+        <button class="works__filter small-caps" type="button" data-filter="editorial" aria-pressed="false"><span class="works__filter-dot" aria-hidden="true"></span>Editorial Design</button>
+        <button class="works__filter small-caps" type="button" data-filter="art-direction" aria-pressed="false"><span class="works__filter-dot" aria-hidden="true"></span>Art Direction</button>
+        <button class="works__filter small-caps" type="button" data-filter="educational" aria-pressed="false"><span class="works__filter-dot" aria-hidden="true"></span>Educational</button>
+        <button class="works__filter small-caps" type="button" data-filter="exploration" aria-pressed="false"><span class="works__filter-dot" aria-hidden="true"></span>Exploration</button>
+      </div>
+
       <ul class="works__grid">
 
-        <li class="work" data-reveal style="--i:0">
+        <li class="work" data-category="identity" data-reveal style="--i:0">
           <a class="work__link" href="projets/kinnect.html">
             <figure class="work__figure">
               <img src="images/Kinnect.png" alt="Kinnect — identity overview: logotype, application and card deck" loading="lazy" width="4500" height="5625">
@@ -91,7 +104,7 @@
           </a>
         </li>
 
-        <li class="work" data-reveal style="--i:1">
+        <li class="work" data-category="editorial" data-reveal style="--i:1">
           <a class="work__link" href="projets/annual-report.html">
             <figure class="work__figure">
               <img src="images/MDF2.png" alt="Annual Report — spread from the annual report" loading="lazy" width="1782" height="2217">
@@ -103,7 +116,7 @@
           </a>
         </li>
 
-        <li class="work" data-reveal style="--i:2">
+        <li class="work" data-category="art-direction" data-reveal style="--i:2">
           <a class="work__link" href="projets/heritage-trees.html">
             <figure class="work__figure">
               <img src="images/Tree.jpeg" alt="Heritage Trees — visual research on remarkable trees" loading="lazy" width="4032" height="3024">
@@ -115,7 +128,7 @@
           </a>
         </li>
 
-        <li class="work" data-reveal style="--i:3">
+        <li class="work" data-category="educational" data-reveal style="--i:3">
           <a class="work__link" href="projets/creativity-through.html">
             <figure class="work__figure">
               <img src="images/CT.png" alt="Creativity Through — printed teaching tool" loading="lazy" width="1029" height="1285">
@@ -127,7 +140,7 @@
           </a>
         </li>
 
-        <li class="work" data-reveal style="--i:4">
+        <li class="work" data-category="exploration" data-reveal style="--i:4">
           <a class="work__link" href="projets/experimentation.html">
             <figure class="work__figure">
               <img src="https://picsum.photos/id/1042/900/675" alt="Experimentation — study of movement and light" loading="lazy" width="900" height="675">
@@ -173,6 +186,6 @@
     <p class="small-caps site-footer__colophon">Set in Instrument Serif &amp; Montserrat — designed &amp; built by hand — New York, <span data-clock>--:--:--</span> — © 2026 Constance Dugauguez</p>
   </footer>
 
-  <script src="main.js?v=15" defer></script>
+  <script src="main.js?v=16" defer></script>
 </body>
 </html>

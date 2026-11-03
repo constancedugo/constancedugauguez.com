@@ -234,6 +234,58 @@
     setInterval(tick, 1000);
   }
 
+  /* ── Filtres de la grille de travaux ──────────────────────── */
+
+  /* Sans ce script, les boutons ne font rien et la grille reste
+     entière : c'est l'état correct, pas une panne. */
+
+  const filterBar = document.querySelector('[data-works-filters]');
+  const worksGrid = document.querySelector('.works__grid');
+
+  if (filterBar && worksGrid) {
+    const works = Array.from(worksGrid.querySelectorAll('.work'));
+
+    /* La composition tourne sur quatre places. Tant que rien n'est
+       filtré, :nth-child les distribue tout seul — mais un projet
+       masqué compte encore pour :nth-child, et la grille se troue
+       dès le premier clic. On renumérote donc ce qui reste visible,
+       et le CSS lit data-pos. */
+    const layout = () => {
+      let seen = 0;
+      works.forEach((work) => {
+        if (work.hidden) {
+          work.removeAttribute('data-pos');
+          return;
+        }
+        work.dataset.pos = String(seen % 4);
+        seen += 1;
+      });
+    };
+
+    layout();
+
+    filterBar.addEventListener('click', (event) => {
+      const button = event.target.closest('[data-filter]');
+      if (!button) return;
+
+      const wanted = button.dataset.filter;
+
+      filterBar.querySelectorAll('[data-filter]').forEach((other) => {
+        other.setAttribute('aria-pressed', String(other === button));
+      });
+
+      works.forEach((work) => {
+        work.hidden = wanted !== 'all' && work.dataset.category !== wanted;
+        /* Un projet resté sous le pli n'a jamais croisé l'observateur
+           de défilement : réaffiché par un filtre, il resterait à
+           l'opacité zéro. On le déclare vu. */
+        work.classList.add('is-visible');
+      });
+
+      layout();
+    });
+  }
+
   /* ── Petit mot pour les curieuses et curieux ──────────────── */
 
   console.log(
