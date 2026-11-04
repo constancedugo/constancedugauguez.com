@@ -1069,6 +1069,15 @@ a {
   padding: clamp(6rem, 13vh, 8.5rem) var(--space-4) clamp(2rem, 4vw, 3.5rem);
 }
 
+/* Ici la grille porte elle-même le padding de page, alors qu'ailleurs
+   elle est un enfant de la section qui le porte. Le max-width de 84rem
+   s'appliquait donc une fois avec le padding compris, une fois sans :
+   les colonnes du hero rentraient de 32 px, et le titre ne tombait pas
+   sur la même marge que le paragraphe en dessous. */
+.project-hero.project-grid {
+  max-width: calc(84rem + var(--space-4) * 2);
+}
+
 /* Le titre et son chapô forment un seul bloc. Séparés, ils tombaient
    dans deux rangées de grille distinctes : la première prenait la
    hauteur du bloc d’infos voisin, et le chapô se retrouvait rejeté
@@ -1097,17 +1106,22 @@ a {
 /* Ces quatre lignes portent les faits du projet — année, nature,
    rôle, outils. À 11 et 16 px elles se lisaient comme une mention
    légale. */
+/* Le rapport s'était inversé : l'étiquette, en capitales espacées à
+   13 px, pesait plus lourd que la valeur en serif à 16 px — on lisait
+   « ROLE » avant de lire le rôle. L'étiquette redescend au corps des
+   petites capitales du site et s'efface, la valeur monte : c'est elle
+   l'information. */
 .meta-item__label {
   display: block;
-  margin-bottom: 0.45em;
-  font-size: 0.8125rem;
-  opacity: 0.7;
+  margin-bottom: 0.3em;
+  opacity: 0.55;
 }
 
 .meta-item__value {
   font-family: var(--font-serif);
-  font-size: clamp(1rem, 1.05vw, 1.125rem);
-  line-height: 1.3;
+  font-size: clamp(1.25rem, 1.5vw, 1.5rem);
+  line-height: 1.25;
+  text-wrap: pretty;
 }
 
 /* même correction que pour le corps de texte : 34ch étranglait le
