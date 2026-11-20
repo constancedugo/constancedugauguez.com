@@ -1256,6 +1256,12 @@ a {
   aspect-ratio: 1 / 1;
 }
 
+/* carré qui remplit sa colonne au lieu de s’arrêter à 24rem — pour
+   un visuel posé à côté du texte qu’on veut voir plus grand */
+.media--square.media--fill {
+  width: auto;
+}
+
 /* petite planche de quatre visuels, deux par deux, carrés — pour
    une section qui documente plusieurs images plutôt qu’une ou deux */
 .media-grid {
