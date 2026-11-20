@@ -1321,6 +1321,30 @@ a {
   width: auto;
 }
 
+/* mention de droits sous une planche : la voix italique du serif,
+   en couleur éteinte, pour qu’elle se lise comme une note de bas
+   de page et non comme une légende de plus */
+.project-credit {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.0625rem;
+  line-height: 1.4;
+  color: var(--ink-dim);
+  margin-top: calc(var(--space-6) * -0.5);
+}
+
+/* lien souligné en permanence : dans une phrase, sans filet, il
+   ne se distinguerait pas du reste du texte */
+.project-credit a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+.project-credit a:hover {
+  color: var(--ink);
+}
+
 @media (max-width: 44rem) {
   .media img {
     height: 20rem;
