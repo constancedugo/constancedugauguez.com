@@ -1318,6 +1318,15 @@ a {
   height: auto;
 }
 
+/* vidéo dans une planche : se comporte comme une image, sans
+   recadrage, à la largeur de sa colonne */
+.media__video {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--paper-soft);
+}
+
 .project-plates .media--square img {
   aspect-ratio: 1 / 1;
   object-fit: cover;

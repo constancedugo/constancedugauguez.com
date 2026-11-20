@@ -4,8 +4,21 @@
     {
       "name": "static-site",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "4173"],
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "4173"
+      ],
       "port": 4173
+    },
+    {
+      "name": "site-preview-copy",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": [
+        "-c",
+        "cd '/private/tmp/claude-501/-Users-constancedugauguez--claude-spares-spare-34oexx/fc7072af-38f0-45ff-82be-1d5a2bb44593/scratchpad/site' && exec python3 -m http.server 4174"
+      ],
+      "port": 4174
     }
   ]
 }
